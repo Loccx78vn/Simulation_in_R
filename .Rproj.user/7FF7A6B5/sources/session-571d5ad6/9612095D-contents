@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Cao Xuân Lộc"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Introduce
+      - href: simulate.qmd
+        text: Simulation
+      - href: practice.qmd
+  page-footer:
+    right: "Built with [Quarto](https://quarto.org/)"
+    left: "&copy; Copyright 2024, Loc cao"
+
+format:
+  html:
+    theme:
+      light: theme-light.scss  
+      dark: theme-dark.scss   
+    toc: true                 
+    number-sections: true     
+
+editor: visual
+

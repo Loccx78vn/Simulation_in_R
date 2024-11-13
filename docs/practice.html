@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cao Xuân Lộc">
+<meta name="dcterms.date" content="2024-11-13">
+<meta name="description" content="Cách thực hành trong R">
+
+<title>Practice in R – Cao Xuân Lộc</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3a01e2046221230fdceeea94b1ec5d67.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-a4a11d514c7d463668e07712114998e6.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-fe64a206d7279f15d3f0f0dd3f7ef5b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: white;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: white;
+background-image: url(img/mountain.jpg);
+background-size: cover;
+      }
+</style>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<script src="site_libs/proj4js-2.3.15/proj4.js"></script>
+
+<link href="site_libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
+
+<script src="site_libs/highcharts-9.3.1/highcharts.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/highcharts-3d.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/highcharts-more.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/stock.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/map.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/data.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/exporting.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/drilldown.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/item-series.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/annotations.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/export-data.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/funnel.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/heatmap.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/treemap.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/sankey.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/organization.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/sunburst.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/vector.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/xrange.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/tilemap.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/venn.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/gantt.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/timeline.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/bullet.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/lollipop.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/series-label.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/plugins/motion.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/custom/reset.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/boost.js"></script>
+
+<script src="site_libs/highchart-binding-0.9.4/highchart.js"></script>
+
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Cao Xuân Lộc</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Introduce</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./simulate.html"> 
+<span class="menu-text">Simulation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./practice.html" aria-current="page"> 
+<span class="menu-text">Practice in R</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">Practice in R</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+            <p class="subtitle lead">Việt Nam, 2024</p>
+                  <div>
+        <div class="description">
+          Cách thực hành trong R
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">SupplyChainManagement</div>
+                <div class="quarto-category">Simulation</div>
+                <div class="quarto-category">Agent Based Modeling</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Cao Xuân Lộc </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 13, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#thực-hành-trong-r" id="toc-thực-hành-trong-r" class="nav-link active" data-scroll-target="#thực-hành-trong-r"><span class="header-section-number">1</span> Thực hành trong R:</a>
+  <ul class="collapse">
+  <li><a href="#thư-viện" id="toc-thư-viện" class="nav-link" data-scroll-target="#thư-viện"><span class="header-section-number">1.1</span> Thư viện:</a></li>
+  <li><a href="#mô-hình-des" id="toc-mô-hình-des" class="nav-link" data-scroll-target="#mô-hình-des"><span class="header-section-number">1.2</span> Mô hình DES:</a></li>
+  <li><a href="#mô-hình-abm" id="toc-mô-hình-abm" class="nav-link" data-scroll-target="#mô-hình-abm"><span class="header-section-number">1.5</span> Mô hình ABM:</a></li>
+  </ul></li>
+  <li><a href="#kết-luận" id="toc-kết-luận" class="nav-link" data-scroll-target="#kết-luận"><span class="header-section-number">2</span> Kết luận:</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="thực-hành-trong-r" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="thực-hành-trong-r"><span class="header-section-number">1</span> Thực hành trong R:</h2>
+<section id="thư-viện" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="thư-viện"><span class="header-section-number">1.1</span> Thư viện:</h3>
+<p>TIếp theo là chúng ta sẽ lập thử <em>DES</em> trong <strong>R</strong> để giả lập quá trình duy chuyển của xe trong chuỗi cung ứng để ứng tính ETD và ETA.</p>
+<p>Trong <strong>R</strong> có package <code>simmer</code> thuần về xây dựng mô hình <em>DES</em>, đòi hỏi 3 nhân tố là: (i) Hành vi hoạt động của đối tượng, (ii) Hàm tính thời gian cho hoạt động và (iii) Môi trường để chạy mô phỏng. Bạn có thể đọc bài viết này để biết thêm <a href="https://www.supplychaindataanalytics.com/simmer-in-r-for-discrete-event-simulation/">simmerR</a>.</p>
+</section>
+<section id="mô-hình-des" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="mô-hình-des"><span class="header-section-number">1.2</span> Mô hình DES:</h3>
+<p>Các object cần có trong mô hình <em>DES</em> là:</p>
+<ul>
+<li><p><strong>Entitiy</strong>: là đối tượng chính cần quan sát, ví dụ: khách hàng. Bạn sử dụng hàm <code>add_generator()</code> để thêm đối tượng vào mô hình.</p></li>
+<li><p><strong>Attribute</strong>: là <em>property</em> của <em>entity</em> (có thể hiểu là đặc tính, trạng thái,…).</p></li>
+<li><p><strong>Resource</strong>: là một nguồn lực mà <em>entity</em> được quyền dùng, ví dụ như nhân viên quán cafe cần hỗ trợ khách hàng khi có yêu cầu. Dùng hàm <code>add_resource()</code> để thêm và xác định số lượng resource bằng đối số: <code>capacity = n</code>.</p></li>
+<li><p><strong>Queue</strong>: là một chuỗi để các <em>entity</em> tham gia vào, ví dụ như hàng xếp chờ lấy nước ở quán cafe.</p></li>
+<li><p><strong>Event</strong>: các sự kiện thay đổi trong hệ thống.</p></li>
+</ul>
+<p>Ví dụ như đoạn code dưới đây:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simmer)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the trajectory for the vehicle's process</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>vehicle_traj <span class="ot">&lt;-</span> <span class="fu">trajectory</span>(<span class="st">"Vehicle Process"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 1: Take Order</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">3</span>)) <span class="sc">%&gt;%</span> <span class="co"># Time to take an order</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 2: Check if goods are available in the warehouse</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">"warehouse"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.3</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Time to check if goods are available</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">"warehouse"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Release the warehouse resource after checking</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 3: If goods are not available, wait for manufacturing (conditional)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">branch</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">option =</span> <span class="cf">function</span>() <span class="fu">ifelse</span>(<span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>),  <span class="co"># 50% chance</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">continue =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">trajectory</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.8</span>)),  <span class="co"># Manufacturing time if goods aren't available</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">trajectory</span>(<span class="st">"WaitForStock"</span>)  <span class="co"># Second branch if goods are available</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 4: Loading the goods</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">"truck"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Seize one truck for loading</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.6</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Loading time</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">"truck"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Release truck after loading</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 5: Transport to store</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Transport time</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 6: Unload the goods at the store</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">"store"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Seize one store resource for unloading</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.4</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Unloading time</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">"store"</span>, <span class="dv">1</span>)  <span class="co"># Release store resource</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">simmer</span>(<span class="st">"Vehicle Simulation"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">"warehouse"</span>, <span class="at">capacity =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">"truck"</span>, <span class="at">capacity =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">"store"</span>, <span class="at">capacity =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add generator for vehicles arriving with an exponential inter-arrival time</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_generator</span>(<span class="st">"vehicle"</span>, vehicle_traj, <span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.1</span>))  <span class="co"># Average of 10 vehicles per 100 time units</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the simulation for a longer duration</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span> </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run</span>(<span class="at">until =</span> <span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>simmer environment: Vehicle Simulation | now: 500 | next: 506.640269258215
+{ Monitor: in memory }
+{ Resource: warehouse | monitored: TRUE | server status: 0(1) | queue status: 0(Inf) }
+{ Resource: truck | monitored: TRUE | server status: 0(1) | queue status: 0(Inf) }
+{ Resource: store | monitored: TRUE | server status: 0(1) | queue status: 0(Inf) }
+{ Source: vehicle | monitored: 1 | n_generated: 45 }</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2024-11-09 08:30:00"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">format=</span><span class="st">"%Y-%m-%d %H:%M:%S"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>arrivals<span class="ot">&lt;-</span><span class="fu">get_mon_arrivals</span>(env, <span class="at">per_resource =</span> T)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>arrivals<span class="sc">$</span>datetime <span class="ot">&lt;-</span> start_time <span class="sc">+</span> (arrivals<span class="sc">$</span>start_time <span class="sc">*</span> <span class="dv">60</span>)  </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>arrivals<span class="sc">$</span>finish_datetime <span class="ot">&lt;-</span> start_time <span class="sc">+</span> (arrivals<span class="sc">$</span>end_time <span class="sc">*</span> <span class="dv">60</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Thông tin từ <strong>R</strong> được xuất ra cho thấy thời gian chạy là 500 và có 45 xe đã di chuyển vào hệ thống. Kết quả giả lập được thể hiện như sau: các đốm thể hiện thời điểm xe đi vào, chờ giải quyết yêu cầu và đi ra khỏi hàng chờ.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="DES.gif" class="img-fluid figure-img"></p>
+<figcaption>Biểu đồ 1: Discrete Event Simulation</figcaption>
+</figure>
+</div>
+<p>Và chúng ta sẽ có final output gồm:</p>
+</section>
+<div class="tabset">
+<section id="resources" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="resources"><span class="header-section-number">1.3</span> Resources:</h3>
+<div class="cell fig-cap-location-bottom">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simmer.plot)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>resources <span class="ot">&lt;-</span> <span class="fu">get_mon_resources</span>(env)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resources, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">metric =</span> <span class="st">"usage"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">c</span>(<span class="st">"warehouse"</span>, <span class="st">"truck"</span>,<span class="st">"store"</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">items =</span> <span class="st">"server"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="practice_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Biểu đồ 2: Quy trình di chuyển giả lập của xe</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="simulation" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="simulation"><span class="header-section-number">1.4</span> Simulation:</h3>
+<div class="cell fig-cap-location-bottom">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>arrivals <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hchart</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> type)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="highchart html-widget html-fill-item" id="htmlwidget-34a5e7db6812975dd65a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-34a5e7db6812975dd65a">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"time"}},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"activity_time","data":[{"type":"activity_time","time":3.013068878262282,"y":3.013068878262282},{"type":"activity_time","time":0.05287588159904667,"y":0.05287588159904667},{"type":"activity_time","time":5.835600444988374,"y":5.835600444988374},{"type":"activity_time","time":1.278472061098283,"y":1.278472061098283},{"type":"activity_time","time":0.406063993771871,"y":0.406063993771871},{"type":"activity_time","time":4.990696655376316,"y":4.990696655376316},{"type":"activity_time","time":0.01311162719503045,"y":0.01311162719503045},{"type":"activity_time","time":4.025715081742466,"y":4.025715081742466},{"type":"activity_time","time":4.791448923239683,"y":4.791448923239683},{"type":"activity_time","time":5.708800901689213,"y":5.708800901689213},{"type":"activity_time","time":10.81140772972574,"y":10.81140772972574},{"type":"activity_time","time":6.965267942499784,"y":6.965267942499784},{"type":"activity_time","time":0.1475658500567079,"y":0.1475658500567079},{"type":"activity_time","time":1.123302647223075,"y":1.123302647223075},{"type":"activity_time","time":2.085243865467132,"y":2.085243865467132},{"type":"activity_time","time":5.500703747069181,"y":5.500703747069181},{"type":"activity_time","time":4.166309162764311,"y":4.166309162764311},{"type":"activity_time","time":0.3844512657824557,"y":0.3844512657824557},{"type":"activity_time","time":3.647299804514707,"y":3.647299804514707},{"type":"activity_time","time":0.2169203734956682,"y":0.2169203734956682},{"type":"activity_time","time":5.049662231257619,"y":5.049662231257619},{"type":"activity_time","time":9.690679956909182,"y":9.690679956909182},{"type":"activity_time","time":3.319582926590285,"y":3.319582926590285},{"type":"activity_time","time":2.376652462267916,"y":2.376652462267916},{"type":"activity_time","time":0.4837408721656797,"y":0.4837408721656797},{"type":"activity_time","time":4.486243665629189,"y":4.486243665629189},{"type":"activity_time","time":0.4358954838801727,"y":0.4358954838801727},{"type":"activity_time","time":10.0305120144647,"y":10.0305120144647},{"type":"activity_time","time":1.523128326134634,"y":1.523128326134634},{"type":"activity_time","time":1.080829789799286,"y":1.080829789799286},{"type":"activity_time","time":0.4391427198424935,"y":0.4391427198424935},{"type":"activity_time","time":3.463337889301807,"y":3.463337889301807},{"type":"activity_time","time":2.476728225487501,"y":2.476728225487501},{"type":"activity_time","time":0.9153217310085893,"y":0.9153217310085893},{"type":"activity_time","time":0.6961313557500641,"y":0.6961313557500641},{"type":"activity_time","time":2.68117341900918,"y":2.68117341900918},{"type":"activity_time","time":7.476330132114015,"y":7.476330132114015},{"type":"activity_time","time":0.02565432804500197,"y":0.02565432804500197},{"type":"activity_time","time":2.333809602900625,"y":2.333809602900625},{"type":"activity_time","time":7.655915710654976,"y":7.655915710654976},{"type":"activity_time","time":0.463037712033838,"y":0.463037712033838},{"type":"activity_time","time":1.609255891526118,"y":1.609255891526118},{"type":"activity_time","time":2.231351082834105,"y":2.231351082834105},{"type":"activity_time","time":0.6103846886264331,"y":0.6103846886264331},{"type":"activity_time","time":0.3206771319234699,"y":0.3206771319234699},{"type":"activity_time","time":1.720409307939311,"y":1.720409307939311},{"type":"activity_time","time":0.7378474524785021,"y":0.7378474524785021},{"type":"activity_time","time":3.286281658290068,"y":3.286281658290068},{"type":"activity_time","time":2.317110001136948,"y":2.317110001136948},{"type":"activity_time","time":0.9901763467739026,"y":0.9901763467739026},{"type":"activity_time","time":3.441753731900494,"y":3.441753731900494},{"type":"activity_time","time":1.536700967629274,"y":1.536700967629274},{"type":"activity_time","time":6.181334186842373,"y":6.181334186842373},{"type":"activity_time","time":4.659885544756404,"y":4.659885544756404},{"type":"activity_time","time":7.070311499960344,"y":7.070311499960344},{"type":"activity_time","time":0.1336744319026669,"y":0.1336744319026669},{"type":"activity_time","time":1.148782449308783,"y":1.148782449308783},{"type":"activity_time","time":1.278043764883797,"y":1.278043764883797},{"type":"activity_time","time":8.388363457796098,"y":8.388363457796098},{"type":"activity_time","time":1.238118930486962,"y":1.238118930486962},{"type":"activity_time","time":3.740326119446795,"y":3.740326119446795},{"type":"activity_time","time":0.998209029591332,"y":0.998209029591332},{"type":"activity_time","time":3.989908502607585,"y":3.989908502607585},{"type":"activity_time","time":0.14918858728682,"y":0.14918858728682},{"type":"activity_time","time":2.141524309602877,"y":2.141524309602877},{"type":"activity_time","time":2.679241171467335,"y":2.679241171467335},{"type":"activity_time","time":1.585543548377852,"y":1.585543548377852},{"type":"activity_time","time":1.487421810222049,"y":1.487421810222049},{"type":"activity_time","time":2.040594189788431,"y":2.040594189788431},{"type":"activity_time","time":0.517178438603878,"y":0.517178438603878},{"type":"activity_time","time":1.289757344638929,"y":1.289757344638929},{"type":"activity_time","time":0.9683368087280542,"y":0.9683368087280542},{"type":"activity_time","time":6.413230256207865,"y":6.413230256207865},{"type":"activity_time","time":1.115142828008781,"y":1.115142828008781},{"type":"activity_time","time":0.2655685411632009,"y":0.2655685411632009},{"type":"activity_time","time":3.500935711447439,"y":3.500935711447439},{"type":"activity_time","time":0.2251590825165817,"y":0.2251590825165817},{"type":"activity_time","time":1.695655334620474,"y":1.695655334620474},{"type":"activity_time","time":1.302930901998798,"y":1.302930901998798},{"type":"activity_time","time":2.974526523507417,"y":2.974526523507417},{"type":"activity_time","time":0.05928077587085362,"y":0.05928077587085362},{"type":"activity_time","time":1.117105650094648,"y":1.117105650094648},{"type":"activity_time","time":5.353759762861412,"y":5.353759762861412},{"type":"activity_time","time":6.651184720017594,"y":6.651184720017594},{"type":"activity_time","time":0.5622973691527334,"y":0.5622973691527334},{"type":"activity_time","time":3.576872525526644,"y":3.576872525526644},{"type":"activity_time","time":15.38913544183398,"y":15.38913544183398},{"type":"activity_time","time":6.295358842982621,"y":6.295358842982621},{"type":"activity_time","time":1.457005914541106,"y":1.457005914541106},{"type":"activity_time","time":14.11073472266817,"y":14.11073472266817},{"type":"activity_time","time":7.197533286692686,"y":7.197533286692686},{"type":"activity_time","time":3.220787004738093,"y":3.220787004738093},{"type":"activity_time","time":1.162201492115855,"y":1.162201492115855},{"type":"activity_time","time":12.23911908074737,"y":12.23911908074737},{"type":"activity_time","time":0.245290066425999,"y":0.245290066425999},{"type":"activity_time","time":1.838632452612122,"y":1.838632452612122},{"type":"activity_time","time":0.4078617552295327,"y":0.4078617552295327},{"type":"activity_time","time":3.391999967756898,"y":3.391999967756898},{"type":"activity_time","time":0.06514357984997332,"y":0.06514357984997332},{"type":"activity_time","time":8.541236761537315,"y":8.541236761537315},{"type":"activity_time","time":2.411068171743592,"y":2.411068171743592},{"type":"activity_time","time":0.8102378668263555,"y":0.8102378668263555},{"type":"activity_time","time":0.2431631108157573,"y":0.2431631108157573},{"type":"activity_time","time":3.309600905685664,"y":3.309600905685664},{"type":"activity_time","time":0.795145146548748,"y":0.795145146548748},{"type":"activity_time","time":10.02474696503186,"y":10.02474696503186},{"type":"activity_time","time":1.04884138253207,"y":1.04884138253207},{"type":"activity_time","time":0.9622062097887651,"y":0.9622062097887651},{"type":"activity_time","time":1.839792008201281,"y":1.839792008201281},{"type":"activity_time","time":2.367784886577388,"y":2.367784886577388},{"type":"activity_time","time":0.6788887022752113,"y":0.6788887022752113},{"type":"activity_time","time":0.9228329357954766,"y":0.9228329357954766},{"type":"activity_time","time":1.319375105487527,"y":1.319375105487527},{"type":"activity_time","time":0.3021056007128209,"y":0.3021056007128209},{"type":"activity_time","time":1.068952038573722,"y":1.068952038573722},{"type":"activity_time","time":3.769227262997191,"y":3.769227262997191},{"type":"activity_time","time":1.743414533945421,"y":1.743414533945421},{"type":"activity_time","time":1.319476308999583,"y":1.319476308999583},{"type":"activity_time","time":0.8778059560184678,"y":0.8778059560184678},{"type":"activity_time","time":2.610914241417528,"y":2.610914241417528},{"type":"activity_time","time":0.6950025462235014,"y":0.6950025462235014},{"type":"activity_time","time":0.3197034215554595,"y":0.3197034215554595},{"type":"activity_time","time":0.1158477910085978,"y":0.1158477910085978},{"type":"activity_time","time":0.8213277254253626,"y":0.8213277254253626},{"type":"activity_time","time":1.505216479999945,"y":1.505216479999945},{"type":"activity_time","time":1.470542190363631,"y":1.470542190363631},{"type":"activity_time","time":4.698317895052911,"y":4.698317895052911},{"type":"activity_time","time":1.368837562780635,"y":1.368837562780635},{"type":"activity_time","time":1.702451547537764,"y":1.702451547537764},{"type":"activity_time","time":1.118063440080732,"y":1.118063440080732},{"type":"activity_time","time":7.545771039602282,"y":7.545771039602282},{"type":"activity_time","time":7.617506812837841,"y":7.617506812837841}],"type":"line"},{"name":"end_time","data":[{"type":"end_time","time":53.79977392578478,"y":53.79977392578478},{"type":"end_time","time":57.6682224321999,"y":57.6682224321999},{"type":"end_time","time":61.79629226602057,"y":61.79629226602057},{"type":"end_time","time":63.07476432711886,"y":63.07476432711886},{"type":"end_time","time":63.37791177088486,"y":63.37791177088486},{"type":"end_time","time":63.53587966206223,"y":63.53587966206223},{"type":"end_time","time":63.63105531266959,"y":63.63105531266959},{"type":"end_time","time":67.56159474380469,"y":67.56159474380469},{"type":"end_time","time":67.86621325035854,"y":67.86621325035854},{"type":"end_time","time":73.59638306621515,"y":73.59638306621515},{"type":"end_time","time":78.37300247353043,"y":78.37300247353043},{"type":"end_time","time":80.58455471898976,"y":80.58455471898976},{"type":"end_time","time":80.85568734786078,"y":80.85568734786078},{"type":"end_time","time":81.70785736621283,"y":81.70785736621283},{"type":"end_time","time":83.79310123167997,"y":83.79310123167997},{"type":"end_time","time":83.87370622059962,"y":83.87370622059962},{"type":"end_time","time":88.04001538336392,"y":88.04001538336392},{"type":"end_time","time":88.30874959383173,"y":88.30874959383173},{"type":"end_time","time":91.68731518787862,"y":91.68731518787862},{"type":"end_time","time":91.98072194482293,"y":91.98072194482293},{"type":"end_time","time":97.84456246122751,"y":97.84456246122751},{"type":"end_time","time":101.4317975009954,"y":101.4317975009954},{"type":"end_time","time":104.7513804275857,"y":104.7513804275857},{"type":"end_time","time":105.8419376099988,"y":105.8419376099988},{"type":"end_time","time":106.4101161209433,"y":106.4101161209433},{"type":"end_time","time":110.328181275628,"y":110.328181275628},{"type":"end_time","time":113.3594119543876,"y":113.3594119543876},{"type":"end_time","time":114.7818924420504,"y":114.7818924420504},{"type":"end_time","time":116.305020768185,"y":116.305020768185},{"type":"end_time","time":119.6934982264684,"y":119.6934982264684},{"type":"end_time","time":120.1326409463109,"y":120.1326409463109},{"type":"end_time","time":121.1741202029268,"y":121.1741202029268},{"type":"end_time","time":123.6508484284143,"y":123.6508484284143},{"type":"end_time","time":156.1044330427029,"y":156.1044330427029},{"type":"end_time","time":157.5565694466227,"y":157.5565694466227},{"type":"end_time","time":161.1690364959185,"y":161.1690364959185},{"type":"end_time","time":163.5807631748169,"y":163.5807631748169},{"type":"end_time","time":163.6064175028619,"y":163.6064175028619},{"type":"end_time","time":166.2051120032703,"y":166.2051120032703},{"type":"end_time","time":171.2366788854719,"y":171.2366788854719},{"type":"end_time","time":171.6997165975057,"y":171.6997165975057},{"type":"end_time","time":173.3978823311731,"y":173.3978823311731},{"type":"end_time","time":180.298799832268,"y":180.298799832268},{"type":"end_time","time":180.9091845208944,"y":180.9091845208944},{"type":"end_time","time":181.6944654214795,"y":181.6944654214795},{"type":"end_time","time":186.4828018117242,"y":186.4828018117242},{"type":"end_time","time":187.2206492642027,"y":187.2206492642027},{"type":"end_time","time":189.8479403754458,"y":189.8479403754458},{"type":"end_time","time":192.3148959262839,"y":192.3148959262839},{"type":"end_time","time":192.6564813595529,"y":192.6564813595529},{"type":"end_time","time":193.2896941073463,"y":193.2896941073463},{"type":"end_time","time":195.4503432119022,"y":195.4503432119022},{"type":"end_time","time":198.9717333372328,"y":198.9717333372328},{"type":"end_time","time":203.6316188819892,"y":203.6316188819892},{"type":"end_time","time":216.3477486314124,"y":216.3477486314124},{"type":"end_time","time":216.481423063315,"y":216.481423063315},{"type":"end_time","time":217.4965310807212,"y":217.4965310807212},{"type":"end_time","time":218.7745748456049,"y":218.7745748456049},{"type":"end_time","time":228.0341397869559,"y":228.0341397869559},{"type":"end_time","time":229.2722587174428,"y":229.2722587174428},{"type":"end_time","time":235.010423353921,"y":235.010423353921},{"type":"end_time","time":236.0086323835123,"y":236.0086323835123},{"type":"end_time","time":239.0003318565286,"y":239.0003318565286},{"type":"end_time","time":239.1495204438154,"y":239.1495204438154},{"type":"end_time","time":241.1418561661315,"y":241.1418561661315},{"type":"end_time","time":242.5886466134431,"y":242.5886466134431},{"type":"end_time","time":243.7423446536577,"y":243.7423446536577},{"type":"end_time","time":244.1752949487942,"y":244.1752949487942},{"type":"end_time","time":244.6292408032315,"y":244.6292408032315},{"type":"end_time","time":244.6924733873981,"y":244.6924733873981},{"type":"end_time","time":246.1507413689571,"y":246.1507413689571},{"type":"end_time","time":247.1190781776851,"y":247.1190781776851},{"type":"end_time","time":306.7565093145852,"y":306.7565093145852},{"type":"end_time","time":309.2291926494111,"y":309.2291926494111},{"type":"end_time","time":311.4682556084556,"y":311.4682556084556},{"type":"end_time","time":315.5994617459581,"y":315.5994617459581},{"type":"end_time","time":315.8246208284747,"y":315.8246208284747},{"type":"end_time","time":317.2951170805786,"y":317.2951170805786},{"type":"end_time","time":318.9537444950267,"y":318.9537444950267},{"type":"end_time","time":320.0364971564309,"y":320.0364971564309},{"type":"end_time","time":320.0957779323018,"y":320.0957779323018},{"type":"end_time","time":323.7430690831229,"y":323.7430690831229},{"type":"end_time","time":329.0968288459842,"y":329.0968288459842},{"type":"end_time","time":331.0334912521414,"y":331.0334912521414},{"type":"end_time","time":331.5957886212942,"y":331.5957886212942},{"type":"end_time","time":333.1607311400375,"y":333.1607311400375},{"type":"end_time","time":348.5498665818714,"y":348.5498665818714},{"type":"end_time","time":349.957263697546,"y":349.957263697546},{"type":"end_time","time":351.8086802311337,"y":351.8086802311337},{"type":"end_time","time":367.9536013132127,"y":367.9536013132127},{"type":"end_time","time":371.0845802661678,"y":371.0845802661678},{"type":"end_time","time":374.3053672709059,"y":374.3053672709059},{"type":"end_time","time":375.9470234984756,"y":375.9470234984756},{"type":"end_time","time":388.7370837586946,"y":388.7370837586946},{"type":"end_time","time":388.9823738251205,"y":388.9823738251205},{"type":"end_time","time":390.5757162113067,"y":390.5757162113067},{"type":"end_time","time":390.9835779665362,"y":390.9835779665362},{"type":"end_time","time":394.2702584947755,"y":394.2702584947755},{"type":"end_time","time":394.3354020746255,"y":394.3354020746255},{"type":"end_time","time":399.116952972844,"y":399.116952972844},{"type":"end_time","time":401.5280211445876,"y":401.5280211445876},{"type":"end_time","time":403.6790367605676,"y":403.6790367605676},{"type":"end_time","time":407.2403903407029,"y":407.2403903407029},{"type":"end_time","time":410.5499912463886,"y":410.5499912463886},{"type":"end_time","time":412.2269632306213,"y":412.2269632306213},{"type":"end_time","time":418.5394299184088,"y":418.5394299184088},{"type":"end_time","time":419.5882713009408,"y":419.5882713009408},{"type":"end_time","time":420.8982929163196,"y":420.8982929163196},{"type":"end_time","time":427.5847926026613,"y":427.5847926026613},{"type":"end_time","time":429.9525774892386,"y":429.9525774892386},{"type":"end_time","time":431.8158939520133,"y":431.8158939520133},{"type":"end_time","time":439.023271568073,"y":439.023271568073},{"type":"end_time","time":440.3426466735605,"y":440.3426466735605},{"type":"end_time","time":440.6919078328706,"y":440.6919078328706},{"type":"end_time","time":445.7210264565285,"y":445.7210264565285},{"type":"end_time","time":451.3346416027412,"y":451.3346416027412},{"type":"end_time","time":452.882799941285,"y":452.882799941285},{"type":"end_time","time":453.0597077376801,"y":453.0597077376801},{"type":"end_time","time":454.0089674135817,"y":454.0089674135817},{"type":"end_time","time":456.8333854385309,"y":456.8333854385309},{"type":"end_time","time":460.3088242490214,"y":460.3088242490214},{"type":"end_time","time":460.8926957594833,"y":460.8926957594833},{"type":"end_time","time":461.6718225135621,"y":461.6718225135621},{"type":"end_time","time":462.4931502389875,"y":462.4931502389875},{"type":"end_time","time":462.7357505381244,"y":462.7357505381244},{"type":"end_time","time":464.6228212373019,"y":464.6228212373019},{"type":"end_time","time":467.2292409381637,"y":467.2292409381637},{"type":"end_time","time":468.5980785009443,"y":468.5980785009443},{"type":"end_time","time":470.6936857377169,"y":470.6936857377169},{"type":"end_time","time":471.8117491777977,"y":471.8117491777977},{"type":"end_time","time":479.877773161528,"y":479.877773161528},{"type":"end_time","time":487.4952799743659,"y":487.4952799743659}],"type":"line"},{"name":"start_time","data":[{"type":"start_time","time":50.7867050475225,"y":50.7867050475225},{"type":"start_time","time":57.61534655060085,"y":57.61534655060085},{"type":"start_time","time":55.9606918210322,"y":55.9606918210322},{"type":"start_time","time":60.32075015142222,"y":60.32075015142222},{"type":"start_time","time":62.97184777711298,"y":62.97184777711298},{"type":"start_time","time":58.54518300668591,"y":58.54518300668591},{"type":"start_time","time":63.61794368547456,"y":63.61794368547456},{"type":"start_time","time":63.38700359517799,"y":63.38700359517799},{"type":"start_time","time":61.25266305739621,"y":61.25266305739621},{"type":"start_time","time":67.88758216452594,"y":67.88758216452594},{"type":"start_time","time":64.44526052626682,"y":64.44526052626682},{"type":"start_time","time":73.61928677648999,"y":73.61928677648999},{"type":"start_time","time":80.70812149780407,"y":80.70812149780407},{"type":"start_time","time":75.60326496617475,"y":75.60326496617475},{"type":"start_time","time":81.70785736621283,"y":81.70785736621283},{"type":"start_time","time":73.72552274616488,"y":73.72552274616488},{"type":"start_time","time":82.81137892378079,"y":82.81137892378079},{"type":"start_time","time":87.92429832804928,"y":87.92429832804928},{"type":"start_time","time":84.72973153095282,"y":84.72973153095282},{"type":"start_time","time":91.76380157132726,"y":91.76380157132726},{"type":"start_time","time":92.7949002299699,"y":92.7949002299699},{"type":"start_time","time":91.74111754408621,"y":91.74111754408621},{"type":"start_time","time":99.91154434549485,"y":99.91154434549485},{"type":"start_time","time":103.4652851477309,"y":103.4652851477309},{"type":"start_time","time":105.9263752487777,"y":105.9263752487777},{"type":"start_time","time":105.2846343349281,"y":105.2846343349281},{"type":"start_time","time":112.9235164705074,"y":112.9235164705074},{"type":"start_time","time":102.2004301492338,"y":102.2004301492338},{"type":"start_time","time":114.7818924420504,"y":114.7818924420504},{"type":"start_time","time":118.6126684366691,"y":118.6126684366691},{"type":"start_time","time":119.6934982264684,"y":119.6934982264684},{"type":"start_time","time":117.710782313625,"y":117.710782313625},{"type":"start_time","time":120.481120568351,"y":120.481120568351},{"type":"start_time","time":155.1891113116943,"y":155.1891113116943},{"type":"start_time","time":156.8604380908727,"y":156.8604380908727},{"type":"start_time","time":158.4878630769093,"y":158.4878630769093},{"type":"start_time","time":155.2912036834746,"y":155.2912036834746},{"type":"start_time","time":163.5807631748169,"y":163.5807631748169},{"type":"start_time","time":163.8713024003696,"y":163.8713024003696},{"type":"start_time","time":159.8236338852669,"y":159.8236338852669},{"type":"start_time","time":171.2366788854719,"y":171.2366788854719},{"type":"start_time","time":171.788626439647,"y":171.788626439647},{"type":"start_time","time":178.0674487494339,"y":178.0674487494339},{"type":"start_time","time":180.298799832268,"y":180.298799832268},{"type":"start_time","time":181.373788289556,"y":181.373788289556},{"type":"start_time","time":184.7623925037849,"y":184.7623925037849},{"type":"start_time","time":186.4828018117242,"y":186.4828018117242},{"type":"start_time","time":186.5616587171557,"y":186.5616587171557},{"type":"start_time","time":189.997785925147,"y":189.997785925147},{"type":"start_time","time":191.666305012779,"y":191.666305012779},{"type":"start_time","time":187.2320087767226,"y":187.2320087767226},{"type":"start_time","time":193.9136422442729,"y":193.9136422442729},{"type":"start_time","time":192.7903991503904,"y":192.7903991503904},{"type":"start_time","time":196.3128976460531,"y":196.3128976460531},{"type":"start_time","time":209.277437131452,"y":209.277437131452},{"type":"start_time","time":209.7203290553495,"y":209.7203290553495},{"type":"start_time","time":216.3477486314124,"y":216.3477486314124},{"type":"start_time","time":216.73084643634,"y":216.73084643634},{"type":"start_time","time":219.6457763291598,"y":219.6457763291598},{"type":"start_time","time":222.2617910255854,"y":222.2617910255854},{"type":"start_time","time":231.2700972344742,"y":231.2700972344742},{"type":"start_time","time":235.010423353921,"y":235.010423353921},{"type":"start_time","time":234.3011152764851,"y":234.3011152764851},{"type":"start_time","time":239.0003318565286,"y":239.0003318565286},{"type":"start_time","time":238.401785442126,"y":238.401785442126},{"type":"start_time","time":239.9094054419758,"y":239.9094054419758},{"type":"start_time","time":242.1568011052799,"y":242.1568011052799},{"type":"start_time","time":242.6878731385722,"y":242.6878731385722},{"type":"start_time","time":240.1187052847748,"y":240.1187052847748},{"type":"start_time","time":243.7423446536577,"y":243.7423446536577},{"type":"start_time","time":244.8609840243182,"y":244.8609840243182},{"type":"start_time","time":245.5224608387902,"y":245.5224608387902},{"type":"start_time","time":300.3432790583774,"y":300.3432790583774},{"type":"start_time","time":308.1140498214023,"y":308.1140498214023},{"type":"start_time","time":311.2026870672925,"y":311.2026870672925},{"type":"start_time","time":312.0985260345107,"y":312.0985260345107},{"type":"start_time","time":315.5994617459581,"y":315.5994617459581},{"type":"start_time","time":313.5856453596407,"y":313.5856453596407},{"type":"start_time","time":317.6508135930279,"y":317.6508135930279},{"type":"start_time","time":317.0619706329235,"y":317.0619706329235},{"type":"start_time","time":318.9882374827004,"y":318.9882374827004},{"type":"start_time","time":322.6259634330282,"y":322.6259634330282},{"type":"start_time","time":323.7430690831229,"y":323.7430690831229},{"type":"start_time","time":324.3823065321238,"y":324.3823065321238},{"type":"start_time","time":331.0334912521414,"y":331.0334912521414},{"type":"start_time","time":329.5838586145108,"y":329.5838586145108},{"type":"start_time","time":332.1320926132117,"y":332.1320926132117},{"type":"start_time","time":343.6619048545634,"y":343.6619048545634},{"type":"start_time","time":350.3516743165926,"y":350.3516743165926},{"type":"start_time","time":353.8428665905446,"y":353.8428665905446},{"type":"start_time","time":363.8870469794751,"y":363.8870469794751},{"type":"start_time","time":371.0845802661678,"y":371.0845802661678},{"type":"start_time","time":374.7848220063597,"y":374.7848220063597},{"type":"start_time","time":376.4979646779472,"y":376.4979646779472},{"type":"start_time","time":388.7370837586946,"y":388.7370837586946},{"type":"start_time","time":378.0993371251408,"y":378.0993371251408},{"type":"start_time","time":390.5757162113067,"y":390.5757162113067},{"type":"start_time","time":390.8782585270187,"y":390.8782585270187},{"type":"start_time","time":391.5365997076358,"y":391.5365997076358},{"type":"start_time","time":382.7313650204292,"y":382.7313650204292},{"type":"start_time","time":399.116952972844,"y":399.116952972844},{"type":"start_time","time":402.8687988937413,"y":402.8687988937413},{"type":"start_time","time":406.9972272298871,"y":406.9972272298871},{"type":"start_time","time":407.2403903407029,"y":407.2403903407029},{"type":"start_time","time":411.4318180840725,"y":411.4318180840725},{"type":"start_time","time":408.5146829533769,"y":408.5146829533769},{"type":"start_time","time":418.5394299184088,"y":418.5394299184088},{"type":"start_time","time":419.9360867065309,"y":419.9360867065309},{"type":"start_time","time":425.74500059446,"y":425.74500059446},{"type":"start_time","time":427.5847926026613,"y":427.5847926026613},{"type":"start_time","time":431.1370052497381,"y":431.1370052497381},{"type":"start_time","time":438.1004386322775,"y":438.1004386322775},{"type":"start_time","time":439.023271568073,"y":439.023271568073},{"type":"start_time","time":440.3898022321578,"y":440.3898022321578},{"type":"start_time","time":444.6520744179548,"y":444.6520744179548},{"type":"start_time","time":447.5654143397439,"y":447.5654143397439},{"type":"start_time","time":451.1393854073395,"y":451.1393854073395},{"type":"start_time","time":451.7402314286805,"y":451.7402314286805},{"type":"start_time","time":453.1311614575632,"y":453.1311614575632},{"type":"start_time","time":454.2224711971134,"y":454.2224711971134},{"type":"start_time","time":459.6138217027978,"y":459.6138217027978},{"type":"start_time","time":460.5729923379278,"y":460.5729923379278},{"type":"start_time","time":461.5559747225535,"y":461.5559747225535},{"type":"start_time","time":461.6718225135621,"y":461.6718225135621},{"type":"start_time","time":461.2305340581244,"y":461.2305340581244},{"type":"start_time","time":463.1522790469382,"y":463.1522790469382},{"type":"start_time","time":462.5309230431108,"y":462.5309230431108},{"type":"start_time","time":466.1531758448883,"y":466.1531758448883},{"type":"start_time","time":468.9912341901792,"y":468.9912341901792},{"type":"start_time","time":470.349982708585,"y":470.349982708585},{"type":"start_time","time":472.3320021219257,"y":472.3320021219257},{"type":"start_time","time":472.4254798929197,"y":472.4254798929197}],"type":"line"}],"xAxis":{"type":null,"title":{"text":[]},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>Biểu đồ 3: Thời gian giả lập của xe</p>
+</div>
+</div>
+</section>
+</div>
+<section id="mô-hình-abm" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="mô-hình-abm"><span class="header-section-number">1.5</span> Mô hình ABM:</h3>
+<p>Khác với <em>DES</em>, <em>ABM</em> quan tâm nhiều hơn đến các đặc tính, thông tin của cá thể trong quần thể này. Do đó, chỉ với lượng thông tin về số xe, số nhà kho, số cửa hàng và quy trình hoạt động là chưa đủ để xây dựng mô hình <em>ABM</em>. Các dữ liệu khả thi có thể bao gồm: thông tin của đội xe: gồm bao nhiêu người hoặc gồm những ai; dữ liệu quá khứ về KPI, học vấn,…; thông tin về thời gian hoạt động của các cửa hàng; vị trí và thông tin về đường xá có cấm tải không;… <em>ABM</em> thường được ứng dụng vào việc xác định các <em>risks - rủi ro</em> trong quản lí chuỗi cung ứng</p>
+<p>Trong R có thư viện <code>NetLogoR</code> hỗ trợ chúng ta tốt về mảng mô hình <em>ABM</em>. Về nền tảng, <em>ABM</em> cần các yếu tố cơ bản sau:</p>
+<ul>
+<li><p><em>Agents</em>: là cá thể hoạt động trong môi trường giả lập, có thể là con người, xe cộ, …</p></li>
+<li><p><em>World</em>: Môi trường mà các <em>agent</em> “sống” bên trong.</p></li>
+<li><p><em>Set of rules</em>: Những luật lệ mà tất cả <em>agent</em> “sống”trong <em>world</em> phải tuân theo.</p></li>
+<li><p><em>Loop</em>: Là sự lặp đi lặp lại của các hoạt động, sự tương tác. Trong lập trình thì nó giống như vòng lặp <em>for if</em> quen thuộc còn trong đời thực như cuộc sống hằng ngày của bạn sẽ được lặp đi lặp lại ví dụ: sáng thì đi học, tối thì đi ngủ và có thể có các đột biến như: sáng nay được nghỉ học, tối thứ 7 thì thức cả đêm (Đây lại là hoạt động quen thuộc của tôi!!!).</p></li>
+</ul>
+<p>Như vậy, bạn có thể hình dung mơ hồ về quần thể giả lập bao gồm: các chiếc xe, các <em>nodes</em> trong <em>supply chain</em> như: nhà kho, cửa hàng,…</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="trajectory-animation.gif" class="img-fluid figure-img"></p>
+<figcaption>Biểu đồ 4: Simple of Agent Based Modeling</figcaption>
+</figure>
+</div>
+<p>Như trên đây là ví dụ về cách <em>simulation</em> cho 1 đối tượng di chuyển trong mặt phẳng 10x10. Đối tượng sẽ di chuyển mỗi lần 1 ô với 4 hướng di chuyển: “up”,“down”,“left”,“right” và được chọn hướng random. Kết quả sau 50 bước thì đối tượng đã di chuyển đến điểm <em>dropoff</em>.</p>
+<p>Dưới đây là một ví dụ phức tạp hơn về giả lập thời gian di chuyển dự kiến của xe với các đặc điểm sau:</p>
+<ul>
+<li><p><strong>Nhận thông tin xe</strong>: thời gian sẽ random từ 8h30 đến 9h.</p></li>
+<li><p><strong>Gọi xe</strong>: Việc này sẽ hoàn thành trong 15 phút.</p></li>
+<li><p><strong>Xe di chuyển đến điểm pickup</strong>: Tính thời gian di chuyển bằng <code>transportation time = distance/average speed</code> cộng với thời gian <code>loading time = 30'</code>.</p></li>
+<li><p><em>Xe di chuyển đến điểm dropoff</em>: Tính thời gian di chuyển bằng <code>transportation time = distance/average speed</code> cộng với thời gian <code>unloading time = 40'</code>.</p></li>
+</ul>
+<p>Kết quả giả lập cho 5 xe như sau:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NetLogoR)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define new time parameters for the extended simulation</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>n_vehicles <span class="ot">&lt;-</span> <span class="dv">5</span>              <span class="co"># Number of vehicles</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>grid_size <span class="ot">&lt;-</span> <span class="dv">20</span>              <span class="co"># Size of the grid</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>speed_limit <span class="ot">&lt;-</span> <span class="dv">2</span>             <span class="co"># Speed limit (cells per tick)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>time_step <span class="ot">&lt;-</span> <span class="dv">1</span>               <span class="co"># Simulation time step (1 second per tick)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>order_creation_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">hm</span>(<span class="st">"8:30"</span>), <span class="fu">hm</span>(<span class="st">"9:00"</span>))   <span class="co"># Time when orders are released (8:30 AM)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>n_customer <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>n_ticks <span class="ot">&lt;-</span> <span class="dv">48</span>  <span class="co"># Increase simulation time</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the world, orders, and vehicle positions</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">createWorld</span>(<span class="at">minPxcor =</span> <span class="sc">-</span>grid_size, </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxPxcor =</span> grid_size, </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                     <span class="at">minPycor =</span> <span class="sc">-</span>grid_size, </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxPycor =</span> grid_size)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>random_coords <span class="ot">&lt;-</span> <span class="fu">randomXYcor</span>(world, <span class="at">n =</span> n_vehicles)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Define orders and vehicles</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>orders <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">order_id =</span> <span class="dv">1</span><span class="sc">:</span>n_customer,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">pickup_x =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">pickup_y =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropoff_x =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropoff_y =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">order_time =</span> <span class="fu">as.POSIXct</span>(<span class="st">"08:30:00"</span>, <span class="at">format =</span> <span class="st">"%H:%M:%S"</span>) <span class="sc">+</span> <span class="fu">runif</span>(n_customer, <span class="dv">0</span>, <span class="dv">1800</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize vehicles' position and speed</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>vehicles_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">vehicle_id =</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">xcor =</span> random_coords[, <span class="dv">1</span>],</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">ycor =</span> random_coords[, <span class="dv">2</span>],</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">speed =</span> <span class="fu">rep</span>(<span class="fl">1.5</span>, n_vehicles)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize tracking variables</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>vehicle_order <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>order_status <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_customer)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>vehicle_state <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"waiting"</span>, n_vehicles)  <span class="co"># New: track state of each vehicle</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>ETA <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize ETA for each vehicle</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>ETD <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize ETD for each vehicle</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>completed_time <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize completed time for each vehicle</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to simulate vehicle movement (with speed and direction)</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>move_vehicle <span class="ot">&lt;-</span> <span class="cf">function</span>(vehicle, destination) {</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  angle_to_dest <span class="ot">&lt;-</span> <span class="fu">atan2</span>(destination[<span class="dv">2</span>] <span class="sc">-</span> vehicle<span class="sc">$</span>ycor, destination[<span class="dv">1</span>] <span class="sc">-</span> vehicle<span class="sc">$</span>xcor)</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  distance_to_dest <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((vehicle<span class="sc">$</span>xcor <span class="sc">-</span> destination[<span class="dv">1</span>])<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (vehicle<span class="sc">$</span>ycor <span class="sc">-</span> destination[<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Move the vehicle</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  distance_to_move <span class="ot">&lt;-</span> <span class="fu">min</span>(distance_to_dest, vehicle<span class="sc">$</span>speed)</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  vehicle<span class="sc">$</span>xcor <span class="ot">&lt;-</span> vehicle<span class="sc">$</span>xcor <span class="sc">+</span> distance_to_move <span class="sc">*</span> <span class="fu">cos</span>(angle_to_dest)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  vehicle<span class="sc">$</span>ycor <span class="ot">&lt;-</span> vehicle<span class="sc">$</span>ycor <span class="sc">+</span> distance_to_move <span class="sc">*</span> <span class="fu">sin</span>(angle_to_dest)</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vehicle)</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate the distance between two points</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>calculate_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, y1, x2, y2) {</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>((x1 <span class="sc">-</span> x2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (y1 <span class="sc">-</span> y2)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check if a vehicle is at a location (pickup/dropoff)</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>at_location <span class="ot">&lt;-</span> <span class="cf">function</span>(vehicle, location) {</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">abs</span>(vehicle<span class="sc">$</span>xcor <span class="sc">-</span> location[<span class="dv">1</span>]) <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">&amp;&amp;</span> <span class="fu">abs</span>(vehicle<span class="sc">$</span>ycor <span class="sc">-</span> location[<span class="dv">2</span>]) <span class="sc">&lt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>simulation_start_time <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"08:00:00"</span>, <span class="at">format =</span> <span class="st">"%H:%M:%S"</span>)</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize an empty data frame to store the results</span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>final_results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation loop with updated conditions</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (tick <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_ticks) {</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>  current_time <span class="ot">&lt;-</span> simulation_start_time <span class="sc">+</span> <span class="fu">seconds</span>(tick) <span class="sc">*</span> <span class="dv">3600</span> <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Process each vehicle</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles) {</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(vehicle_order[i])) {  </span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Assign a vehicle to an order if it's free and an order is available</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(orders)) {</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">is.na</span>(order_status[j]) <span class="sc">&amp;&amp;</span> current_time <span class="sc">&gt;=</span> orders<span class="sc">$</span>order_time[j]) {</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>          order_status[j] <span class="ot">&lt;-</span> <span class="st">"in_progress"</span>  <span class="co"># Change order status to in_progress</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>          vehicle_order[i] <span class="ot">&lt;-</span> j</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"received"</span>  <span class="co"># Vehicle starts receiving the order</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Calculate ETA (time to reach pickup location)</span></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>          distance_to_pickup <span class="ot">&lt;-</span> <span class="fu">calculate_distance</span>(vehicles_df<span class="sc">$</span>xcor[i], vehicles_df<span class="sc">$</span>ycor[i], </span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>                                                   orders<span class="sc">$</span>pickup_x[j], orders<span class="sc">$</span>pickup_y[j])</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>          transportation_time <span class="ot">&lt;-</span> distance_to_pickup <span class="sc">/</span> vehicles_df<span class="sc">$</span>speed[i]  <span class="co"># Time to pickup location in hours</span></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>          ETA[i] <span class="ot">&lt;-</span> orders<span class="sc">$</span>order_time[j] <span class="sc">+</span> <span class="fu">seconds</span>(transportation_time) <span class="sc">*</span> <span class="dv">3600</span>  <span class="co"># ETA in POSIXct object</span></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>          <span class="cf">break</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get current order info for the assigned order</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>    assigned_order <span class="ot">&lt;-</span> vehicle_order[i]</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(assigned_order)) {</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>      pickup_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(orders<span class="sc">$</span>pickup_x[assigned_order], orders<span class="sc">$</span>pickup_y[assigned_order])</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>      dropoff_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(orders<span class="sc">$</span>dropoff_x[assigned_order], orders<span class="sc">$</span>dropoff_y[assigned_order])</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle movement to pickup location</span></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"received"</span>) {</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">at_location</span>(vehicles_df[i, ], pickup_loc)) {</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>          vehicles_df[i, ] <span class="ot">&lt;-</span> <span class="fu">move_vehicle</span>(vehicles_df[i, ], pickup_loc)</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"loading"</span>  <span class="co"># Transition to loading state</span></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle loading phase (vehicle at pickup location)</span></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"loading"</span>) {</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">at_location</span>(vehicles_df[i, ], pickup_loc)) {</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"enroute"</span>  <span class="co"># Transition to enroute state</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Calculate the transportation time to dropoff location</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>          distance_to_dropoff <span class="ot">&lt;-</span> <span class="fu">calculate_distance</span>(vehicles_df<span class="sc">$</span>xcor[i], vehicles_df<span class="sc">$</span>ycor[i], </span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>                                                   dropoff_loc[<span class="dv">1</span>], dropoff_loc[<span class="dv">2</span>])</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>          transportation_time <span class="ot">&lt;-</span> distance_to_dropoff <span class="sc">/</span> vehicles_df<span class="sc">$</span>speed[i]</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>          ETD[i] <span class="ot">&lt;-</span> ETA[i] <span class="sc">+</span> <span class="fu">seconds</span>(transportation_time<span class="sc">*</span><span class="dv">3600</span> <span class="sc">+</span> <span class="dv">30</span><span class="sc">*</span><span class="dv">60</span>)   <span class="co"># Add transportation time to dropoff location</span></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle enroute phase (vehicle moving to dropoff location)</span></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"enroute"</span>) {</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">at_location</span>(vehicles_df[i, ], dropoff_loc)) {</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>          vehicles_df[i, ] <span class="ot">&lt;-</span> <span class="fu">move_vehicle</span>(vehicles_df[i, ], dropoff_loc)</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"completed"</span>  <span class="co"># Transition to completed state</span></span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Set completed time (ETD + unloading time 40 minutes)</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>          completed_time[i] <span class="ot">&lt;-</span> ETD[i] <span class="sc">+</span> <span class="fu">seconds</span>(<span class="dv">40</span><span class="sc">*</span><span class="dv">60</span>)  <span class="co"># Unloading time 40 minutes</span></span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle unloading phase (vehicle at dropoff location)</span></span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"completed"</span>) {</span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>        order_status[assigned_order] <span class="ot">&lt;-</span> <span class="st">"completed"</span></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store the current simulation results with time info</span></span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>  tick_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> current_time,</span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_id =</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles,</span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>    <span class="at">xcor =</span> vehicles_df<span class="sc">$</span>xcor,</span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>    <span class="at">ycor =</span> vehicles_df<span class="sc">$</span>ycor,</span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> vehicles_df<span class="sc">$</span>speed,</span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>    <span class="at">order_status =</span> order_status,</span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_order =</span> vehicle_order,</span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_state =</span> vehicle_state,  <span class="co"># Track vehicle state</span></span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>    <span class="at">ETA =</span> ETA,  <span class="co"># Estimated Time of Arrival</span></span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>    <span class="at">ETD =</span> ETD,  <span class="co"># Estimated Time of Departure</span></span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a>    <span class="at">completed_time =</span> completed_time  <span class="co"># Completed Time</span></span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Append the current results to the final_results data frame</span></span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>  final_results <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(final_results, tick_result)</span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>final_results <span class="ot">&lt;-</span> final_results<span class="sc">|&gt;</span> </span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(order_status)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ETA =</span> <span class="fu">as.POSIXct</span>(ETA, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>           <span class="at">ETD =</span> <span class="fu">as.POSIXct</span>(ETD, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>           <span class="at">completed_time =</span> <span class="fu">as.POSIXct</span>(completed_time, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>))</span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a>final<span class="ot">&lt;-</span>final_results[<span class="sc">!</span><span class="fu">duplicated</span>(final_results[, <span class="fu">setdiff</span>(<span class="fu">names</span>(final_results), <span class="st">"time"</span>)]), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ABM.gif" class="img-fluid figure-img"></p>
+<figcaption>Biểu đồ 5: Agent Based Modeling</figcaption>
+</figure>
+</div>
+<p>Kết quả cho thấy <strong>xe 1</strong> và <strong>xe 2</strong> có khả năng trễ chuyến nên cần lưu ý và hỗ trợ tài xế để đảm bảo xe đến đúng giờ hành chính. Như vậy chúng ta đã kết thúc bài học ở đây.</p>
+</section>
+</section>
+<section id="kết-luận" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="kết-luận"><span class="header-section-number">2</span> Kết luận:</h2>
+<p>Nếu bạn có câu hỏi hay thắc mắc nào, đừng ngần ngại liên hệ với mình qua Gmail. Bên cạnh đó, nếu bạn muốn xem lại các bài viết trước đây của mình, hãy nhấn vào hai nút dưới đây để truy cập trang <strong>Rpubs</strong> hoặc mã nguồn trên <strong>Github</strong>. Rất vui được đồng hành cùng bạn, hẹn gặp lại! 😄😄😄</p>
+
+
+
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@v6.0.0/svgs/rstudio.svg">
+    <style>
+        body { font-family: Tahoma, sans-serif; background-color: #f9f9f9; }
+        .container { max-width: 400px; margin: auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+        label { display: block; margin: 10px 0 5px; }
+        input[type="email"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; }
+        .github-button, .rpubs-button { margin-top: 20px; text-align: center; }
+        .github-button button, .rpubs-button button { background-color: #333; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; width: 100%; }
+        .github-button button:hover, .rpubs-button button:hover { background-color: #555; }
+        .rpubs-button button { background-color: #75AADB; }
+        .rpubs-button button:hover { background-color: #5A9BC2; }
+        .rpubs-icon { margin-right: 5px; width: 20px; vertical-align: middle; filter: brightness(0) invert(1); }
+        .error-message { color: red; font-size: 0.9em; margin-top: 5px; }
+    </style>
+
+
+    <div class="container">
+        <h2 class="anchored">Contact Me</h2>
+        <form id="emailForm">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required="" aria-label="Email Address">
+            <div class="error-message" id="error-message" style="display: none;">Please enter a valid email address.</div>
+            <button type="submit">Send Email</button>
+        </form>
+        <div class="github-button">
+            <button>
+                <a href="https://github.com/Loccx78vn/Material_Requirement_Planning" target="_blank" style="color: white; text-decoration: none;">
+                    <i class="fab fa-github"></i> View Code on GitHub
+                </a>
+            </button>
+        </div>
+        <div class="rpubs-button">
+            <button>
+                <a href="https://rpubs.com/loccx" target="_blank" style="color: white; text-decoration: none;">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v6.0.0/icons/rstudio.svg" alt="RStudio icon" class="rpubs-icon"> Visit my RPubs
+                </a>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Simple email validation regex
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailPattern.test(email)) {
+                errorMessage.style.display = 'none'; // Hide error message
+                const yourEmail = 'loccaoxuan103@gmail.com'; // Your email
+                const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${yourEmail}&su=Help%20Request%20from%20${encodeURIComponent(email)}`;
+                window.open(gmailLink, '_blank'); // Open in new tab
+            } else {
+                errorMessage.style.display = 'block'; // Show error message
+            }
+        });
+    </script>
+
+
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Practice in R"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Việt Nam, 2024"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> ["SupplyChainManagement", "Simulation","Agent Based Modeling"]</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Cách thực hành trong R"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Cao Xuân Lộc"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2024-11-13"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> img/mountain.jpg</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner-color:</span><span class="co"> "white"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>janitor,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>tidyverse,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>dplyr,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>tidyr,</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>magrittr,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>shiny,</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>leaflet,</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>reactable,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>leaflet.extras,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>ggplot2,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>quarto,</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>reactablefmtr</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Thực hành trong R:</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Thư viện:</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>TIếp theo là chúng ta sẽ lập thử *DES* trong **R** để giả lập quá trình duy chuyển của xe trong chuỗi cung ứng để ứng tính ETD và ETA.</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>Trong **R** có package <span class="in">`simmer`</span> thuần về xây dựng mô hình *DES*, đòi hỏi 3 nhân tố là: (i) Hành vi hoạt động của đối tượng, (ii) Hàm tính thời gian cho hoạt động và (iii) Môi trường để chạy mô phỏng. Bạn có thể đọc bài viết này để biết thêm <span class="co">[</span><span class="ot">simmerR</span><span class="co">](https://www.supplychaindataanalytics.com/simmer-in-r-for-discrete-event-simulation/)</span>.</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mô hình DES:</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>Các object cần có trong mô hình *DES* là:</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Entitiy**: là đối tượng chính cần quan sát, ví dụ: khách hàng. Bạn sử dụng hàm <span class="in">`add_generator()`</span> để thêm đối tượng vào mô hình.</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Attribute**: là *property* của *entity* (có thể hiểu là đặc tính, trạng thái,...).</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Resource**: là một nguồn lực mà *entity* được quyền dùng, ví dụ như nhân viên quán cafe cần hỗ trợ khách hàng khi có yêu cầu. Dùng hàm <span class="in">`add_resource()`</span> để thêm và xác định số lượng resource bằng đối số: <span class="in">`capacity = n`</span>.</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Queue**: là một chuỗi để các *entity* tham gia vào, ví dụ như hàng xếp chờ lấy nước ở quán cafe.</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Event**: các sự kiện thay đổi trong hệ thống.</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>Ví dụ như đoạn code dưới đây:</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simmer)</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the trajectory for the vehicle's process</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>vehicle_traj <span class="ot">&lt;-</span> <span class="fu">trajectory</span>(<span class="st">"Vehicle Process"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 1: Take Order</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">3</span>)) <span class="sc">%&gt;%</span> <span class="co"># Time to take an order</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 2: Check if goods are available in the warehouse</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">"warehouse"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.3</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Time to check if goods are available</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">"warehouse"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Release the warehouse resource after checking</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 3: If goods are not available, wait for manufacturing (conditional)</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">branch</span>(</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">option =</span> <span class="cf">function</span>() <span class="fu">ifelse</span>(<span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>),  <span class="co"># 50% chance</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">continue =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>    <span class="fu">trajectory</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>      <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.8</span>)),  <span class="co"># Manufacturing time if goods aren't available</span></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>    <span class="fu">trajectory</span>(<span class="st">"WaitForStock"</span>)  <span class="co"># Second branch if goods are available</span></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 4: Loading the goods</span></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">"truck"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Seize one truck for loading</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.6</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Loading time</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">"truck"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Release truck after loading</span></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 5: Transport to store</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Transport time</span></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step 6: Unload the goods at the store</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">"store"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Seize one store resource for unloading</span></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.4</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Unloading time</span></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">"store"</span>, <span class="dv">1</span>)  <span class="co"># Release store resource</span></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment</span></span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">simmer</span>(<span class="st">"Vehicle Simulation"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">"warehouse"</span>, <span class="at">capacity =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">"truck"</span>, <span class="at">capacity =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">"store"</span>, <span class="at">capacity =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add generator for vehicles arriving with an exponential inter-arrival time</span></span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_generator</span>(<span class="st">"vehicle"</span>, vehicle_traj, <span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="fl">0.1</span>))  <span class="co"># Average of 10 vehicles per 100 time units</span></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the simulation for a longer duration</span></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span> </span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run</span>(<span class="at">until =</span> <span class="dv">500</span>)</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2024-11-09 08:30:00"</span>, </span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>                         <span class="at">format=</span><span class="st">"%Y-%m-%d %H:%M:%S"</span>)</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>arrivals<span class="ot">&lt;-</span><span class="fu">get_mon_arrivals</span>(env, <span class="at">per_resource =</span> T)</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>arrivals<span class="sc">$</span>datetime <span class="ot">&lt;-</span> start_time <span class="sc">+</span> (arrivals<span class="sc">$</span>start_time <span class="sc">*</span> <span class="dv">60</span>)  </span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>arrivals<span class="sc">$</span>finish_datetime <span class="ot">&lt;-</span> start_time <span class="sc">+</span> (arrivals<span class="sc">$</span>end_time <span class="sc">*</span> <span class="dv">60</span>)  </span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>Thông tin từ **R** được xuất ra cho thấy thời gian chạy là 500 và có 45 xe đã di chuyển vào hệ thống. Kết quả giả lập được thể hiện như sau: các đốm thể hiện thời điểm xe đi vào, chờ giải quyết yêu cầu và đi ra khỏi hàng chờ.</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a><span class="al">![Biểu đồ 1: Discrete Event Simulation](DES.gif)</span></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>Và chúng ta sẽ có final output gồm:</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>::: tabset</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="fu">### Resources:</span></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Biểu đồ 2: Quy trình di chuyển giả lập của xe"</span></span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simmer.plot)</span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a>resources <span class="ot">&lt;-</span> <span class="fu">get_mon_resources</span>(env)</span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resources, </span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a>     <span class="at">metric =</span> <span class="st">"usage"</span>,</span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>     <span class="fu">c</span>(<span class="st">"warehouse"</span>, <span class="st">"truck"</span>,<span class="st">"store"</span>),</span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>     <span class="at">items =</span> <span class="st">"server"</span>)</span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a><span class="fu">### Simulation:</span></span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Biểu đồ 3: Thời gian giả lập của xe"</span></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a>arrivals <span class="sc">|&gt;</span> </span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="fu">hchart</span>(</span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time,</span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> type)</span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mô hình ABM:</span></span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a>Khác với *DES*, *ABM* quan tâm nhiều hơn đến các đặc tính, thông tin của cá thể trong quần thể này. Do đó, chỉ với lượng thông tin về số xe, số nhà kho, số cửa hàng và quy trình hoạt động là chưa đủ để xây dựng mô hình *ABM*. Các dữ liệu khả thi có thể bao gồm: thông tin của đội xe: gồm bao nhiêu người hoặc gồm những ai; dữ liệu quá khứ về KPI, học vấn,...; thông tin về thời gian hoạt động của các cửa hàng; vị trí và thông tin về đường xá có cấm tải không;... *ABM* thường được ứng dụng vào việc xác định các *risks - rủi ro* trong quản lí chuỗi cung ứng</span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>Trong R có thư viện <span class="in">`NetLogoR`</span> hỗ trợ chúng ta tốt về mảng mô hình *ABM*. Về nền tảng, *ABM* cần các yếu tố cơ bản sau:</span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Agents*: là cá thể hoạt động trong môi trường giả lập, có thể là con người, xe cộ, ...</span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*World*: Môi trường mà các *agent* "sống" bên trong.</span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Set of rules*: Những luật lệ mà tất cả *agent* "sống "trong *world* phải tuân theo.</span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Loop*: Là sự lặp đi lặp lại của các hoạt động, sự tương tác. Trong lập trình thì nó giống như vòng lặp *for if* quen thuộc còn trong đời thực như cuộc sống hằng ngày của bạn sẽ được lặp đi lặp lại ví dụ: sáng thì đi học, tối thì đi ngủ và có thể có các đột biến như: sáng nay được nghỉ học, tối thứ 7 thì thức cả đêm (Đây lại là hoạt động quen thuộc của tôi!!!).</span>
+<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a>Như vậy, bạn có thể hình dung mơ hồ về quần thể giả lập bao gồm: các chiếc xe, các *nodes* trong *supply chain* như: nhà kho, cửa hàng,...</span>
+<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a><span class="al">![Biểu đồ 4: Simple of Agent Based Modeling](trajectory-animation.gif)</span></span>
+<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a>Như trên đây là ví dụ về cách *simulation* cho 1 đối tượng di chuyển trong mặt phẳng 10x10. Đối tượng sẽ di chuyển mỗi lần 1 ô với 4 hướng di chuyển: "up","down","left","right" và được chọn hướng random. Kết quả sau 50 bước thì đối tượng đã di chuyển đến điểm *dropoff*.</span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a>Dưới đây là một ví dụ phức tạp hơn về giả lập thời gian di chuyển dự kiến của xe với các đặc điểm sau:</span>
+<span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Nhận thông tin xe**: thời gian sẽ random từ 8h30 đến 9h.</span>
+<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Gọi xe**: Việc này sẽ hoàn thành trong 15 phút.</span>
+<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Xe di chuyển đến điểm pickup**: Tính thời gian di chuyển bằng <span class="in">`transportation time = distance/average speed`</span> cộng với thời gian <span class="in">`loading time = 30'`</span>.</span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Xe di chuyển đến điểm dropoff*: Tính thời gian di chuyển bằng <span class="in">`transportation time = distance/average speed`</span> cộng với thời gian <span class="in">`unloading time = 40'`</span>.</span>
+<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a>Kết quả giả lập cho 5 xe như sau:</span>
+<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NetLogoR)</span>
+<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a><span class="co"># Define new time parameters for the extended simulation</span></span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a>n_vehicles <span class="ot">&lt;-</span> <span class="dv">5</span>              <span class="co"># Number of vehicles</span></span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a>grid_size <span class="ot">&lt;-</span> <span class="dv">20</span>              <span class="co"># Size of the grid</span></span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a>speed_limit <span class="ot">&lt;-</span> <span class="dv">2</span>             <span class="co"># Speed limit (cells per tick)</span></span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a>time_step <span class="ot">&lt;-</span> <span class="dv">1</span>               <span class="co"># Simulation time step (1 second per tick)</span></span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a>order_creation_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">hm</span>(<span class="st">"8:30"</span>), <span class="fu">hm</span>(<span class="st">"9:00"</span>))   <span class="co"># Time when orders are released (8:30 AM)</span></span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a>n_customer <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a>n_ticks <span class="ot">&lt;-</span> <span class="dv">48</span>  <span class="co"># Increase simulation time</span></span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the world, orders, and vehicle positions</span></span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">createWorld</span>(<span class="at">minPxcor =</span> <span class="sc">-</span>grid_size, </span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxPxcor =</span> grid_size, </span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a>                     <span class="at">minPycor =</span> <span class="sc">-</span>grid_size, </span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxPycor =</span> grid_size)</span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a>random_coords <span class="ot">&lt;-</span> <span class="fu">randomXYcor</span>(world, <span class="at">n =</span> n_vehicles)</span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a><span class="co"># Define orders and vehicles</span></span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a>orders <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a>  <span class="at">order_id =</span> <span class="dv">1</span><span class="sc">:</span>n_customer,</span>
+<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a>  <span class="at">pickup_x =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a>  <span class="at">pickup_y =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropoff_x =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropoff_y =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a>  <span class="at">order_time =</span> <span class="fu">as.POSIXct</span>(<span class="st">"08:30:00"</span>, <span class="at">format =</span> <span class="st">"%H:%M:%S"</span>) <span class="sc">+</span> <span class="fu">runif</span>(n_customer, <span class="dv">0</span>, <span class="dv">1800</span>)</span>
+<span id="cb7-243"><a href="#cb7-243" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-244"><a href="#cb7-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-245"><a href="#cb7-245" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize vehicles' position and speed</span></span>
+<span id="cb7-246"><a href="#cb7-246" aria-hidden="true" tabindex="-1"></a>vehicles_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-247"><a href="#cb7-247" aria-hidden="true" tabindex="-1"></a>  <span class="at">vehicle_id =</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles,</span>
+<span id="cb7-248"><a href="#cb7-248" aria-hidden="true" tabindex="-1"></a>  <span class="at">xcor =</span> random_coords[, <span class="dv">1</span>],</span>
+<span id="cb7-249"><a href="#cb7-249" aria-hidden="true" tabindex="-1"></a>  <span class="at">ycor =</span> random_coords[, <span class="dv">2</span>],</span>
+<span id="cb7-250"><a href="#cb7-250" aria-hidden="true" tabindex="-1"></a>  <span class="at">speed =</span> <span class="fu">rep</span>(<span class="fl">1.5</span>, n_vehicles)</span>
+<span id="cb7-251"><a href="#cb7-251" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-252"><a href="#cb7-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-253"><a href="#cb7-253" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize tracking variables</span></span>
+<span id="cb7-254"><a href="#cb7-254" aria-hidden="true" tabindex="-1"></a>vehicle_order <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)</span>
+<span id="cb7-255"><a href="#cb7-255" aria-hidden="true" tabindex="-1"></a>order_status <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_customer)</span>
+<span id="cb7-256"><a href="#cb7-256" aria-hidden="true" tabindex="-1"></a>vehicle_state <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"waiting"</span>, n_vehicles)  <span class="co"># New: track state of each vehicle</span></span>
+<span id="cb7-257"><a href="#cb7-257" aria-hidden="true" tabindex="-1"></a>ETA <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize ETA for each vehicle</span></span>
+<span id="cb7-258"><a href="#cb7-258" aria-hidden="true" tabindex="-1"></a>ETD <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize ETD for each vehicle</span></span>
+<span id="cb7-259"><a href="#cb7-259" aria-hidden="true" tabindex="-1"></a>completed_time <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize completed time for each vehicle</span></span>
+<span id="cb7-260"><a href="#cb7-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-261"><a href="#cb7-261" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to simulate vehicle movement (with speed and direction)</span></span>
+<span id="cb7-262"><a href="#cb7-262" aria-hidden="true" tabindex="-1"></a>move_vehicle <span class="ot">&lt;-</span> <span class="cf">function</span>(vehicle, destination) {</span>
+<span id="cb7-263"><a href="#cb7-263" aria-hidden="true" tabindex="-1"></a>  angle_to_dest <span class="ot">&lt;-</span> <span class="fu">atan2</span>(destination[<span class="dv">2</span>] <span class="sc">-</span> vehicle<span class="sc">$</span>ycor, destination[<span class="dv">1</span>] <span class="sc">-</span> vehicle<span class="sc">$</span>xcor)</span>
+<span id="cb7-264"><a href="#cb7-264" aria-hidden="true" tabindex="-1"></a>  distance_to_dest <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((vehicle<span class="sc">$</span>xcor <span class="sc">-</span> destination[<span class="dv">1</span>])<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (vehicle<span class="sc">$</span>ycor <span class="sc">-</span> destination[<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb7-265"><a href="#cb7-265" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-266"><a href="#cb7-266" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Move the vehicle</span></span>
+<span id="cb7-267"><a href="#cb7-267" aria-hidden="true" tabindex="-1"></a>  distance_to_move <span class="ot">&lt;-</span> <span class="fu">min</span>(distance_to_dest, vehicle<span class="sc">$</span>speed)</span>
+<span id="cb7-268"><a href="#cb7-268" aria-hidden="true" tabindex="-1"></a>  vehicle<span class="sc">$</span>xcor <span class="ot">&lt;-</span> vehicle<span class="sc">$</span>xcor <span class="sc">+</span> distance_to_move <span class="sc">*</span> <span class="fu">cos</span>(angle_to_dest)</span>
+<span id="cb7-269"><a href="#cb7-269" aria-hidden="true" tabindex="-1"></a>  vehicle<span class="sc">$</span>ycor <span class="ot">&lt;-</span> vehicle<span class="sc">$</span>ycor <span class="sc">+</span> distance_to_move <span class="sc">*</span> <span class="fu">sin</span>(angle_to_dest)</span>
+<span id="cb7-270"><a href="#cb7-270" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-271"><a href="#cb7-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vehicle)</span>
+<span id="cb7-272"><a href="#cb7-272" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-273"><a href="#cb7-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-274"><a href="#cb7-274" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate the distance between two points</span></span>
+<span id="cb7-275"><a href="#cb7-275" aria-hidden="true" tabindex="-1"></a>calculate_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, y1, x2, y2) {</span>
+<span id="cb7-276"><a href="#cb7-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>((x1 <span class="sc">-</span> x2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (y1 <span class="sc">-</span> y2)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb7-277"><a href="#cb7-277" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-278"><a href="#cb7-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-279"><a href="#cb7-279" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check if a vehicle is at a location (pickup/dropoff)</span></span>
+<span id="cb7-280"><a href="#cb7-280" aria-hidden="true" tabindex="-1"></a>at_location <span class="ot">&lt;-</span> <span class="cf">function</span>(vehicle, location) {</span>
+<span id="cb7-281"><a href="#cb7-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">abs</span>(vehicle<span class="sc">$</span>xcor <span class="sc">-</span> location[<span class="dv">1</span>]) <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">&amp;&amp;</span> <span class="fu">abs</span>(vehicle<span class="sc">$</span>ycor <span class="sc">-</span> location[<span class="dv">2</span>]) <span class="sc">&lt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-282"><a href="#cb7-282" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-283"><a href="#cb7-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-284"><a href="#cb7-284" aria-hidden="true" tabindex="-1"></a>simulation_start_time <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"08:00:00"</span>, <span class="at">format =</span> <span class="st">"%H:%M:%S"</span>)</span>
+<span id="cb7-285"><a href="#cb7-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-286"><a href="#cb7-286" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize an empty data frame to store the results</span></span>
+<span id="cb7-287"><a href="#cb7-287" aria-hidden="true" tabindex="-1"></a>final_results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb7-288"><a href="#cb7-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-289"><a href="#cb7-289" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation loop with updated conditions</span></span>
+<span id="cb7-290"><a href="#cb7-290" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (tick <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_ticks) {</span>
+<span id="cb7-291"><a href="#cb7-291" aria-hidden="true" tabindex="-1"></a>  current_time <span class="ot">&lt;-</span> simulation_start_time <span class="sc">+</span> <span class="fu">seconds</span>(tick) <span class="sc">*</span> <span class="dv">3600</span> <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb7-292"><a href="#cb7-292" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-293"><a href="#cb7-293" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Process each vehicle</span></span>
+<span id="cb7-294"><a href="#cb7-294" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles) {</span>
+<span id="cb7-295"><a href="#cb7-295" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(vehicle_order[i])) {  </span>
+<span id="cb7-296"><a href="#cb7-296" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Assign a vehicle to an order if it's free and an order is available</span></span>
+<span id="cb7-297"><a href="#cb7-297" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(orders)) {</span>
+<span id="cb7-298"><a href="#cb7-298" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">is.na</span>(order_status[j]) <span class="sc">&amp;&amp;</span> current_time <span class="sc">&gt;=</span> orders<span class="sc">$</span>order_time[j]) {</span>
+<span id="cb7-299"><a href="#cb7-299" aria-hidden="true" tabindex="-1"></a>          order_status[j] <span class="ot">&lt;-</span> <span class="st">"in_progress"</span>  <span class="co"># Change order status to in_progress</span></span>
+<span id="cb7-300"><a href="#cb7-300" aria-hidden="true" tabindex="-1"></a>          vehicle_order[i] <span class="ot">&lt;-</span> j</span>
+<span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"received"</span>  <span class="co"># Vehicle starts receiving the order</span></span>
+<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Calculate ETA (time to reach pickup location)</span></span>
+<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a>          distance_to_pickup <span class="ot">&lt;-</span> <span class="fu">calculate_distance</span>(vehicles_df<span class="sc">$</span>xcor[i], vehicles_df<span class="sc">$</span>ycor[i], </span>
+<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a>                                                   orders<span class="sc">$</span>pickup_x[j], orders<span class="sc">$</span>pickup_y[j])</span>
+<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a>          transportation_time <span class="ot">&lt;-</span> distance_to_pickup <span class="sc">/</span> vehicles_df<span class="sc">$</span>speed[i]  <span class="co"># Time to pickup location in hours</span></span>
+<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>          ETA[i] <span class="ot">&lt;-</span> orders<span class="sc">$</span>order_time[j] <span class="sc">+</span> <span class="fu">seconds</span>(transportation_time) <span class="sc">*</span> <span class="dv">3600</span>  <span class="co"># ETA in POSIXct object</span></span>
+<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>          <span class="cf">break</span></span>
+<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get current order info for the assigned order</span></span>
+<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>    assigned_order <span class="ot">&lt;-</span> vehicle_order[i]</span>
+<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(assigned_order)) {</span>
+<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a>      pickup_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(orders<span class="sc">$</span>pickup_x[assigned_order], orders<span class="sc">$</span>pickup_y[assigned_order])</span>
+<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a>      dropoff_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(orders<span class="sc">$</span>dropoff_x[assigned_order], orders<span class="sc">$</span>dropoff_y[assigned_order])</span>
+<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle movement to pickup location</span></span>
+<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"received"</span>) {</span>
+<span id="cb7-323"><a href="#cb7-323" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">at_location</span>(vehicles_df[i, ], pickup_loc)) {</span>
+<span id="cb7-324"><a href="#cb7-324" aria-hidden="true" tabindex="-1"></a>          vehicles_df[i, ] <span class="ot">&lt;-</span> <span class="fu">move_vehicle</span>(vehicles_df[i, ], pickup_loc)</span>
+<span id="cb7-325"><a href="#cb7-325" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb7-326"><a href="#cb7-326" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"loading"</span>  <span class="co"># Transition to loading state</span></span>
+<span id="cb7-327"><a href="#cb7-327" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-328"><a href="#cb7-328" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-329"><a href="#cb7-329" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-330"><a href="#cb7-330" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle loading phase (vehicle at pickup location)</span></span>
+<span id="cb7-331"><a href="#cb7-331" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"loading"</span>) {</span>
+<span id="cb7-332"><a href="#cb7-332" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">at_location</span>(vehicles_df[i, ], pickup_loc)) {</span>
+<span id="cb7-333"><a href="#cb7-333" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"enroute"</span>  <span class="co"># Transition to enroute state</span></span>
+<span id="cb7-334"><a href="#cb7-334" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb7-335"><a href="#cb7-335" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Calculate the transportation time to dropoff location</span></span>
+<span id="cb7-336"><a href="#cb7-336" aria-hidden="true" tabindex="-1"></a>          distance_to_dropoff <span class="ot">&lt;-</span> <span class="fu">calculate_distance</span>(vehicles_df<span class="sc">$</span>xcor[i], vehicles_df<span class="sc">$</span>ycor[i], </span>
+<span id="cb7-337"><a href="#cb7-337" aria-hidden="true" tabindex="-1"></a>                                                   dropoff_loc[<span class="dv">1</span>], dropoff_loc[<span class="dv">2</span>])</span>
+<span id="cb7-338"><a href="#cb7-338" aria-hidden="true" tabindex="-1"></a>          transportation_time <span class="ot">&lt;-</span> distance_to_dropoff <span class="sc">/</span> vehicles_df<span class="sc">$</span>speed[i]</span>
+<span id="cb7-339"><a href="#cb7-339" aria-hidden="true" tabindex="-1"></a>          ETD[i] <span class="ot">&lt;-</span> ETA[i] <span class="sc">+</span> <span class="fu">seconds</span>(transportation_time<span class="sc">*</span><span class="dv">3600</span> <span class="sc">+</span> <span class="dv">30</span><span class="sc">*</span><span class="dv">60</span>)   <span class="co"># Add transportation time to dropoff location</span></span>
+<span id="cb7-340"><a href="#cb7-340" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-341"><a href="#cb7-341" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-342"><a href="#cb7-342" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-343"><a href="#cb7-343" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle enroute phase (vehicle moving to dropoff location)</span></span>
+<span id="cb7-344"><a href="#cb7-344" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"enroute"</span>) {</span>
+<span id="cb7-345"><a href="#cb7-345" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">at_location</span>(vehicles_df[i, ], dropoff_loc)) {</span>
+<span id="cb7-346"><a href="#cb7-346" aria-hidden="true" tabindex="-1"></a>          vehicles_df[i, ] <span class="ot">&lt;-</span> <span class="fu">move_vehicle</span>(vehicles_df[i, ], dropoff_loc)</span>
+<span id="cb7-347"><a href="#cb7-347" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb7-348"><a href="#cb7-348" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"completed"</span>  <span class="co"># Transition to completed state</span></span>
+<span id="cb7-349"><a href="#cb7-349" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb7-350"><a href="#cb7-350" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Set completed time (ETD + unloading time 40 minutes)</span></span>
+<span id="cb7-351"><a href="#cb7-351" aria-hidden="true" tabindex="-1"></a>          completed_time[i] <span class="ot">&lt;-</span> ETD[i] <span class="sc">+</span> <span class="fu">seconds</span>(<span class="dv">40</span><span class="sc">*</span><span class="dv">60</span>)  <span class="co"># Unloading time 40 minutes</span></span>
+<span id="cb7-352"><a href="#cb7-352" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-353"><a href="#cb7-353" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-354"><a href="#cb7-354" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-355"><a href="#cb7-355" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle unloading phase (vehicle at dropoff location)</span></span>
+<span id="cb7-356"><a href="#cb7-356" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"completed"</span>) {</span>
+<span id="cb7-357"><a href="#cb7-357" aria-hidden="true" tabindex="-1"></a>        order_status[assigned_order] <span class="ot">&lt;-</span> <span class="st">"completed"</span></span>
+<span id="cb7-358"><a href="#cb7-358" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-359"><a href="#cb7-359" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-360"><a href="#cb7-360" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-361"><a href="#cb7-361" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-362"><a href="#cb7-362" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store the current simulation results with time info</span></span>
+<span id="cb7-363"><a href="#cb7-363" aria-hidden="true" tabindex="-1"></a>  tick_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-364"><a href="#cb7-364" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> current_time,</span>
+<span id="cb7-365"><a href="#cb7-365" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_id =</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles,</span>
+<span id="cb7-366"><a href="#cb7-366" aria-hidden="true" tabindex="-1"></a>    <span class="at">xcor =</span> vehicles_df<span class="sc">$</span>xcor,</span>
+<span id="cb7-367"><a href="#cb7-367" aria-hidden="true" tabindex="-1"></a>    <span class="at">ycor =</span> vehicles_df<span class="sc">$</span>ycor,</span>
+<span id="cb7-368"><a href="#cb7-368" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> vehicles_df<span class="sc">$</span>speed,</span>
+<span id="cb7-369"><a href="#cb7-369" aria-hidden="true" tabindex="-1"></a>    <span class="at">order_status =</span> order_status,</span>
+<span id="cb7-370"><a href="#cb7-370" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_order =</span> vehicle_order,</span>
+<span id="cb7-371"><a href="#cb7-371" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_state =</span> vehicle_state,  <span class="co"># Track vehicle state</span></span>
+<span id="cb7-372"><a href="#cb7-372" aria-hidden="true" tabindex="-1"></a>    <span class="at">ETA =</span> ETA,  <span class="co"># Estimated Time of Arrival</span></span>
+<span id="cb7-373"><a href="#cb7-373" aria-hidden="true" tabindex="-1"></a>    <span class="at">ETD =</span> ETD,  <span class="co"># Estimated Time of Departure</span></span>
+<span id="cb7-374"><a href="#cb7-374" aria-hidden="true" tabindex="-1"></a>    <span class="at">completed_time =</span> completed_time  <span class="co"># Completed Time</span></span>
+<span id="cb7-375"><a href="#cb7-375" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb7-376"><a href="#cb7-376" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-377"><a href="#cb7-377" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Append the current results to the final_results data frame</span></span>
+<span id="cb7-378"><a href="#cb7-378" aria-hidden="true" tabindex="-1"></a>  final_results <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(final_results, tick_result)</span>
+<span id="cb7-379"><a href="#cb7-379" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-380"><a href="#cb7-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-381"><a href="#cb7-381" aria-hidden="true" tabindex="-1"></a>final_results <span class="ot">&lt;-</span> final_results<span class="sc">|&gt;</span> </span>
+<span id="cb7-382"><a href="#cb7-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(order_status)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-383"><a href="#cb7-383" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ETA =</span> <span class="fu">as.POSIXct</span>(ETA, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
+<span id="cb7-384"><a href="#cb7-384" aria-hidden="true" tabindex="-1"></a>           <span class="at">ETD =</span> <span class="fu">as.POSIXct</span>(ETD, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
+<span id="cb7-385"><a href="#cb7-385" aria-hidden="true" tabindex="-1"></a>           <span class="at">completed_time =</span> <span class="fu">as.POSIXct</span>(completed_time, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>))</span>
+<span id="cb7-386"><a href="#cb7-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-387"><a href="#cb7-387" aria-hidden="true" tabindex="-1"></a>final<span class="ot">&lt;-</span>final_results[<span class="sc">!</span><span class="fu">duplicated</span>(final_results[, <span class="fu">setdiff</span>(<span class="fu">names</span>(final_results), <span class="st">"time"</span>)]), ]</span>
+<span id="cb7-388"><a href="#cb7-388" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-389"><a href="#cb7-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-390"><a href="#cb7-390" aria-hidden="true" tabindex="-1"></a><span class="al">![Biểu đồ 5: Agent Based Modeling](ABM.gif)</span></span>
+<span id="cb7-391"><a href="#cb7-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-392"><a href="#cb7-392" aria-hidden="true" tabindex="-1"></a>Kết quả cho thấy **xe 1** và **xe 2** có khả năng trễ chuyến nên cần lưu ý và hỗ trợ tài xế để đảm bảo xe đến đúng giờ hành chính. Như vậy chúng ta đã kết thúc bài học ở đây.</span>
+<span id="cb7-393"><a href="#cb7-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-394"><a href="#cb7-394" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kết luận:</span></span>
+<span id="cb7-395"><a href="#cb7-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-396"><a href="#cb7-396" aria-hidden="true" tabindex="-1"></a>Nếu bạn có câu hỏi hay thắc mắc nào, đừng ngần ngại liên hệ với mình qua Gmail. Bên cạnh đó, nếu bạn muốn xem lại các bài viết trước đây của mình, hãy nhấn vào hai nút dưới đây để truy cập trang **Rpubs** hoặc mã nguồn trên **Github**. Rất vui được đồng hành cùng bạn, hẹn gặp lại! 😄😄😄</span>
+<span id="cb7-397"><a href="#cb7-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-398"><a href="#cb7-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-399"><a href="#cb7-399" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb7-400"><a href="#cb7-400" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;!DOCTYPE html&gt;</span></span>
+<span id="cb7-401"><a href="#cb7-401" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;html lang="en"&gt;</span></span>
+<span id="cb7-402"><a href="#cb7-402" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;head&gt;</span></span>
+<span id="cb7-403"><a href="#cb7-403" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;meta charset="UTF-8"&gt;    </span></span>
+<span id="cb7-404"><a href="#cb7-404" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></span>
+<span id="cb7-405"><a href="#cb7-405" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;title&gt;Contact Me&lt;/title&gt;</span></span>
+<span id="cb7-406"><a href="#cb7-406" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"&gt;</span></span>
+<span id="cb7-407"><a href="#cb7-407" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@v6.0.0/svgs/rstudio.svg"&gt;</span></span>
+<span id="cb7-408"><a href="#cb7-408" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;style&gt;</span></span>
+<span id="cb7-409"><a href="#cb7-409" aria-hidden="true" tabindex="-1"></a><span class="in">        body { font-family: Tahoma, sans-serif; background-color: #f9f9f9; }</span></span>
+<span id="cb7-410"><a href="#cb7-410" aria-hidden="true" tabindex="-1"></a><span class="in">        .container { max-width: 400px; margin: auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }</span></span>
+<span id="cb7-411"><a href="#cb7-411" aria-hidden="true" tabindex="-1"></a><span class="in">        label { display: block; margin: 10px 0 5px; }</span></span>
+<span id="cb7-412"><a href="#cb7-412" aria-hidden="true" tabindex="-1"></a><span class="in">        input[type="email"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; }</span></span>
+<span id="cb7-413"><a href="#cb7-413" aria-hidden="true" tabindex="-1"></a><span class="in">        .github-button, .rpubs-button { margin-top: 20px; text-align: center; }</span></span>
+<span id="cb7-414"><a href="#cb7-414" aria-hidden="true" tabindex="-1"></a><span class="in">        .github-button button, .rpubs-button button { background-color: #333; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; width: 100%; }</span></span>
+<span id="cb7-415"><a href="#cb7-415" aria-hidden="true" tabindex="-1"></a><span class="in">        .github-button button:hover, .rpubs-button button:hover { background-color: #555; }</span></span>
+<span id="cb7-416"><a href="#cb7-416" aria-hidden="true" tabindex="-1"></a><span class="in">        .rpubs-button button { background-color: #75AADB; }</span></span>
+<span id="cb7-417"><a href="#cb7-417" aria-hidden="true" tabindex="-1"></a><span class="in">        .rpubs-button button:hover { background-color: #5A9BC2; }</span></span>
+<span id="cb7-418"><a href="#cb7-418" aria-hidden="true" tabindex="-1"></a><span class="in">        .rpubs-icon { margin-right: 5px; width: 20px; vertical-align: middle; filter: brightness(0) invert(1); }</span></span>
+<span id="cb7-419"><a href="#cb7-419" aria-hidden="true" tabindex="-1"></a><span class="in">        .error-message { color: red; font-size: 0.9em; margin-top: 5px; }</span></span>
+<span id="cb7-420"><a href="#cb7-420" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/style&gt;</span></span>
+<span id="cb7-421"><a href="#cb7-421" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/head&gt;</span></span>
+<span id="cb7-422"><a href="#cb7-422" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;body&gt;</span></span>
+<span id="cb7-423"><a href="#cb7-423" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="container"&gt;</span></span>
+<span id="cb7-424"><a href="#cb7-424" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;h2&gt;Contact Me&lt;/h2&gt;</span></span>
+<span id="cb7-425"><a href="#cb7-425" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;form id="emailForm"&gt;</span></span>
+<span id="cb7-426"><a href="#cb7-426" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;label for="email"&gt;Your Email:&lt;/label&gt;</span></span>
+<span id="cb7-427"><a href="#cb7-427" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;input type="email" id="email" name="email" required aria-label="Email Address"&gt;</span></span>
+<span id="cb7-428"><a href="#cb7-428" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;div class="error-message" id="error-message" style="display: none;"&gt;Please enter a valid email address.&lt;/div&gt;</span></span>
+<span id="cb7-429"><a href="#cb7-429" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;button type="submit"&gt;Send Email&lt;/button&gt;</span></span>
+<span id="cb7-430"><a href="#cb7-430" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/form&gt;</span></span>
+<span id="cb7-431"><a href="#cb7-431" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;div class="github-button"&gt;</span></span>
+<span id="cb7-432"><a href="#cb7-432" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;button&gt;</span></span>
+<span id="cb7-433"><a href="#cb7-433" aria-hidden="true" tabindex="-1"></a><span class="in">                &lt;a href="https://github.com/Loccx78vn/Material_Requirement_Planning" target="_blank" style="color: white; text-decoration: none;"&gt;</span></span>
+<span id="cb7-434"><a href="#cb7-434" aria-hidden="true" tabindex="-1"></a><span class="in">                    &lt;i class="fab fa-github"&gt;&lt;/i&gt; View Code on GitHub</span></span>
+<span id="cb7-435"><a href="#cb7-435" aria-hidden="true" tabindex="-1"></a><span class="in">                &lt;/a&gt;</span></span>
+<span id="cb7-436"><a href="#cb7-436" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;/button&gt;</span></span>
+<span id="cb7-437"><a href="#cb7-437" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/div&gt;</span></span>
+<span id="cb7-438"><a href="#cb7-438" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;div class="rpubs-button"&gt;</span></span>
+<span id="cb7-439"><a href="#cb7-439" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;button&gt;</span></span>
+<span id="cb7-440"><a href="#cb7-440" aria-hidden="true" tabindex="-1"></a><span class="in">                &lt;a href="https://rpubs.com/loccx" target="_blank" style="color: white; text-decoration: none;"&gt;</span></span>
+<span id="cb7-441"><a href="#cb7-441" aria-hidden="true" tabindex="-1"></a><span class="in">                    &lt;img src="https://cdn.jsdelivr.net/npm/simple-icons@v6.0.0/icons/rstudio.svg" alt="RStudio icon" class="rpubs-icon"&gt; Visit my RPubs</span></span>
+<span id="cb7-442"><a href="#cb7-442" aria-hidden="true" tabindex="-1"></a><span class="in">                &lt;/a&gt;</span></span>
+<span id="cb7-443"><a href="#cb7-443" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;/button&gt;</span></span>
+<span id="cb7-444"><a href="#cb7-444" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/div&gt;</span></span>
+<span id="cb7-445"><a href="#cb7-445" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/div&gt;</span></span>
+<span id="cb7-446"><a href="#cb7-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-447"><a href="#cb7-447" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;script&gt;</span></span>
+<span id="cb7-448"><a href="#cb7-448" aria-hidden="true" tabindex="-1"></a><span class="in">        document.getElementById('emailForm').addEventListener('submit', function(event) {</span></span>
+<span id="cb7-449"><a href="#cb7-449" aria-hidden="true" tabindex="-1"></a><span class="in">            event.preventDefault(); // Prevent default form submission</span></span>
+<span id="cb7-450"><a href="#cb7-450" aria-hidden="true" tabindex="-1"></a><span class="in">            const emailInput = document.getElementById('email');</span></span>
+<span id="cb7-451"><a href="#cb7-451" aria-hidden="true" tabindex="-1"></a><span class="in">            const email = emailInput.value;</span></span>
+<span id="cb7-452"><a href="#cb7-452" aria-hidden="true" tabindex="-1"></a><span class="in">            const errorMessage = document.getElementById('error-message');</span></span>
+<span id="cb7-453"><a href="#cb7-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-454"><a href="#cb7-454" aria-hidden="true" tabindex="-1"></a><span class="in">            // Simple email validation regex</span></span>
+<span id="cb7-455"><a href="#cb7-455" aria-hidden="true" tabindex="-1"></a><span class="in">            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;</span></span>
+<span id="cb7-456"><a href="#cb7-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-457"><a href="#cb7-457" aria-hidden="true" tabindex="-1"></a><span class="in">            if (emailPattern.test(email)) {</span></span>
+<span id="cb7-458"><a href="#cb7-458" aria-hidden="true" tabindex="-1"></a><span class="in">                errorMessage.style.display = 'none'; // Hide error message</span></span>
+<span id="cb7-459"><a href="#cb7-459" aria-hidden="true" tabindex="-1"></a><span class="in">                const yourEmail = 'loccaoxuan103@gmail.com'; // Your email</span></span>
+<span id="cb7-460"><a href="#cb7-460" aria-hidden="true" tabindex="-1"></a><span class="in">                const gmailLink = `https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=${yourEmail}&amp;su=Help%20Request%20from%20${encodeURIComponent(email)}`;</span></span>
+<span id="cb7-461"><a href="#cb7-461" aria-hidden="true" tabindex="-1"></a><span class="in">                window.open(gmailLink, '_blank'); // Open in new tab</span></span>
+<span id="cb7-462"><a href="#cb7-462" aria-hidden="true" tabindex="-1"></a><span class="in">            } else {</span></span>
+<span id="cb7-463"><a href="#cb7-463" aria-hidden="true" tabindex="-1"></a><span class="in">                errorMessage.style.display = 'block'; // Show error message</span></span>
+<span id="cb7-464"><a href="#cb7-464" aria-hidden="true" tabindex="-1"></a><span class="in">            }</span></span>
+<span id="cb7-465"><a href="#cb7-465" aria-hidden="true" tabindex="-1"></a><span class="in">        });</span></span>
+<span id="cb7-466"><a href="#cb7-466" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/script&gt;</span></span>
+<span id="cb7-467"><a href="#cb7-467" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/body&gt;</span></span>
+<span id="cb7-468"><a href="#cb7-468" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/html&gt;</span></span>
+<span id="cb7-469"><a href="#cb7-469" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Loc cao</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

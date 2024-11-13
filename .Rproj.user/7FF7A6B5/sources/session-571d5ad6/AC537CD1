@@ -1,0 +1,31 @@
+{
+    "id": "AC537CD1",
+    "path": "~/Xuân Lộc/R/Project R/Simulation/index.qmd",
+    "project_path": "index.qmd",
+    "type": "quarto_markdown",
+    "hash": "3067094902",
+    "contents": "",
+    "dirty": false,
+    "created": 1731483177974.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "2777:776.5333251953125",
+        "cursorPosition": "28,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1731487870,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1731487870778,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,763 @@
+---
+title: "Giới thiệu"
+subtitle: "Việt Nam, 2024"
+author: "Cao Xuân Lộc"
+date: "2024-10-06"
+number-sections: true
+format: 
+  html:
+    code-fold: true
+    code-tools: true
+    theme: 
+    - theme.scss
+---
+
+## Chuẩn bị:
+
+```{r}
+#Call packages:
+pacman::p_load(rio,
+               here,
+               janitor,
+               tidyverse,
+               dplyr,
+               magrittr,
+               lubridate,
+               stringr
+               )
+```
+
+
+Dưới đây là tệp dữ liệu về nhu cầu của khách hàng ở 3 nhà kho khác nhau. Bạn có thể nhấn vào nút dưới đây để tải về.
+
+```{r}
+#| warning: false
+#| mesasge: false
+#| echo: false
+library(readxl)
+df<-read_excel("Data.xlsx")
+
+library(downloadthis)
+df %>%
+  download_this(
+    output_name = "product_demand",
+    output_extension = ".csv",
+    button_label = "Download data",
+    button_type = "warning",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+## Lập kế hoạch MRP:
+
+### Dự đoán nhu cầu:
+
+Sau khi đã có dữ liệu, chúng ta sẽ bắt đầu dự đoán nhu cầu của khách hàng dựa vào dữ liệu trong quá khứ bằng thư viện `modeltime`. Mình đã từng viết 1 bài hướng dẫn cách sử dụng thư viện này ở bài viết [Time series model 2](https://loccx78vn.github.io/Forecasting_time_series_2/Time_series_2.html), bạn có thể xem qua.
+
+```{r}
+#| warning: false
+#| mesasge: false
+library(timetk)
+demand<-df %>% 
+    pivot_longer(cols = c(WHA,WHB,WHC), 
+               names_to = "WH", 
+               values_to = "Sale")
+  
+p<-demand %>% 
+  group_by(WH) %>% 
+  plot_time_series(Date, 
+                   Sale, 
+                   .interactive = T,
+                   .color_var = month(Date))
+
+#| warning: false
+#| message: false
+library(parsnip)
+library(rsample)
+# Devide the dataset to 7:3
+splits <- initial_time_split(demand, prop = 0.7)
+# ---- AUTO ARIMA ----
+
+library(modeltime)
+# Model Spec
+model_spec <- arima_reg() %>%
+    set_engine("auto_arima")
+
+# Fit model:
+model_fit <- model_spec %>%
+    fit(Sale ~ Date, 
+        data = training(splits))
+
+# Evaluate the model:
+invisible(capture.output({
+modeltime_tbl <- modeltime_table(
+    model_fit
+) 
+k<-modeltime_tbl %>%
+    modeltime_calibrate(testing(splits)) %>%
+    modeltime_forecast(
+      new_data    = testing(splits),
+      actual_data = demand,
+      keep_data   = TRUE
+    )
+}))
+```
+
+Mô hình đưa ra có vẻ khá tốt vì sai số trung bình chỉ ở mức 5% đối với nhà kho A và C, nhà kho B thì tệ hơn một chút với mức 10%.
+
+::: panel-tabset
+
+## Plot:
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Bảng 2: Dự đoán dữ liệu bằng package `modeltime`"
+## Plot the result:
+forecast_plot<-plot_modeltime_forecast(k %>% 
+        group_by(WH),
+        .interactive = T)
+
+library(plotly)
+forecast_plot %>% 
+  layout(
+    legend = list(
+      x = 0.5,  # Centered horizontally
+      y = -0.2,  # Position below the plot area
+      xanchor = "center",  # Anchor to the center
+      yanchor = "top"      # Anchor the top of the legend to the specified Y position
+    )
+  )
+```
+
+## Table:
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| nrow: 2
+#| fig-cap: "Bảng 3: Đánh giá mức độ dự đoán của mô hình"
+## Create table:
+n<-k %>% filter(.model_desc =="ARIMA(0,0,0)(2,0,1)[7] WITH NON-ZERO MEAN")
+m<-data.frame(Date = as.Date(n$Date),
+              WH = n$WH,
+              Predicted = round(n$.value,2),
+              Observed = testing(splits)$Sale) %>% 
+  mutate(Per_error = round(abs(Predicted - Observed) / Observed, 2),
+         Check = ifelse(Per_error < 0.05, "Pass","Fail"))
+
+# Summary calculations
+summary_data <- m %>%
+  group_by(WH) %>% 
+  summarize(
+    Total_Observed = n(),
+    Mean_Percentage_Error = round(mean(Per_error),4),
+    Median_Percentage_Error = round(median(Per_error),4),
+    Count_Pass = sum(Check == "Pass"),
+    Count_Fail = sum(Check == "Fail")
+  )
+
+library(gt)
+library(gtExtras)
+gt_table <- summary_data %>%
+  gt() %>%
+  tab_header(
+    title = md("**Summary Statistics**"),
+    subtitle = md("*Source: package gt in R*")
+  ) %>%
+  cols_label(
+    Total_Observed = "Observation",
+    Mean_Percentage_Error = "Mean error (%)",
+    Median_Percentage_Error = "Median error (%)",
+    Count_Pass = "Total pass",
+    Count_Fail = "Total fail"
+  ) %>%
+   cols_align(
+    align = "center",
+    columns = everything()
+  ) %>% 
+  gt_theme_pff() %>% 
+  tab_options(
+    table.width = "80%"
+  )
+
+# Display the gt table
+gt_table
+
+library(reactable)
+# Create an interactive table using reactable
+reactable(m,
+          columns = list(
+            Date = colDef(name = "Date", 
+                           sortable = TRUE, 
+                           align = "center", 
+                           headerStyle = list(background = "#b0b0b0")),  # Darker gray header
+            WH = colDef(name = "Warehouse", 
+                           sortable = TRUE, 
+                           align = "center", 
+                           headerStyle = list(background = "#b0b0b0")),  # Darker gray header
+            Predicted = colDef(name = "Predicted", 
+                               align = "center", 
+                               headerStyle = list(background = "#b0b0b0")),  # Darker gray header
+            Observed = colDef(name = "Observed", 
+                              align = "center", 
+                              headerStyle = list(background = "#b0b0b0")),  # Darker gray header
+            Per_error = colDef(name = "Percentage Error (%)", 
+                               format = colFormat(percent = TRUE),
+                               align = "center", 
+                               headerStyle = list(background = "#b0b0b0"),  # Darker gray header
+                               style = function(value) {
+                                 color <- ifelse(value > 0.05, "#e00000", "#008000")  # Red if > 5%, green if <= 5%
+                                 list(color = color, fontWeight = "bold")
+                               }),
+            Check = colDef(name = "Status", 
+                           align = "center",
+                           headerStyle = list(background = "#b0b0b0"),  # Darker gray header
+                           cell = function(value) {
+                             style <- ifelse(value == "Pass", 
+                                             "background-color: green; color: white;",
+                                             "background-color: red; color: white;")  # Red for Fail
+                             htmltools::tags$div(value, style = style)
+                           })
+          ),
+          defaultPageSize = 10,
+          highlight = TRUE,
+          striped = TRUE,
+          bordered = TRUE,
+          resizable = TRUE
+)
+```
+:::
+
+Vậy chúng ta đã có dữ liệu đầu vào là dự đoán nhu cầu. Tiếp theo, ta sẽ xây dựng kế hoạch cung ứng hàng hóa dựa trên kết quả trên. **Kế hoạch cung ứng** nghĩa nhằm đảm bảo rằng hàng hóa và dịch vụ được cung cấp đúng thời điểm, đúng số lượng và với chi phí hợp lý.
+
+Thông thường, kế hoạch cung ứng chỉ gồm **4 thông tin** đơn giản là:
+
+- Địa điểm bốc hàng.
+- Địa điểm giao hàng.
+- Loại hàng hóa.
+- Số lượng hàng.
+
+Và kế hoạch có thể theo ngày đối với các cửa hàng bách hóa, siêu thị hoặc theo tuần đối với các nhà kho. Ngoài ra, còn tùy vào mặt hàng là hàng hóa gì, nhu cầu của hàng hóa như thể nào cũng ảnh hưởng đến thời gian giao hàng như: hàng bán chạy thì cần cung ứng hằng ngày, hàng ế ẩm thì có khi cả tháng mới nhập hoặc xuất một lần.
+
+Như vậy, ta cần xác định khi nào hàng sẽ có nguy cơ bị *outstock* để lập kế hoạch cung ứng cho khoảng thời gian là 1 tháng tiếp theo.
+
+### Các thông số của nhà kho:
+
+Mỗi nhà kho sẽ có các thông số đánh giá khác nhau. Đối với nhà kho thuộc dạng *public warehouse* thì họ quan tâm về mức độ lấp đầy chỗ (giống như mua vé xem phim vậy, càng ít chỗ trống nghĩa là doanh thu cao), *private warehouse* thì thường sẽ quan tâm đến các dịch vụ cao cấp hơn như: kho lạnh, phòng cháy chữa cháy, dạng *cross-docking* thì đặc biệt quan tâm đến tốc độ chu chuyển hàng hóa trong kho,... Nhưng về tổng quan, để quản lí hàng hóa trong kho sẽ cần các thông số như:
+
+- *Mean of demand*: nhu cầu trung bình theo ngày/tháng/năm của sản phẩm.
+
+- *Standard deviation of demand*: phương sai của sản phẩm.
+
+- *Safety stock* và *Lead time*.
+
+Đầu tiên, ta sẽ tính các giá trị *Lead time* và *Safety stock* cho từng nhà kho.
+
+```{r}
+#| fig-cap: "Bảng 4: Các thông số đánh giá của từng nhà kho"
+library(dplyr)
+library(knitr)
+
+safety_stock_tbl <- k %>%
+  group_by(WH) %>%
+  summarise(Mean = round(mean(.value),0),
+            SD = sd(.value)) %>%
+  mutate(Leadtime = c("2 days", "1.5 days", "2.5 days"),
+         Safety_stock = round(1.64 * SD * sqrt(as.numeric(sub(" days", "", Leadtime))),0),
+         ROP = Mean * as.numeric(sub(" days", "", Leadtime)) + Safety_stock)
+
+safety_stock_tbl %>%
+  gt() %>%
+  tab_header(
+    title = md("**Safety Stock by Warehouse**"),
+    subtitle = md("*Source: package gt in R*")
+  ) %>%
+  cols_label(
+    WH = "Warehouse",
+    Mean = "Mean",
+    SD = "Standard Deviation",
+    Leadtime = "Lead Time",
+    Safety_stock = "Safety Stock",
+    ROP = "Reorder Point"
+  ) %>% tab_style(
+    style = list(
+      cell_text(align = "center")
+    ),
+    locations = cells_body(columns = everything())
+  ) %>%
+   cols_align(
+    align = "center",
+    columns = everything()
+  ) %>% 
+  gt_theme_pff() %>% 
+  tab_options(
+    table.width = "80%"
+  )
+```
+
+Sau khi đã có các thông số cần thiết, chúng ta sẽ bắt đầu bước **simulation - giả lập** cho số lượng hàng tồn kho trong gần 1 tháng tiếp theo. Ở đây mình sẽ xây dựng kế hoạch cho nhà kho *B*. Trong đó, hàm dưới đây mình viết giúp bạn có thể tính toán cho nhiều trường hợp với 4 đối số:
+
+- *Mã nhà kho*: trong bộ dữ liệu này sẽ có 3 nhà kho với các mã: "WHA", "WHB", "WHC". Ở đây, mình đặt `warehouse = "WHB"`.
+
+- *Batch order*: là số lượng hàng đặt từ *supplier*. Tùy vào đặc tính của sản phẩm, số lượng đặt hàng có thể chênh lệch so với số lượng mà bạn cần. Ví dụ, bạn chỉ cần 450 tấn là vừa đủ nhưng 1 lô hàng mà nhà cung cấp sản xuất sẽ là 500 tấn (quy mô thấp hơn thì chi phí/bao sẽ cao hơn) nên bạn chỉ có thể đặt 500 tấn chứ đặt 450 thì 2 bên sẽ không thỏa thuận được. Ở đây mình đặt `quantity = 600`.
+
+- *Leadtime*: khái niệm này mình cũng đề cập ở trên nhưng ở đây bạn có thể cân nhắc việc cộng thêm 1 khoảng *safety leadtime* để nâng cao hiệu quả công việc. Ví dụ, leadtime của nhà kho *C* là 2.5 ngày thì mình có thể đặt hàng sớm trước 1 ngày so với ngày dự kiến *ROP*.
+
+- *Starting inventory*: lượng hàng tồn kho đầu kì. Ở đây mình đặt `inv_start = 500`.
+
+```{r}
+long_df<-df %>% 
+  pivot_longer(cols = contains("WH"),
+               names_to = "Warehouse",
+               values_to = "Demand")
+
+f<-function(warehouse,quantity,leadtime,inv_start){
+
+## Inpur:
+batch_order <- quantity
+safetystock <- safety_stock_tbl %>%
+  filter(WH == warehouse) %>%
+  select(ROP) %>%
+  pull()
+
+mrp<-long_df %>% 
+  filter(Date >= as.Date("2024-06-02") & Warehouse == warehouse) %>%
+  select(c(Date, Demand)) %>% 
+  mutate(Inv_start= NA,
+         Inv_end = NA,
+         ROP = NA,
+         Stockout = NA)
+
+mrp$Inv_start[1]<-inv_start
+mrp$Inv_end[1] <-mrp$Inv_start[1]-mrp$Demand[1]
+
+## Processing:
+reorder_goods <- function(data, 
+                          safety_stock = safetystock, 
+                          lead_time = leadtime, 
+                          batch_order = quantity) {
+  data$ROP <- 0
+  last_reorder_day <- -(leadtime + 1)  # Initialize to a value that allows immediate reorder
+
+  for (day in 1:nrow(data)) {
+    # Check if we can place a new order (ROP = 1)
+    if (!is.na(data$Inv_end[day]) && 
+        data$Inv_end[day] < safety_stock && 
+        (day - last_reorder_day > leadtime)) {  # Ensure at least 2 days since last reorder
+      data$ROP[day] <- 1
+      last_reorder_day <- day  # Update the last reorder day
+
+      reorder_day <- day + lead_time
+
+      if (reorder_day <= nrow(data)) {
+        data$Inv_end[reorder_day] <- ifelse(is.na(data$Inv_end[reorder_day]), 0, data$Inv_end[reorder_day]) + batch_order
+        
+        for (i in (reorder_day+1):nrow(data)) {
+          data$Inv_start[i] <- data$Inv_end[i - 1]
+          data$Inv_end[i] <- data$Inv_start[i] - data$Demand[i]
+        }
+      }
+    }
+    
+   # Assign Stockout status
+
+  }
+  
+  return(data)
+}
+
+
+# Fill in Inv_end for the rest of the days
+for (i in 2:nrow(mrp)) {
+  mrp$Inv_start[i] <- mrp$Inv_end[i - 1]
+  mrp$Inv_end[i] <- mrp$Inv_start[i] - mrp$Demand[i]
+}
+
+# Apply the reorder function
+result <- reorder_goods(mrp)
+
+for (i in 1:nrow(result)){
+  result$Stockout[i] <- ifelse(result$Inv_start[i] < result$Demand[i], 1, 0)
+}
+return(result)
+}
+
+result<-f("WHB",600,3,500)
+```
+
+Kết quả giả lập được trình bày như sau, trong đó:
+
+- *Starting inv*: là tồn kho đầu ngày (hoặc đầu kì cho tháng/năm). Lượng hàng đầu ngày sẽ bằng lượng hàng cuối ngày hôm trước.
+- *Ending inv*: là tồn kho cuối ngày, được tính bằng hiệu số của lượng hàng đầu ngày và nhu cầu của khách hàng.
+- *Status*: ám chỉ trạng thái của nhà kho, ở đây có 3 dạng trạng thái: *Oke* là khi nhà kho không bị *outstock* và không cần đặt thêm hàng, *Reorder* khi đặt đơn hàng và *Outstock* khi lượng hàng tồn kho không đủ để phục vụ nhu cầu của khách hàng vào ngày đó.
+- *Supply*: lượng hàng sẽ nhận từ đơn đặt hàng.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-cap: "Bảng 5: Kết quả giả lập của kế hoạch MRP"
+library(reactable)
+library(reactablefmtr)
+library(htmltools)
+
+# create a function status.PI.Index
+status_PI.Index <- function(color = "#aaa", width = "0.55rem", height = width) {
+  span(style = list(
+    display = "inline-block",
+    marginRight = "0.5rem",
+    width = width,
+    height = height,
+    backgroundColor = color,
+    borderRadius = "50%"
+  ))
+}
+# Reactable:
+table<-result %>% 
+            mutate(Date = as.Date(Date),
+                   Status = ifelse(ROP == 0 & Stockout == 0, "Oke",
+                                   ifelse(ROP == 1  & Stockout == 0, "Reorder","Overstock")),
+                   Supply = ROP*600) %>% 
+                     select(-c(ROP,Stockout))
+
+reactable(table,
+  columns = list(
+    Date = colDef(name = "Date", 
+                   sortable = TRUE, 
+                   align = "center", 
+                   headerStyle = list(background = "#b0b0b0")),  
+    Demand = colDef(name = "Demand", 
+                    align = "center", 
+                    headerStyle = list(background = "#b0b0b0"),
+                    cell = data_bars(table, 
+                               fill_color = "#3fc1c5",
+                               text_position = "outside-end")
+            ),  
+    Inv_start = colDef(name = "Starting Inv", 
+                       align = "center", 
+                       headerStyle = list(background = "#b0b0b0"),
+                       style = function(value) {
+                         color <- ifelse(value <= 0, "#e00000", "#008000")  
+                         list(color = color, fontWeight = "bold")
+                       }),
+    Supply = colDef(name = "Supply (units)",
+                    align = "center",
+                    headerStyle = list(background = "#b0b0b0"),
+                    cell = data_bars(table, 
+                               fill_color = "#3CB371",
+                               text_position = "outside-end")
+            ),
+    Inv_end = colDef(name = "Ending Inv", 
+                     align = "center", 
+                     headerStyle = list(background = "#b0b0b0"),
+                     style = function(value) {
+                       color <- ifelse(value <= 0, "#e00000", "#008000")  
+                       list(color = color, fontWeight = "bold")
+                     }),
+    Status = colDef(
+              name = "Status",
+                     headerStyle = list(background = "#b0b0b0"),
+              cell = function(value) {
+                color <- switch(value,
+                                Overstock = "hsl(3, 69%, 50%)",
+                                Oke = "hsl(154, 64%, 50%)",
+                                Reorder = "hsl(214, 45%, 50%)")
+                Status <- status_PI.Index(color = color)
+                tagList(Status, value)
+              }
+            )),
+  defaultPageSize = 10,
+  highlight = TRUE,
+  striped = TRUE,
+  bordered = TRUE,
+  resizable = TRUE
+)
+```
+
+### Thêm safety leadtime:
+
+Bây giờ chúng ta đã có kế hoạch dự kiến trong tháng tiếp theo giống ta đã biết trước được khi nào thì nhà kho sẽ bị outstock và dựa vào đó, ta có thể đưa ra phương án để tránh việc này. 
+
+Như trong trường hợp này, nhà kho **B** bị outstock tới tận **16** lận, một con số khá tệ. Là người quản lí kho, ta sẽ đưa ra phương án là đặt hàng trước 1 ngày dự kiến mà lượng hàng tồn kho nhỏ hơn *safety stock*.
+
+#### So sánh giữa 2 cách:
+
+**Kết quả:** Qua biểu đồ dưới đây, ta cũng dễ dàng thấy là việc đặt hàng **trước 1 ngày** hàng tồn kho nhỏ hơn *safety stock* giảm tình trạng *outstock* đáng kể (từ **16** lần xuống còn **6** lần trong tháng). 
+
+Ngoài ra, một điểm đặc biệt là không xảy ra **tình trạng nợ hàng**, nghĩa là cửa hàng của bạn chỉ bị thiếu hàng và chưa đủ thỏa mãn hết nhu cầu trong ngày của khách hàng chớ không bị âm hàng như cách cũ.
+
+```{r}
+#| echo: false
+#| fig-cap: "Bảng 6: So sánh giữa phương pháp truyền thống và thêm safety leadtime"
+result <- read_excel("my_data.xlsx")
+
+compare<-result %>% 
+            mutate(Date = as.Date(Date),
+                   Fulfill = ifelse(Inv_start/Demand < 1,round(Inv_start/Demand,3),1),
+                   Fulfill_safety = ifelse(Inv_start_safety/Demand < 1, round(Inv_start_safety/Demand,3),1)) %>% 
+  select (c(Fulfill,
+            Stockout,
+            Fulfill_safety,
+            Stock_out_safety)) 
+                   
+library(reactablefmtr)             
+compare %>% 
+reactable(
+  columns = list(
+     Fulfill = colDef(
+      name = "Normal fulfill",
+      cell = data_bars(., 
+                       fill_color = c("#F44336","#4CAF50"),
+                       text_position = "inside-end", 
+                       number_fmt = scales::percent)),
+     Fulfill_safety = colDef(
+      name = "Safety fulfill",
+      cell = data_bars(., 
+                       fill_color =  c("#b0f1a6","#4CAF50"),
+                       text_position = "inside-end", 
+                       number_fmt = scales::percent)),
+    Stock_out_safety = colDef(
+      name = "Safety Stockout",
+      align = "center",
+      cell = function(value) {
+        if (value == "0") {
+          htmltools::tags$span("✔️", style = "color: green; font-size: 18px;")  # Checkmark
+        } else {
+          htmltools::tags$span("❌", style = "color: gray; font-size: 18px;")  # Cross
+        }
+      }
+    ),
+    Stockout = colDef(
+      align = "center",
+      cell = function(value) {
+        if (value == "0") {
+          htmltools::tags$span("✔️", style = "color: green; font-size: 18px;")  # Checkmark
+        } else {
+          htmltools::tags$span("❌", style = "color: gray; font-size: 18px;")  # Cross
+        }
+      }
+    )
+  ),
+  defaultPageSize = 5,
+  highlight = TRUE,
+  striped = TRUE,
+  bordered = TRUE,
+  resizable = TRUE
+)
+```
+
+#### Đánh giá bằng line chart:
+
+Để so sánh sự quan trọng của *safety leadtime*, mình sẽ sử dụng *line chart* để đánh giá mức độ dịch vụ của nhà kho dựa trên tiêu chí *high service*: càng ít *outstock* thì càng tốt. Ngoài ra, mình còn thêm vào các đường nét đứt biểu diễn thời điểm ROP
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-cap: "Bảng 7: So sánh level of service của hai phương pháp"
+# Create time series objects with daily frequency
+library(xts)
+demand_ts <-xts(result$Demand, 
+                order.by = result$Date)
+inv_start_ts <- xts(result$Inv_start, 
+                   order.by = result$Date)
+inv_start_safety_ts <- xts(result$Inv_start_safety,
+                           order.by = result$Date)
+
+event<-result %>% 
+  filter(ROP == 1) %>% 
+  select(Date) %>% 
+  mutate(Date = as.Date(Date)) %>% 
+  pull()
+
+# Create line plot:
+library(dygraphs)
+combine <- cbind(demand_ts,
+                 inv_start_ts,
+                 inv_start_safety_ts)
+
+dygraph(combine) %>%
+  dySeries("demand_ts", label = "Demand") %>%
+  dySeries("inv_start_ts", label = "Starting inv") %>% 
+  dySeries("inv_start_safety_ts", label = "Starting safety inv") %>% 
+  dyOptions(fillGraph = TRUE, fillAlpha = 0.4) %>% 
+  dyEvent(event[1], "ROP", labelLoc = "bottom") %>%
+  dyEvent(event[2], "ROP", labelLoc = "bottom") %>%
+  dyEvent(event[3], "ROP", labelLoc = "bottom") %>%
+  dyEvent(event[4], "ROP", labelLoc = "bottom") %>%
+  dyEvent(event[5], "ROP", labelLoc = "bottom") %>%
+  dyEvent(event[6], "ROP", labelLoc = "bottom")
+```
+
+Tuy nhiên nếu xét về tiêu chí tối ưu chi phí (*saving cost*) thì ta cần tính toán thêm chi phí của việc *outstock* và chi phí tồn kho (*inventory cost*).
+
+Giả sử chi phí của *inventory cost* là \$40/sản phẩm và *outstock cost* là 15`$`/sản phẩm thì ta sẽ có bảng so sánh như bảng dưới đây. Kết quả cho thấy phương pháp truyền thống giúp chi phí ở mức thấp hơn. 
+
+```{r}
+#| fig-cap: "Bảng 8: So sánh tổng chi phí giữa hai phương pháp"
+library(gt)
+library(gtExtras)
+gt(result %>% 
+  summarise(`Normal` = sum(Stockout),
+            `Safety Leadtime` = sum(Stock_out_safety)) %>% 
+  pivot_longer(cols = everything(),
+               names_to = "Approach",
+               values_to = "Outstock cost") %>% 
+  mutate(`Outstock cost` = `Outstock cost` * 30,
+         `Inventory cost` = c(result$Inv_end[nrow(result)],
+                              result$Inv_end_safety[nrow(result)])
+  ) %>% 
+  mutate(`Inventory cost` = ifelse(`Inventory cost` < 0,0,`Inventory cost`*15),
+         Total = `Outstock cost` + `Inventory cost`))  %>%
+  tab_header(
+    title = "Inventory and Stockout Costs"
+  ) %>%
+  cols_label(
+    Approach = "Approach",
+    `Outstock cost` = "Outstock Cost ($)",
+    `Inventory cost` = "Inventory Cost ($)"
+  ) %>%
+  fmt_currency(
+    columns = c(`Outstock cost`, `Inventory cost`, Total),
+    currency = "USD"
+  ) %>% 
+  gt_highlight_rows(
+     rows = 2,
+     fill = "orange",
+     bold_target_only = TRUE,
+     target_col = Total
+   )  %>%
+   cols_align(
+    align = "center",
+    columns = everything()
+  ) %>% 
+  gt_theme_pff() %>% 
+  tab_options(
+    table.width = "80%"
+  )
+```
+
+## Kết luận:
+
+Như vậy, ở bài post này chúng ta đã học được cách sử dụng R trong việc xây dựng kế hoạch **MRP** dựa vào dữ liệu quá khứ cũng như so sánh kết quả giữa 2 tiêu chí là: *high service* và *low cost*.
+
+Tiếp theo, ta lại tiếp tục quy trình trên và làm kế hoạch cho các tháng sau.
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-cap: "Bảng 9: Kết quả dự đoán nhu cầu trong 1 tháng tiếp theo"
+## Gộp dữ liệu từ training set và testing set thành một:
+data_prepared_tbl <- bind_rows(training(splits), 
+                               testing(splits))
+
+
+## Tạo thêm các hàng cho dữ liệu sắp tới. Ví dụ ta cần trong 6 tháng thì hàm sẽ tạo thêm 365*4 = 1460 hàng:
+future_tbl <- data_prepared_tbl %>%
+    group_by(WH) %>%
+    future_frame(.length_out = "1 months") %>%
+    ungroup()
+
+## Dự đoán nhu cầu cho 3 tháng tiếp theo:
+refit_tbl <- modeltime_tbl %>%
+    modeltime_refit(data_prepared_tbl)
+
+invisible(capture.output({
+refit_tbl<-refit_tbl %>%
+    modeltime_forecast(
+        new_data    = future_tbl,
+        actual_data = data_prepared_tbl,
+        keep_data   = TRUE) 
+}))
+
+refit_tbl %>% 
+  group_by(WH) %>% 
+  plot_modeltime_forecast(
+         .interactive = TRUE) %>% 
+  layout(
+    legend = list(
+      x = 0.5,  # Centered horizontally
+      y = -0.2,  # Position below the plot area
+      xanchor = "center",  # Anchor to the center
+      yanchor = "top"      # Anchor the top of the legend to the specified Y position
+    )
+  )
+```
+
+
+Như vậy, chúng ta đã được học về thuật toán Genetic và mô hình MILP cũng như cách thực hiện trong Rstudio. 
+
+Nếu bạn có câu hỏi hay thắc mắc nào, đừng ngần ngại liên hệ với mình qua Gmail. Bên cạnh đó, nếu bạn muốn xem lại các bài viết trước đây của mình, hãy nhấn vào hai nút dưới đây để truy cập trang **Rpubs** hoặc mã nguồn trên **Github**. Rất vui được đồng hành cùng bạn, hẹn gặp lại! 😄😄😄
+
+```{=html}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@v6.0.0/svgs/rstudio.svg">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; }
+        .container { max-width: 400px; margin: auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+        label { display: block; margin: 10px 0 5px; }
+        input[type="email"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; }
+        .github-button, .rpubs-button { margin-top: 20px; text-align: center; }
+        .github-button button, .rpubs-button button { background-color: #333; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; width: 100%; }
+        .github-button button:hover, .rpubs-button button:hover { background-color: #555; }
+        .rpubs-button button { background-color: #75AADB; }
+        .rpubs-button button:hover { background-color: #5A9BC2; }
+        .rpubs-icon { margin-right: 5px; width: 20px; vertical-align: middle; filter: brightness(0) invert(1); }
+        .error-message { color: red; font-size: 0.9em; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Contact Me</h2>
+        <form id="emailForm">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required aria-label="Email Address">
+            <div class="error-message" id="error-message" style="display: none;">Please enter a valid email address.</div>
+            <button type="submit">Send Email</button>
+        </form>
+        <div class="github-button">
+            <button>
+                <a href="https://github.com/Loccx78vn/Material_Requirement_Planning" target="_blank" style="color: white; text-decoration: none;">
+                    <i class="fab fa-github"></i> View Code on GitHub
+                </a>
+            </button>
+        </div>
+        <div class="rpubs-button">
+            <button>
+                <a href="https://rpubs.com/loccx" target="_blank" style="color: white; text-decoration: none;">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v6.0.0/icons/rstudio.svg" alt="RStudio icon" class="rpubs-icon"> Visit my RPubs
+                </a>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Simple email validation regex
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailPattern.test(email)) {
+                errorMessage.style.display = 'none'; // Hide error message
+                const yourEmail = 'loccaoxuan103@gmail.com'; // Your email
+                const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${yourEmail}&su=Help%20Request%20from%20${encodeURIComponent(email)}`;
+                window.open(gmailLink, '_blank'); // Open in new tab
+            } else {
+                errorMessage.style.display = 'block'; // Show error message
+            }
+        });
+    </script>
+</body>
+</html>
+```
