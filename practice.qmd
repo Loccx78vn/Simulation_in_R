@@ -117,6 +117,7 @@ arrivals<-get_mon_arrivals(env, per_resource = T)
 arrivals$datetime <- start_time + (arrivals$start_time * 60)  
 arrivals$finish_datetime <- start_time + (arrivals$end_time * 60)  
 ```
+
 Thông tin từ **R** được xuất ra cho thấy thời gian chạy là 500 và có 45 xe đã di chuyển vào hệ thống. Kết quả giả lập được thể hiện như sau: các đốm thể hiện thời điểm xe đi vào, chờ giải quyết yêu cầu và đi ra khỏi hàng chờ.
 
 ![Biểu đồ 1: Discrete Event Simulation](DES.gif)
@@ -124,8 +125,7 @@ Thông tin từ **R** được xuất ra cho thấy thời gian chạy là 500 v
 Và chúng ta sẽ có final output gồm:
 
 ::: tabset
-
-### Resources:
+#### Resources:
 
 ```{r}
 #| warning: false
@@ -140,7 +140,8 @@ plot(resources,
      c("warehouse", "truck","store"),
      items = "server")
 ```
-### Simulation:
+
+#### Simulation:
 
 ```{r}
 #| warning: false
@@ -385,7 +386,6 @@ Kết quả cho thấy **xe 1** và **xe 2** có khả năng trễ chuyến nên
 
 Nếu bạn có câu hỏi hay thắc mắc nào, đừng ngần ngại liên hệ với mình qua Gmail. Bên cạnh đó, nếu bạn muốn xem lại các bài viết trước đây của mình, hãy nhấn vào hai nút dưới đây để truy cập trang **Rpubs** hoặc mã nguồn trên **Github**. Rất vui được đồng hành cùng bạn, hẹn gặp lại! 😄😄😄
 
-
 ```{=html}
 <!DOCTYPE html>
 <html lang="en">
@@ -420,7 +420,7 @@ Nếu bạn có câu hỏi hay thắc mắc nào, đừng ngần ngại liên h�
         </form>
         <div class="github-button">
             <button>
-                <a href="https://github.com/Loccx78vn/Material_Requirement_Planning" target="_blank" style="color: white; text-decoration: none;">
+                <a href="https://github.com/Loccx78vn/Simulation_in_R" target="_blank" style="color: white; text-decoration: none;">
                     <i class="fab fa-github"></i> View Code on GitHub
                 </a>
             </button>

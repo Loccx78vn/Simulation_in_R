@@ -304,7 +304,7 @@ background-size: cover;
   <ul class="collapse">
   <li><a href="#thư-viện" id="toc-thư-viện" class="nav-link" data-scroll-target="#thư-viện"><span class="header-section-number">1.1</span> Thư viện:</a></li>
   <li><a href="#mô-hình-des" id="toc-mô-hình-des" class="nav-link" data-scroll-target="#mô-hình-des"><span class="header-section-number">1.2</span> Mô hình DES:</a></li>
-  <li><a href="#mô-hình-abm" id="toc-mô-hình-abm" class="nav-link" data-scroll-target="#mô-hình-abm"><span class="header-section-number">1.5</span> Mô hình ABM:</a></li>
+  <li><a href="#mô-hình-abm" id="toc-mô-hình-abm" class="nav-link" data-scroll-target="#mô-hình-abm"><span class="header-section-number">1.3</span> Mô hình ABM:</a></li>
   </ul></li>
   <li><a href="#kết-luận" id="toc-kết-luận" class="nav-link" data-scroll-target="#kết-luận"><span class="header-section-number">2</span> Kết luận:</a></li>
   </ul>
@@ -412,10 +412,9 @@ background-size: cover;
 </figure>
 </div>
 <p>Và chúng ta sẽ có final output gồm:</p>
-</section>
 <div class="tabset">
-<section id="resources" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="resources"><span class="header-section-number">1.3</span> Resources:</h3>
+<section id="resources" class="level4" data-number="1.2.1">
+<h4 data-number="1.2.1" class="anchored" data-anchor-id="resources"><span class="header-section-number">1.2.1</span> Resources:</h4>
 <div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
@@ -436,8 +435,8 @@ background-size: cover;
 </div>
 </div>
 </section>
-<section id="simulation" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="simulation"><span class="header-section-number">1.4</span> Simulation:</h3>
+<section id="simulation" class="level4" data-number="1.2.2">
+<h4 data-number="1.2.2" class="anchored" data-anchor-id="simulation"><span class="header-section-number">1.2.2</span> Simulation:</h4>
 <div class="cell fig-cap-location-bottom">
 <details class="code-fold">
 <summary>Code</summary>
@@ -463,8 +462,9 @@ background-size: cover;
 </div>
 </section>
 </div>
-<section id="mô-hình-abm" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="mô-hình-abm"><span class="header-section-number">1.5</span> Mô hình ABM:</h3>
+</section>
+<section id="mô-hình-abm" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="mô-hình-abm"><span class="header-section-number">1.3</span> Mô hình ABM:</h3>
 <p>Khác với <em>DES</em>, <em>ABM</em> quan tâm nhiều hơn đến các đặc tính, thông tin của cá thể trong quần thể này. Do đó, chỉ với lượng thông tin về số xe, số nhà kho, số cửa hàng và quy trình hoạt động là chưa đủ để xây dựng mô hình <em>ABM</em>. Các dữ liệu khả thi có thể bao gồm: thông tin của đội xe: gồm bao nhiêu người hoặc gồm những ai; dữ liệu quá khứ về KPI, học vấn,…; thông tin về thời gian hoạt động của các cửa hàng; vị trí và thông tin về đường xá có cấm tải không;… <em>ABM</em> thường được ứng dụng vào việc xác định các <em>risks - rủi ro</em> trong quản lí chuỗi cung ứng</p>
 <p>Trong R có thư viện <code>NetLogoR</code> hỗ trợ chúng ta tốt về mảng mô hình <em>ABM</em>. Về nền tảng, <em>ABM</em> cần các yếu tố cơ bản sau:</p>
 <ul>
@@ -714,7 +714,7 @@ background-size: cover;
         </form>
         <div class="github-button">
             <button>
-                <a href="https://github.com/Loccx78vn/Material_Requirement_Planning" target="_blank" style="color: white; text-decoration: none;">
+                <a href="https://github.com/Loccx78vn/Simulation_in_R" target="_blank" style="color: white; text-decoration: none;">
                     <i class="fab fa-github"></i> View Code on GitHub
                 </a>
             </button>
@@ -1491,15 +1491,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>arrivals<span class="sc">$</span>datetime <span class="ot">&lt;-</span> start_time <span class="sc">+</span> (arrivals<span class="sc">$</span>start_time <span class="sc">*</span> <span class="dv">60</span>)  </span>
 <span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>arrivals<span class="sc">$</span>finish_datetime <span class="ot">&lt;-</span> start_time <span class="sc">+</span> (arrivals<span class="sc">$</span>end_time <span class="sc">*</span> <span class="dv">60</span>)  </span>
 <span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>Thông tin từ **R** được xuất ra cho thấy thời gian chạy là 500 và có 45 xe đã di chuyển vào hệ thống. Kết quả giả lập được thể hiện như sau: các đốm thể hiện thời điểm xe đi vào, chờ giải quyết yêu cầu và đi ra khỏi hàng chờ.</span>
-<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a><span class="al">![Biểu đồ 1: Discrete Event Simulation](DES.gif)</span></span>
-<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>Và chúng ta sẽ có final output gồm:</span>
-<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>::: tabset</span>
-<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="fu">### Resources:</span></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>Thông tin từ **R** được xuất ra cho thấy thời gian chạy là 500 và có 45 xe đã di chuyển vào hệ thống. Kết quả giả lập được thể hiện như sau: các đốm thể hiện thời điểm xe đi vào, chờ giải quyết yêu cầu và đi ra khỏi hàng chờ.</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="al">![Biểu đồ 1: Discrete Event Simulation](DES.gif)</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>Và chúng ta sẽ có final output gồm:</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>::: tabset</span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Resources:</span></span>
 <span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
@@ -1514,251 +1514,251 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>     <span class="fu">c</span>(<span class="st">"warehouse"</span>, <span class="st">"truck"</span>,<span class="st">"store"</span>),</span>
 <span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>     <span class="at">items =</span> <span class="st">"server"</span>)</span>
 <span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a><span class="fu">### Simulation:</span></span>
-<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Biểu đồ 3: Thời gian giả lập của xe"</span></span>
-<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
-<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Simulation:</span></span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Biểu đồ 3: Thời gian giả lập của xe"</span></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
 <span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
-<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a>arrivals <span class="sc">|&gt;</span> </span>
-<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
-<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
-<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
-<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
-<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
-<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="fu">hchart</span>(</span>
-<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
-<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time,</span>
-<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> type)</span>
-<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mô hình ABM:</span></span>
-<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a>Khác với *DES*, *ABM* quan tâm nhiều hơn đến các đặc tính, thông tin của cá thể trong quần thể này. Do đó, chỉ với lượng thông tin về số xe, số nhà kho, số cửa hàng và quy trình hoạt động là chưa đủ để xây dựng mô hình *ABM*. Các dữ liệu khả thi có thể bao gồm: thông tin của đội xe: gồm bao nhiêu người hoặc gồm những ai; dữ liệu quá khứ về KPI, học vấn,...; thông tin về thời gian hoạt động của các cửa hàng; vị trí và thông tin về đường xá có cấm tải không;... *ABM* thường được ứng dụng vào việc xác định các *risks - rủi ro* trong quản lí chuỗi cung ứng</span>
-<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>Trong R có thư viện <span class="in">`NetLogoR`</span> hỗ trợ chúng ta tốt về mảng mô hình *ABM*. Về nền tảng, *ABM* cần các yếu tố cơ bản sau:</span>
-<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Agents*: là cá thể hoạt động trong môi trường giả lập, có thể là con người, xe cộ, ...</span>
-<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*World*: Môi trường mà các *agent* "sống" bên trong.</span>
-<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Set of rules*: Những luật lệ mà tất cả *agent* "sống "trong *world* phải tuân theo.</span>
-<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Loop*: Là sự lặp đi lặp lại của các hoạt động, sự tương tác. Trong lập trình thì nó giống như vòng lặp *for if* quen thuộc còn trong đời thực như cuộc sống hằng ngày của bạn sẽ được lặp đi lặp lại ví dụ: sáng thì đi học, tối thì đi ngủ và có thể có các đột biến như: sáng nay được nghỉ học, tối thứ 7 thì thức cả đêm (Đây lại là hoạt động quen thuộc của tôi!!!).</span>
-<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a>Như vậy, bạn có thể hình dung mơ hồ về quần thể giả lập bao gồm: các chiếc xe, các *nodes* trong *supply chain* như: nhà kho, cửa hàng,...</span>
-<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a><span class="al">![Biểu đồ 4: Simple of Agent Based Modeling](trajectory-animation.gif)</span></span>
-<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a>Như trên đây là ví dụ về cách *simulation* cho 1 đối tượng di chuyển trong mặt phẳng 10x10. Đối tượng sẽ di chuyển mỗi lần 1 ô với 4 hướng di chuyển: "up","down","left","right" và được chọn hướng random. Kết quả sau 50 bước thì đối tượng đã di chuyển đến điểm *dropoff*.</span>
-<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a>Dưới đây là một ví dụ phức tạp hơn về giả lập thời gian di chuyển dự kiến của xe với các đặc điểm sau:</span>
-<span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Nhận thông tin xe**: thời gian sẽ random từ 8h30 đến 9h.</span>
-<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Gọi xe**: Việc này sẽ hoàn thành trong 15 phút.</span>
-<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Xe di chuyển đến điểm pickup**: Tính thời gian di chuyển bằng <span class="in">`transportation time = distance/average speed`</span> cộng với thời gian <span class="in">`loading time = 30'`</span>.</span>
-<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Xe di chuyển đến điểm dropoff*: Tính thời gian di chuyển bằng <span class="in">`transportation time = distance/average speed`</span> cộng với thời gian <span class="in">`unloading time = 40'`</span>.</span>
-<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a>Kết quả giả lập cho 5 xe như sau:</span>
-<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NetLogoR)</span>
-<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a><span class="co"># Define new time parameters for the extended simulation</span></span>
-<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a>n_vehicles <span class="ot">&lt;-</span> <span class="dv">5</span>              <span class="co"># Number of vehicles</span></span>
-<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a>grid_size <span class="ot">&lt;-</span> <span class="dv">20</span>              <span class="co"># Size of the grid</span></span>
-<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a>speed_limit <span class="ot">&lt;-</span> <span class="dv">2</span>             <span class="co"># Speed limit (cells per tick)</span></span>
-<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a>time_step <span class="ot">&lt;-</span> <span class="dv">1</span>               <span class="co"># Simulation time step (1 second per tick)</span></span>
-<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a>order_creation_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">hm</span>(<span class="st">"8:30"</span>), <span class="fu">hm</span>(<span class="st">"9:00"</span>))   <span class="co"># Time when orders are released (8:30 AM)</span></span>
-<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a>n_customer <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a>n_ticks <span class="ot">&lt;-</span> <span class="dv">48</span>  <span class="co"># Increase simulation time</span></span>
-<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the world, orders, and vehicle positions</span></span>
-<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">createWorld</span>(<span class="at">minPxcor =</span> <span class="sc">-</span>grid_size, </span>
-<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxPxcor =</span> grid_size, </span>
-<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a>                     <span class="at">minPycor =</span> <span class="sc">-</span>grid_size, </span>
-<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxPycor =</span> grid_size)</span>
-<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a>random_coords <span class="ot">&lt;-</span> <span class="fu">randomXYcor</span>(world, <span class="at">n =</span> n_vehicles)</span>
-<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a><span class="co"># Define orders and vehicles</span></span>
-<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a>orders <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a>  <span class="at">order_id =</span> <span class="dv">1</span><span class="sc">:</span>n_customer,</span>
-<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a>  <span class="at">pickup_x =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a>  <span class="at">pickup_y =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropoff_x =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropoff_y =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a>  <span class="at">order_time =</span> <span class="fu">as.POSIXct</span>(<span class="st">"08:30:00"</span>, <span class="at">format =</span> <span class="st">"%H:%M:%S"</span>) <span class="sc">+</span> <span class="fu">runif</span>(n_customer, <span class="dv">0</span>, <span class="dv">1800</span>)</span>
-<span id="cb7-243"><a href="#cb7-243" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-244"><a href="#cb7-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-245"><a href="#cb7-245" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize vehicles' position and speed</span></span>
-<span id="cb7-246"><a href="#cb7-246" aria-hidden="true" tabindex="-1"></a>vehicles_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-247"><a href="#cb7-247" aria-hidden="true" tabindex="-1"></a>  <span class="at">vehicle_id =</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles,</span>
-<span id="cb7-248"><a href="#cb7-248" aria-hidden="true" tabindex="-1"></a>  <span class="at">xcor =</span> random_coords[, <span class="dv">1</span>],</span>
-<span id="cb7-249"><a href="#cb7-249" aria-hidden="true" tabindex="-1"></a>  <span class="at">ycor =</span> random_coords[, <span class="dv">2</span>],</span>
-<span id="cb7-250"><a href="#cb7-250" aria-hidden="true" tabindex="-1"></a>  <span class="at">speed =</span> <span class="fu">rep</span>(<span class="fl">1.5</span>, n_vehicles)</span>
-<span id="cb7-251"><a href="#cb7-251" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-252"><a href="#cb7-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-253"><a href="#cb7-253" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize tracking variables</span></span>
-<span id="cb7-254"><a href="#cb7-254" aria-hidden="true" tabindex="-1"></a>vehicle_order <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)</span>
-<span id="cb7-255"><a href="#cb7-255" aria-hidden="true" tabindex="-1"></a>order_status <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_customer)</span>
-<span id="cb7-256"><a href="#cb7-256" aria-hidden="true" tabindex="-1"></a>vehicle_state <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"waiting"</span>, n_vehicles)  <span class="co"># New: track state of each vehicle</span></span>
-<span id="cb7-257"><a href="#cb7-257" aria-hidden="true" tabindex="-1"></a>ETA <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize ETA for each vehicle</span></span>
-<span id="cb7-258"><a href="#cb7-258" aria-hidden="true" tabindex="-1"></a>ETD <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize ETD for each vehicle</span></span>
-<span id="cb7-259"><a href="#cb7-259" aria-hidden="true" tabindex="-1"></a>completed_time <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize completed time for each vehicle</span></span>
-<span id="cb7-260"><a href="#cb7-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-261"><a href="#cb7-261" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to simulate vehicle movement (with speed and direction)</span></span>
-<span id="cb7-262"><a href="#cb7-262" aria-hidden="true" tabindex="-1"></a>move_vehicle <span class="ot">&lt;-</span> <span class="cf">function</span>(vehicle, destination) {</span>
-<span id="cb7-263"><a href="#cb7-263" aria-hidden="true" tabindex="-1"></a>  angle_to_dest <span class="ot">&lt;-</span> <span class="fu">atan2</span>(destination[<span class="dv">2</span>] <span class="sc">-</span> vehicle<span class="sc">$</span>ycor, destination[<span class="dv">1</span>] <span class="sc">-</span> vehicle<span class="sc">$</span>xcor)</span>
-<span id="cb7-264"><a href="#cb7-264" aria-hidden="true" tabindex="-1"></a>  distance_to_dest <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((vehicle<span class="sc">$</span>xcor <span class="sc">-</span> destination[<span class="dv">1</span>])<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (vehicle<span class="sc">$</span>ycor <span class="sc">-</span> destination[<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb7-265"><a href="#cb7-265" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-266"><a href="#cb7-266" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Move the vehicle</span></span>
-<span id="cb7-267"><a href="#cb7-267" aria-hidden="true" tabindex="-1"></a>  distance_to_move <span class="ot">&lt;-</span> <span class="fu">min</span>(distance_to_dest, vehicle<span class="sc">$</span>speed)</span>
-<span id="cb7-268"><a href="#cb7-268" aria-hidden="true" tabindex="-1"></a>  vehicle<span class="sc">$</span>xcor <span class="ot">&lt;-</span> vehicle<span class="sc">$</span>xcor <span class="sc">+</span> distance_to_move <span class="sc">*</span> <span class="fu">cos</span>(angle_to_dest)</span>
-<span id="cb7-269"><a href="#cb7-269" aria-hidden="true" tabindex="-1"></a>  vehicle<span class="sc">$</span>ycor <span class="ot">&lt;-</span> vehicle<span class="sc">$</span>ycor <span class="sc">+</span> distance_to_move <span class="sc">*</span> <span class="fu">sin</span>(angle_to_dest)</span>
-<span id="cb7-270"><a href="#cb7-270" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-271"><a href="#cb7-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vehicle)</span>
-<span id="cb7-272"><a href="#cb7-272" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-273"><a href="#cb7-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-274"><a href="#cb7-274" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate the distance between two points</span></span>
-<span id="cb7-275"><a href="#cb7-275" aria-hidden="true" tabindex="-1"></a>calculate_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, y1, x2, y2) {</span>
-<span id="cb7-276"><a href="#cb7-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>((x1 <span class="sc">-</span> x2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (y1 <span class="sc">-</span> y2)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb7-277"><a href="#cb7-277" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-278"><a href="#cb7-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-279"><a href="#cb7-279" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check if a vehicle is at a location (pickup/dropoff)</span></span>
-<span id="cb7-280"><a href="#cb7-280" aria-hidden="true" tabindex="-1"></a>at_location <span class="ot">&lt;-</span> <span class="cf">function</span>(vehicle, location) {</span>
-<span id="cb7-281"><a href="#cb7-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">abs</span>(vehicle<span class="sc">$</span>xcor <span class="sc">-</span> location[<span class="dv">1</span>]) <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">&amp;&amp;</span> <span class="fu">abs</span>(vehicle<span class="sc">$</span>ycor <span class="sc">-</span> location[<span class="dv">2</span>]) <span class="sc">&lt;</span> <span class="fl">0.5</span>)</span>
-<span id="cb7-282"><a href="#cb7-282" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-283"><a href="#cb7-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-284"><a href="#cb7-284" aria-hidden="true" tabindex="-1"></a>simulation_start_time <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"08:00:00"</span>, <span class="at">format =</span> <span class="st">"%H:%M:%S"</span>)</span>
-<span id="cb7-285"><a href="#cb7-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-286"><a href="#cb7-286" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize an empty data frame to store the results</span></span>
-<span id="cb7-287"><a href="#cb7-287" aria-hidden="true" tabindex="-1"></a>final_results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb7-288"><a href="#cb7-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-289"><a href="#cb7-289" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation loop with updated conditions</span></span>
-<span id="cb7-290"><a href="#cb7-290" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (tick <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_ticks) {</span>
-<span id="cb7-291"><a href="#cb7-291" aria-hidden="true" tabindex="-1"></a>  current_time <span class="ot">&lt;-</span> simulation_start_time <span class="sc">+</span> <span class="fu">seconds</span>(tick) <span class="sc">*</span> <span class="dv">3600</span> <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb7-292"><a href="#cb7-292" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-293"><a href="#cb7-293" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Process each vehicle</span></span>
-<span id="cb7-294"><a href="#cb7-294" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles) {</span>
-<span id="cb7-295"><a href="#cb7-295" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(vehicle_order[i])) {  </span>
-<span id="cb7-296"><a href="#cb7-296" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Assign a vehicle to an order if it's free and an order is available</span></span>
-<span id="cb7-297"><a href="#cb7-297" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(orders)) {</span>
-<span id="cb7-298"><a href="#cb7-298" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">is.na</span>(order_status[j]) <span class="sc">&amp;&amp;</span> current_time <span class="sc">&gt;=</span> orders<span class="sc">$</span>order_time[j]) {</span>
-<span id="cb7-299"><a href="#cb7-299" aria-hidden="true" tabindex="-1"></a>          order_status[j] <span class="ot">&lt;-</span> <span class="st">"in_progress"</span>  <span class="co"># Change order status to in_progress</span></span>
-<span id="cb7-300"><a href="#cb7-300" aria-hidden="true" tabindex="-1"></a>          vehicle_order[i] <span class="ot">&lt;-</span> j</span>
-<span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"received"</span>  <span class="co"># Vehicle starts receiving the order</span></span>
-<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Calculate ETA (time to reach pickup location)</span></span>
-<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a>          distance_to_pickup <span class="ot">&lt;-</span> <span class="fu">calculate_distance</span>(vehicles_df<span class="sc">$</span>xcor[i], vehicles_df<span class="sc">$</span>ycor[i], </span>
-<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a>                                                   orders<span class="sc">$</span>pickup_x[j], orders<span class="sc">$</span>pickup_y[j])</span>
-<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a>          transportation_time <span class="ot">&lt;-</span> distance_to_pickup <span class="sc">/</span> vehicles_df<span class="sc">$</span>speed[i]  <span class="co"># Time to pickup location in hours</span></span>
-<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>          ETA[i] <span class="ot">&lt;-</span> orders<span class="sc">$</span>order_time[j] <span class="sc">+</span> <span class="fu">seconds</span>(transportation_time) <span class="sc">*</span> <span class="dv">3600</span>  <span class="co"># ETA in POSIXct object</span></span>
-<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>          <span class="cf">break</span></span>
-<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get current order info for the assigned order</span></span>
-<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>    assigned_order <span class="ot">&lt;-</span> vehicle_order[i]</span>
-<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(assigned_order)) {</span>
-<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a>      pickup_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(orders<span class="sc">$</span>pickup_x[assigned_order], orders<span class="sc">$</span>pickup_y[assigned_order])</span>
-<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a>      dropoff_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(orders<span class="sc">$</span>dropoff_x[assigned_order], orders<span class="sc">$</span>dropoff_y[assigned_order])</span>
-<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle movement to pickup location</span></span>
-<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"received"</span>) {</span>
-<span id="cb7-323"><a href="#cb7-323" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">at_location</span>(vehicles_df[i, ], pickup_loc)) {</span>
-<span id="cb7-324"><a href="#cb7-324" aria-hidden="true" tabindex="-1"></a>          vehicles_df[i, ] <span class="ot">&lt;-</span> <span class="fu">move_vehicle</span>(vehicles_df[i, ], pickup_loc)</span>
-<span id="cb7-325"><a href="#cb7-325" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
-<span id="cb7-326"><a href="#cb7-326" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"loading"</span>  <span class="co"># Transition to loading state</span></span>
-<span id="cb7-327"><a href="#cb7-327" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb7-328"><a href="#cb7-328" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb7-329"><a href="#cb7-329" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb7-330"><a href="#cb7-330" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle loading phase (vehicle at pickup location)</span></span>
-<span id="cb7-331"><a href="#cb7-331" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"loading"</span>) {</span>
-<span id="cb7-332"><a href="#cb7-332" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">at_location</span>(vehicles_df[i, ], pickup_loc)) {</span>
-<span id="cb7-333"><a href="#cb7-333" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"enroute"</span>  <span class="co"># Transition to enroute state</span></span>
-<span id="cb7-334"><a href="#cb7-334" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb7-335"><a href="#cb7-335" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Calculate the transportation time to dropoff location</span></span>
-<span id="cb7-336"><a href="#cb7-336" aria-hidden="true" tabindex="-1"></a>          distance_to_dropoff <span class="ot">&lt;-</span> <span class="fu">calculate_distance</span>(vehicles_df<span class="sc">$</span>xcor[i], vehicles_df<span class="sc">$</span>ycor[i], </span>
-<span id="cb7-337"><a href="#cb7-337" aria-hidden="true" tabindex="-1"></a>                                                   dropoff_loc[<span class="dv">1</span>], dropoff_loc[<span class="dv">2</span>])</span>
-<span id="cb7-338"><a href="#cb7-338" aria-hidden="true" tabindex="-1"></a>          transportation_time <span class="ot">&lt;-</span> distance_to_dropoff <span class="sc">/</span> vehicles_df<span class="sc">$</span>speed[i]</span>
-<span id="cb7-339"><a href="#cb7-339" aria-hidden="true" tabindex="-1"></a>          ETD[i] <span class="ot">&lt;-</span> ETA[i] <span class="sc">+</span> <span class="fu">seconds</span>(transportation_time<span class="sc">*</span><span class="dv">3600</span> <span class="sc">+</span> <span class="dv">30</span><span class="sc">*</span><span class="dv">60</span>)   <span class="co"># Add transportation time to dropoff location</span></span>
-<span id="cb7-340"><a href="#cb7-340" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb7-341"><a href="#cb7-341" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb7-342"><a href="#cb7-342" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb7-343"><a href="#cb7-343" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle enroute phase (vehicle moving to dropoff location)</span></span>
-<span id="cb7-344"><a href="#cb7-344" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"enroute"</span>) {</span>
-<span id="cb7-345"><a href="#cb7-345" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">at_location</span>(vehicles_df[i, ], dropoff_loc)) {</span>
-<span id="cb7-346"><a href="#cb7-346" aria-hidden="true" tabindex="-1"></a>          vehicles_df[i, ] <span class="ot">&lt;-</span> <span class="fu">move_vehicle</span>(vehicles_df[i, ], dropoff_loc)</span>
-<span id="cb7-347"><a href="#cb7-347" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
-<span id="cb7-348"><a href="#cb7-348" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"completed"</span>  <span class="co"># Transition to completed state</span></span>
-<span id="cb7-349"><a href="#cb7-349" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb7-350"><a href="#cb7-350" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Set completed time (ETD + unloading time 40 minutes)</span></span>
-<span id="cb7-351"><a href="#cb7-351" aria-hidden="true" tabindex="-1"></a>          completed_time[i] <span class="ot">&lt;-</span> ETD[i] <span class="sc">+</span> <span class="fu">seconds</span>(<span class="dv">40</span><span class="sc">*</span><span class="dv">60</span>)  <span class="co"># Unloading time 40 minutes</span></span>
-<span id="cb7-352"><a href="#cb7-352" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb7-353"><a href="#cb7-353" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb7-354"><a href="#cb7-354" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb7-355"><a href="#cb7-355" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle unloading phase (vehicle at dropoff location)</span></span>
-<span id="cb7-356"><a href="#cb7-356" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"completed"</span>) {</span>
-<span id="cb7-357"><a href="#cb7-357" aria-hidden="true" tabindex="-1"></a>        order_status[assigned_order] <span class="ot">&lt;-</span> <span class="st">"completed"</span></span>
-<span id="cb7-358"><a href="#cb7-358" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb7-359"><a href="#cb7-359" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-360"><a href="#cb7-360" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-361"><a href="#cb7-361" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-362"><a href="#cb7-362" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store the current simulation results with time info</span></span>
-<span id="cb7-363"><a href="#cb7-363" aria-hidden="true" tabindex="-1"></a>  tick_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-364"><a href="#cb7-364" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> current_time,</span>
-<span id="cb7-365"><a href="#cb7-365" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_id =</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles,</span>
-<span id="cb7-366"><a href="#cb7-366" aria-hidden="true" tabindex="-1"></a>    <span class="at">xcor =</span> vehicles_df<span class="sc">$</span>xcor,</span>
-<span id="cb7-367"><a href="#cb7-367" aria-hidden="true" tabindex="-1"></a>    <span class="at">ycor =</span> vehicles_df<span class="sc">$</span>ycor,</span>
-<span id="cb7-368"><a href="#cb7-368" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> vehicles_df<span class="sc">$</span>speed,</span>
-<span id="cb7-369"><a href="#cb7-369" aria-hidden="true" tabindex="-1"></a>    <span class="at">order_status =</span> order_status,</span>
-<span id="cb7-370"><a href="#cb7-370" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_order =</span> vehicle_order,</span>
-<span id="cb7-371"><a href="#cb7-371" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_state =</span> vehicle_state,  <span class="co"># Track vehicle state</span></span>
-<span id="cb7-372"><a href="#cb7-372" aria-hidden="true" tabindex="-1"></a>    <span class="at">ETA =</span> ETA,  <span class="co"># Estimated Time of Arrival</span></span>
-<span id="cb7-373"><a href="#cb7-373" aria-hidden="true" tabindex="-1"></a>    <span class="at">ETD =</span> ETD,  <span class="co"># Estimated Time of Departure</span></span>
-<span id="cb7-374"><a href="#cb7-374" aria-hidden="true" tabindex="-1"></a>    <span class="at">completed_time =</span> completed_time  <span class="co"># Completed Time</span></span>
-<span id="cb7-375"><a href="#cb7-375" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb7-376"><a href="#cb7-376" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-377"><a href="#cb7-377" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Append the current results to the final_results data frame</span></span>
-<span id="cb7-378"><a href="#cb7-378" aria-hidden="true" tabindex="-1"></a>  final_results <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(final_results, tick_result)</span>
-<span id="cb7-379"><a href="#cb7-379" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-380"><a href="#cb7-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-381"><a href="#cb7-381" aria-hidden="true" tabindex="-1"></a>final_results <span class="ot">&lt;-</span> final_results<span class="sc">|&gt;</span> </span>
-<span id="cb7-382"><a href="#cb7-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(order_status)) <span class="sc">|&gt;</span> </span>
-<span id="cb7-383"><a href="#cb7-383" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ETA =</span> <span class="fu">as.POSIXct</span>(ETA, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
-<span id="cb7-384"><a href="#cb7-384" aria-hidden="true" tabindex="-1"></a>           <span class="at">ETD =</span> <span class="fu">as.POSIXct</span>(ETD, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
-<span id="cb7-385"><a href="#cb7-385" aria-hidden="true" tabindex="-1"></a>           <span class="at">completed_time =</span> <span class="fu">as.POSIXct</span>(completed_time, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>))</span>
-<span id="cb7-386"><a href="#cb7-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-387"><a href="#cb7-387" aria-hidden="true" tabindex="-1"></a>final<span class="ot">&lt;-</span>final_results[<span class="sc">!</span><span class="fu">duplicated</span>(final_results[, <span class="fu">setdiff</span>(<span class="fu">names</span>(final_results), <span class="st">"time"</span>)]), ]</span>
-<span id="cb7-388"><a href="#cb7-388" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-389"><a href="#cb7-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-390"><a href="#cb7-390" aria-hidden="true" tabindex="-1"></a><span class="al">![Biểu đồ 5: Agent Based Modeling](ABM.gif)</span></span>
-<span id="cb7-391"><a href="#cb7-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-392"><a href="#cb7-392" aria-hidden="true" tabindex="-1"></a>Kết quả cho thấy **xe 1** và **xe 2** có khả năng trễ chuyến nên cần lưu ý và hỗ trợ tài xế để đảm bảo xe đến đúng giờ hành chính. Như vậy chúng ta đã kết thúc bài học ở đây.</span>
-<span id="cb7-393"><a href="#cb7-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-394"><a href="#cb7-394" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kết luận:</span></span>
-<span id="cb7-395"><a href="#cb7-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-396"><a href="#cb7-396" aria-hidden="true" tabindex="-1"></a>Nếu bạn có câu hỏi hay thắc mắc nào, đừng ngần ngại liên hệ với mình qua Gmail. Bên cạnh đó, nếu bạn muốn xem lại các bài viết trước đây của mình, hãy nhấn vào hai nút dưới đây để truy cập trang **Rpubs** hoặc mã nguồn trên **Github**. Rất vui được đồng hành cùng bạn, hẹn gặp lại! 😄😄😄</span>
-<span id="cb7-397"><a href="#cb7-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>arrivals <span class="sc">|&gt;</span> </span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a><span class="fu">hchart</span>(</span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time,</span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> type)</span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mô hình ABM:</span></span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a>Khác với *DES*, *ABM* quan tâm nhiều hơn đến các đặc tính, thông tin của cá thể trong quần thể này. Do đó, chỉ với lượng thông tin về số xe, số nhà kho, số cửa hàng và quy trình hoạt động là chưa đủ để xây dựng mô hình *ABM*. Các dữ liệu khả thi có thể bao gồm: thông tin của đội xe: gồm bao nhiêu người hoặc gồm những ai; dữ liệu quá khứ về KPI, học vấn,...; thông tin về thời gian hoạt động của các cửa hàng; vị trí và thông tin về đường xá có cấm tải không;... *ABM* thường được ứng dụng vào việc xác định các *risks - rủi ro* trong quản lí chuỗi cung ứng</span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a>Trong R có thư viện <span class="in">`NetLogoR`</span> hỗ trợ chúng ta tốt về mảng mô hình *ABM*. Về nền tảng, *ABM* cần các yếu tố cơ bản sau:</span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Agents*: là cá thể hoạt động trong môi trường giả lập, có thể là con người, xe cộ, ...</span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*World*: Môi trường mà các *agent* "sống" bên trong.</span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Set of rules*: Những luật lệ mà tất cả *agent* "sống "trong *world* phải tuân theo.</span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Loop*: Là sự lặp đi lặp lại của các hoạt động, sự tương tác. Trong lập trình thì nó giống như vòng lặp *for if* quen thuộc còn trong đời thực như cuộc sống hằng ngày của bạn sẽ được lặp đi lặp lại ví dụ: sáng thì đi học, tối thì đi ngủ và có thể có các đột biến như: sáng nay được nghỉ học, tối thứ 7 thì thức cả đêm (Đây lại là hoạt động quen thuộc của tôi!!!).</span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a>Như vậy, bạn có thể hình dung mơ hồ về quần thể giả lập bao gồm: các chiếc xe, các *nodes* trong *supply chain* như: nhà kho, cửa hàng,...</span>
+<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a><span class="al">![Biểu đồ 4: Simple of Agent Based Modeling](trajectory-animation.gif)</span></span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a>Như trên đây là ví dụ về cách *simulation* cho 1 đối tượng di chuyển trong mặt phẳng 10x10. Đối tượng sẽ di chuyển mỗi lần 1 ô với 4 hướng di chuyển: "up","down","left","right" và được chọn hướng random. Kết quả sau 50 bước thì đối tượng đã di chuyển đến điểm *dropoff*.</span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a>Dưới đây là một ví dụ phức tạp hơn về giả lập thời gian di chuyển dự kiến của xe với các đặc điểm sau:</span>
+<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Nhận thông tin xe**: thời gian sẽ random từ 8h30 đến 9h.</span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Gọi xe**: Việc này sẽ hoàn thành trong 15 phút.</span>
+<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Xe di chuyển đến điểm pickup**: Tính thời gian di chuyển bằng <span class="in">`transportation time = distance/average speed`</span> cộng với thời gian <span class="in">`loading time = 30'`</span>.</span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>*Xe di chuyển đến điểm dropoff*: Tính thời gian di chuyển bằng <span class="in">`transportation time = distance/average speed`</span> cộng với thời gian <span class="in">`unloading time = 40'`</span>.</span>
+<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a>Kết quả giả lập cho 5 xe như sau:</span>
+<span id="cb7-208"><a href="#cb7-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NetLogoR)</span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Define new time parameters for the extended simulation</span></span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a>n_vehicles <span class="ot">&lt;-</span> <span class="dv">5</span>              <span class="co"># Number of vehicles</span></span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a>grid_size <span class="ot">&lt;-</span> <span class="dv">20</span>              <span class="co"># Size of the grid</span></span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a>speed_limit <span class="ot">&lt;-</span> <span class="dv">2</span>             <span class="co"># Speed limit (cells per tick)</span></span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a>time_step <span class="ot">&lt;-</span> <span class="dv">1</span>               <span class="co"># Simulation time step (1 second per tick)</span></span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a>order_creation_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">hm</span>(<span class="st">"8:30"</span>), <span class="fu">hm</span>(<span class="st">"9:00"</span>))   <span class="co"># Time when orders are released (8:30 AM)</span></span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a>n_customer <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a>n_ticks <span class="ot">&lt;-</span> <span class="dv">48</span>  <span class="co"># Increase simulation time</span></span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the world, orders, and vehicle positions</span></span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">createWorld</span>(<span class="at">minPxcor =</span> <span class="sc">-</span>grid_size, </span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxPxcor =</span> grid_size, </span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a>                     <span class="at">minPycor =</span> <span class="sc">-</span>grid_size, </span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxPycor =</span> grid_size)</span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a>random_coords <span class="ot">&lt;-</span> <span class="fu">randomXYcor</span>(world, <span class="at">n =</span> n_vehicles)</span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a><span class="co"># Define orders and vehicles</span></span>
+<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a>orders <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a>  <span class="at">order_id =</span> <span class="dv">1</span><span class="sc">:</span>n_customer,</span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a>  <span class="at">pickup_x =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a>  <span class="at">pickup_y =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropoff_x =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropoff_y =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>grid_size, n_customer, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-243"><a href="#cb7-243" aria-hidden="true" tabindex="-1"></a>  <span class="at">order_time =</span> <span class="fu">as.POSIXct</span>(<span class="st">"08:30:00"</span>, <span class="at">format =</span> <span class="st">"%H:%M:%S"</span>) <span class="sc">+</span> <span class="fu">runif</span>(n_customer, <span class="dv">0</span>, <span class="dv">1800</span>)</span>
+<span id="cb7-244"><a href="#cb7-244" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-245"><a href="#cb7-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-246"><a href="#cb7-246" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize vehicles' position and speed</span></span>
+<span id="cb7-247"><a href="#cb7-247" aria-hidden="true" tabindex="-1"></a>vehicles_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-248"><a href="#cb7-248" aria-hidden="true" tabindex="-1"></a>  <span class="at">vehicle_id =</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles,</span>
+<span id="cb7-249"><a href="#cb7-249" aria-hidden="true" tabindex="-1"></a>  <span class="at">xcor =</span> random_coords[, <span class="dv">1</span>],</span>
+<span id="cb7-250"><a href="#cb7-250" aria-hidden="true" tabindex="-1"></a>  <span class="at">ycor =</span> random_coords[, <span class="dv">2</span>],</span>
+<span id="cb7-251"><a href="#cb7-251" aria-hidden="true" tabindex="-1"></a>  <span class="at">speed =</span> <span class="fu">rep</span>(<span class="fl">1.5</span>, n_vehicles)</span>
+<span id="cb7-252"><a href="#cb7-252" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-253"><a href="#cb7-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-254"><a href="#cb7-254" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize tracking variables</span></span>
+<span id="cb7-255"><a href="#cb7-255" aria-hidden="true" tabindex="-1"></a>vehicle_order <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)</span>
+<span id="cb7-256"><a href="#cb7-256" aria-hidden="true" tabindex="-1"></a>order_status <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_customer)</span>
+<span id="cb7-257"><a href="#cb7-257" aria-hidden="true" tabindex="-1"></a>vehicle_state <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"waiting"</span>, n_vehicles)  <span class="co"># New: track state of each vehicle</span></span>
+<span id="cb7-258"><a href="#cb7-258" aria-hidden="true" tabindex="-1"></a>ETA <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize ETA for each vehicle</span></span>
+<span id="cb7-259"><a href="#cb7-259" aria-hidden="true" tabindex="-1"></a>ETD <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize ETD for each vehicle</span></span>
+<span id="cb7-260"><a href="#cb7-260" aria-hidden="true" tabindex="-1"></a>completed_time <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_vehicles)  <span class="co"># Initialize completed time for each vehicle</span></span>
+<span id="cb7-261"><a href="#cb7-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-262"><a href="#cb7-262" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to simulate vehicle movement (with speed and direction)</span></span>
+<span id="cb7-263"><a href="#cb7-263" aria-hidden="true" tabindex="-1"></a>move_vehicle <span class="ot">&lt;-</span> <span class="cf">function</span>(vehicle, destination) {</span>
+<span id="cb7-264"><a href="#cb7-264" aria-hidden="true" tabindex="-1"></a>  angle_to_dest <span class="ot">&lt;-</span> <span class="fu">atan2</span>(destination[<span class="dv">2</span>] <span class="sc">-</span> vehicle<span class="sc">$</span>ycor, destination[<span class="dv">1</span>] <span class="sc">-</span> vehicle<span class="sc">$</span>xcor)</span>
+<span id="cb7-265"><a href="#cb7-265" aria-hidden="true" tabindex="-1"></a>  distance_to_dest <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((vehicle<span class="sc">$</span>xcor <span class="sc">-</span> destination[<span class="dv">1</span>])<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (vehicle<span class="sc">$</span>ycor <span class="sc">-</span> destination[<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb7-266"><a href="#cb7-266" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-267"><a href="#cb7-267" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Move the vehicle</span></span>
+<span id="cb7-268"><a href="#cb7-268" aria-hidden="true" tabindex="-1"></a>  distance_to_move <span class="ot">&lt;-</span> <span class="fu">min</span>(distance_to_dest, vehicle<span class="sc">$</span>speed)</span>
+<span id="cb7-269"><a href="#cb7-269" aria-hidden="true" tabindex="-1"></a>  vehicle<span class="sc">$</span>xcor <span class="ot">&lt;-</span> vehicle<span class="sc">$</span>xcor <span class="sc">+</span> distance_to_move <span class="sc">*</span> <span class="fu">cos</span>(angle_to_dest)</span>
+<span id="cb7-270"><a href="#cb7-270" aria-hidden="true" tabindex="-1"></a>  vehicle<span class="sc">$</span>ycor <span class="ot">&lt;-</span> vehicle<span class="sc">$</span>ycor <span class="sc">+</span> distance_to_move <span class="sc">*</span> <span class="fu">sin</span>(angle_to_dest)</span>
+<span id="cb7-271"><a href="#cb7-271" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-272"><a href="#cb7-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vehicle)</span>
+<span id="cb7-273"><a href="#cb7-273" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-274"><a href="#cb7-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-275"><a href="#cb7-275" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate the distance between two points</span></span>
+<span id="cb7-276"><a href="#cb7-276" aria-hidden="true" tabindex="-1"></a>calculate_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, y1, x2, y2) {</span>
+<span id="cb7-277"><a href="#cb7-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>((x1 <span class="sc">-</span> x2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (y1 <span class="sc">-</span> y2)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb7-278"><a href="#cb7-278" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-279"><a href="#cb7-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-280"><a href="#cb7-280" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check if a vehicle is at a location (pickup/dropoff)</span></span>
+<span id="cb7-281"><a href="#cb7-281" aria-hidden="true" tabindex="-1"></a>at_location <span class="ot">&lt;-</span> <span class="cf">function</span>(vehicle, location) {</span>
+<span id="cb7-282"><a href="#cb7-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">abs</span>(vehicle<span class="sc">$</span>xcor <span class="sc">-</span> location[<span class="dv">1</span>]) <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">&amp;&amp;</span> <span class="fu">abs</span>(vehicle<span class="sc">$</span>ycor <span class="sc">-</span> location[<span class="dv">2</span>]) <span class="sc">&lt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-283"><a href="#cb7-283" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-284"><a href="#cb7-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-285"><a href="#cb7-285" aria-hidden="true" tabindex="-1"></a>simulation_start_time <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"08:00:00"</span>, <span class="at">format =</span> <span class="st">"%H:%M:%S"</span>)</span>
+<span id="cb7-286"><a href="#cb7-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-287"><a href="#cb7-287" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize an empty data frame to store the results</span></span>
+<span id="cb7-288"><a href="#cb7-288" aria-hidden="true" tabindex="-1"></a>final_results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb7-289"><a href="#cb7-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-290"><a href="#cb7-290" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation loop with updated conditions</span></span>
+<span id="cb7-291"><a href="#cb7-291" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (tick <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_ticks) {</span>
+<span id="cb7-292"><a href="#cb7-292" aria-hidden="true" tabindex="-1"></a>  current_time <span class="ot">&lt;-</span> simulation_start_time <span class="sc">+</span> <span class="fu">seconds</span>(tick) <span class="sc">*</span> <span class="dv">3600</span> <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb7-293"><a href="#cb7-293" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-294"><a href="#cb7-294" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Process each vehicle</span></span>
+<span id="cb7-295"><a href="#cb7-295" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles) {</span>
+<span id="cb7-296"><a href="#cb7-296" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(vehicle_order[i])) {  </span>
+<span id="cb7-297"><a href="#cb7-297" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Assign a vehicle to an order if it's free and an order is available</span></span>
+<span id="cb7-298"><a href="#cb7-298" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(orders)) {</span>
+<span id="cb7-299"><a href="#cb7-299" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">is.na</span>(order_status[j]) <span class="sc">&amp;&amp;</span> current_time <span class="sc">&gt;=</span> orders<span class="sc">$</span>order_time[j]) {</span>
+<span id="cb7-300"><a href="#cb7-300" aria-hidden="true" tabindex="-1"></a>          order_status[j] <span class="ot">&lt;-</span> <span class="st">"in_progress"</span>  <span class="co"># Change order status to in_progress</span></span>
+<span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a>          vehicle_order[i] <span class="ot">&lt;-</span> j</span>
+<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"received"</span>  <span class="co"># Vehicle starts receiving the order</span></span>
+<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Calculate ETA (time to reach pickup location)</span></span>
+<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a>          distance_to_pickup <span class="ot">&lt;-</span> <span class="fu">calculate_distance</span>(vehicles_df<span class="sc">$</span>xcor[i], vehicles_df<span class="sc">$</span>ycor[i], </span>
+<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a>                                                   orders<span class="sc">$</span>pickup_x[j], orders<span class="sc">$</span>pickup_y[j])</span>
+<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>          transportation_time <span class="ot">&lt;-</span> distance_to_pickup <span class="sc">/</span> vehicles_df<span class="sc">$</span>speed[i]  <span class="co"># Time to pickup location in hours</span></span>
+<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a>          ETA[i] <span class="ot">&lt;-</span> orders<span class="sc">$</span>order_time[j] <span class="sc">+</span> <span class="fu">seconds</span>(transportation_time) <span class="sc">*</span> <span class="dv">3600</span>  <span class="co"># ETA in POSIXct object</span></span>
+<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a>          <span class="cf">break</span></span>
+<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get current order info for the assigned order</span></span>
+<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>    assigned_order <span class="ot">&lt;-</span> vehicle_order[i]</span>
+<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(assigned_order)) {</span>
+<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a>      pickup_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(orders<span class="sc">$</span>pickup_x[assigned_order], orders<span class="sc">$</span>pickup_y[assigned_order])</span>
+<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a>      dropoff_loc <span class="ot">&lt;-</span> <span class="fu">c</span>(orders<span class="sc">$</span>dropoff_x[assigned_order], orders<span class="sc">$</span>dropoff_y[assigned_order])</span>
+<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle movement to pickup location</span></span>
+<span id="cb7-323"><a href="#cb7-323" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"received"</span>) {</span>
+<span id="cb7-324"><a href="#cb7-324" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">at_location</span>(vehicles_df[i, ], pickup_loc)) {</span>
+<span id="cb7-325"><a href="#cb7-325" aria-hidden="true" tabindex="-1"></a>          vehicles_df[i, ] <span class="ot">&lt;-</span> <span class="fu">move_vehicle</span>(vehicles_df[i, ], pickup_loc)</span>
+<span id="cb7-326"><a href="#cb7-326" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb7-327"><a href="#cb7-327" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"loading"</span>  <span class="co"># Transition to loading state</span></span>
+<span id="cb7-328"><a href="#cb7-328" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-329"><a href="#cb7-329" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-330"><a href="#cb7-330" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-331"><a href="#cb7-331" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle loading phase (vehicle at pickup location)</span></span>
+<span id="cb7-332"><a href="#cb7-332" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"loading"</span>) {</span>
+<span id="cb7-333"><a href="#cb7-333" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">at_location</span>(vehicles_df[i, ], pickup_loc)) {</span>
+<span id="cb7-334"><a href="#cb7-334" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"enroute"</span>  <span class="co"># Transition to enroute state</span></span>
+<span id="cb7-335"><a href="#cb7-335" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb7-336"><a href="#cb7-336" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Calculate the transportation time to dropoff location</span></span>
+<span id="cb7-337"><a href="#cb7-337" aria-hidden="true" tabindex="-1"></a>          distance_to_dropoff <span class="ot">&lt;-</span> <span class="fu">calculate_distance</span>(vehicles_df<span class="sc">$</span>xcor[i], vehicles_df<span class="sc">$</span>ycor[i], </span>
+<span id="cb7-338"><a href="#cb7-338" aria-hidden="true" tabindex="-1"></a>                                                   dropoff_loc[<span class="dv">1</span>], dropoff_loc[<span class="dv">2</span>])</span>
+<span id="cb7-339"><a href="#cb7-339" aria-hidden="true" tabindex="-1"></a>          transportation_time <span class="ot">&lt;-</span> distance_to_dropoff <span class="sc">/</span> vehicles_df<span class="sc">$</span>speed[i]</span>
+<span id="cb7-340"><a href="#cb7-340" aria-hidden="true" tabindex="-1"></a>          ETD[i] <span class="ot">&lt;-</span> ETA[i] <span class="sc">+</span> <span class="fu">seconds</span>(transportation_time<span class="sc">*</span><span class="dv">3600</span> <span class="sc">+</span> <span class="dv">30</span><span class="sc">*</span><span class="dv">60</span>)   <span class="co"># Add transportation time to dropoff location</span></span>
+<span id="cb7-341"><a href="#cb7-341" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-342"><a href="#cb7-342" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-343"><a href="#cb7-343" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-344"><a href="#cb7-344" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle enroute phase (vehicle moving to dropoff location)</span></span>
+<span id="cb7-345"><a href="#cb7-345" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"enroute"</span>) {</span>
+<span id="cb7-346"><a href="#cb7-346" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">at_location</span>(vehicles_df[i, ], dropoff_loc)) {</span>
+<span id="cb7-347"><a href="#cb7-347" aria-hidden="true" tabindex="-1"></a>          vehicles_df[i, ] <span class="ot">&lt;-</span> <span class="fu">move_vehicle</span>(vehicles_df[i, ], dropoff_loc)</span>
+<span id="cb7-348"><a href="#cb7-348" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb7-349"><a href="#cb7-349" aria-hidden="true" tabindex="-1"></a>          vehicle_state[i] <span class="ot">&lt;-</span> <span class="st">"completed"</span>  <span class="co"># Transition to completed state</span></span>
+<span id="cb7-350"><a href="#cb7-350" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb7-351"><a href="#cb7-351" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Set completed time (ETD + unloading time 40 minutes)</span></span>
+<span id="cb7-352"><a href="#cb7-352" aria-hidden="true" tabindex="-1"></a>          completed_time[i] <span class="ot">&lt;-</span> ETD[i] <span class="sc">+</span> <span class="fu">seconds</span>(<span class="dv">40</span><span class="sc">*</span><span class="dv">60</span>)  <span class="co"># Unloading time 40 minutes</span></span>
+<span id="cb7-353"><a href="#cb7-353" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-354"><a href="#cb7-354" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-355"><a href="#cb7-355" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-356"><a href="#cb7-356" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Handle unloading phase (vehicle at dropoff location)</span></span>
+<span id="cb7-357"><a href="#cb7-357" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (vehicle_state[i] <span class="sc">==</span> <span class="st">"completed"</span>) {</span>
+<span id="cb7-358"><a href="#cb7-358" aria-hidden="true" tabindex="-1"></a>        order_status[assigned_order] <span class="ot">&lt;-</span> <span class="st">"completed"</span></span>
+<span id="cb7-359"><a href="#cb7-359" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-360"><a href="#cb7-360" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-361"><a href="#cb7-361" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-362"><a href="#cb7-362" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-363"><a href="#cb7-363" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store the current simulation results with time info</span></span>
+<span id="cb7-364"><a href="#cb7-364" aria-hidden="true" tabindex="-1"></a>  tick_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-365"><a href="#cb7-365" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> current_time,</span>
+<span id="cb7-366"><a href="#cb7-366" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_id =</span> <span class="dv">1</span><span class="sc">:</span>n_vehicles,</span>
+<span id="cb7-367"><a href="#cb7-367" aria-hidden="true" tabindex="-1"></a>    <span class="at">xcor =</span> vehicles_df<span class="sc">$</span>xcor,</span>
+<span id="cb7-368"><a href="#cb7-368" aria-hidden="true" tabindex="-1"></a>    <span class="at">ycor =</span> vehicles_df<span class="sc">$</span>ycor,</span>
+<span id="cb7-369"><a href="#cb7-369" aria-hidden="true" tabindex="-1"></a>    <span class="at">speed =</span> vehicles_df<span class="sc">$</span>speed,</span>
+<span id="cb7-370"><a href="#cb7-370" aria-hidden="true" tabindex="-1"></a>    <span class="at">order_status =</span> order_status,</span>
+<span id="cb7-371"><a href="#cb7-371" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_order =</span> vehicle_order,</span>
+<span id="cb7-372"><a href="#cb7-372" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_state =</span> vehicle_state,  <span class="co"># Track vehicle state</span></span>
+<span id="cb7-373"><a href="#cb7-373" aria-hidden="true" tabindex="-1"></a>    <span class="at">ETA =</span> ETA,  <span class="co"># Estimated Time of Arrival</span></span>
+<span id="cb7-374"><a href="#cb7-374" aria-hidden="true" tabindex="-1"></a>    <span class="at">ETD =</span> ETD,  <span class="co"># Estimated Time of Departure</span></span>
+<span id="cb7-375"><a href="#cb7-375" aria-hidden="true" tabindex="-1"></a>    <span class="at">completed_time =</span> completed_time  <span class="co"># Completed Time</span></span>
+<span id="cb7-376"><a href="#cb7-376" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb7-377"><a href="#cb7-377" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-378"><a href="#cb7-378" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Append the current results to the final_results data frame</span></span>
+<span id="cb7-379"><a href="#cb7-379" aria-hidden="true" tabindex="-1"></a>  final_results <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(final_results, tick_result)</span>
+<span id="cb7-380"><a href="#cb7-380" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-381"><a href="#cb7-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-382"><a href="#cb7-382" aria-hidden="true" tabindex="-1"></a>final_results <span class="ot">&lt;-</span> final_results<span class="sc">|&gt;</span> </span>
+<span id="cb7-383"><a href="#cb7-383" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(order_status)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-384"><a href="#cb7-384" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ETA =</span> <span class="fu">as.POSIXct</span>(ETA, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
+<span id="cb7-385"><a href="#cb7-385" aria-hidden="true" tabindex="-1"></a>           <span class="at">ETD =</span> <span class="fu">as.POSIXct</span>(ETD, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
+<span id="cb7-386"><a href="#cb7-386" aria-hidden="true" tabindex="-1"></a>           <span class="at">completed_time =</span> <span class="fu">as.POSIXct</span>(completed_time, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>))</span>
+<span id="cb7-387"><a href="#cb7-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-388"><a href="#cb7-388" aria-hidden="true" tabindex="-1"></a>final<span class="ot">&lt;-</span>final_results[<span class="sc">!</span><span class="fu">duplicated</span>(final_results[, <span class="fu">setdiff</span>(<span class="fu">names</span>(final_results), <span class="st">"time"</span>)]), ]</span>
+<span id="cb7-389"><a href="#cb7-389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-390"><a href="#cb7-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-391"><a href="#cb7-391" aria-hidden="true" tabindex="-1"></a><span class="al">![Biểu đồ 5: Agent Based Modeling](ABM.gif)</span></span>
+<span id="cb7-392"><a href="#cb7-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-393"><a href="#cb7-393" aria-hidden="true" tabindex="-1"></a>Kết quả cho thấy **xe 1** và **xe 2** có khả năng trễ chuyến nên cần lưu ý và hỗ trợ tài xế để đảm bảo xe đến đúng giờ hành chính. Như vậy chúng ta đã kết thúc bài học ở đây.</span>
+<span id="cb7-394"><a href="#cb7-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-395"><a href="#cb7-395" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kết luận:</span></span>
+<span id="cb7-396"><a href="#cb7-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-397"><a href="#cb7-397" aria-hidden="true" tabindex="-1"></a>Nếu bạn có câu hỏi hay thắc mắc nào, đừng ngần ngại liên hệ với mình qua Gmail. Bên cạnh đó, nếu bạn muốn xem lại các bài viết trước đây của mình, hãy nhấn vào hai nút dưới đây để truy cập trang **Rpubs** hoặc mã nguồn trên **Github**. Rất vui được đồng hành cùng bạn, hẹn gặp lại! 😄😄😄</span>
 <span id="cb7-398"><a href="#cb7-398" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-399"><a href="#cb7-399" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
 <span id="cb7-400"><a href="#cb7-400" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;!DOCTYPE html&gt;</span></span>
@@ -1794,7 +1794,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb7-430"><a href="#cb7-430" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/form&gt;</span></span>
 <span id="cb7-431"><a href="#cb7-431" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;div class="github-button"&gt;</span></span>
 <span id="cb7-432"><a href="#cb7-432" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;button&gt;</span></span>
-<span id="cb7-433"><a href="#cb7-433" aria-hidden="true" tabindex="-1"></a><span class="in">                &lt;a href="https://github.com/Loccx78vn/Material_Requirement_Planning" target="_blank" style="color: white; text-decoration: none;"&gt;</span></span>
+<span id="cb7-433"><a href="#cb7-433" aria-hidden="true" tabindex="-1"></a><span class="in">                &lt;a href="https://github.com/Loccx78vn/Simulation_in_R" target="_blank" style="color: white; text-decoration: none;"&gt;</span></span>
 <span id="cb7-434"><a href="#cb7-434" aria-hidden="true" tabindex="-1"></a><span class="in">                    &lt;i class="fab fa-github"&gt;&lt;/i&gt; View Code on GitHub</span></span>
 <span id="cb7-435"><a href="#cb7-435" aria-hidden="true" tabindex="-1"></a><span class="in">                &lt;/a&gt;</span></span>
 <span id="cb7-436"><a href="#cb7-436" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;/button&gt;</span></span>
