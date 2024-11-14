@@ -37,4 +37,4 @@ By using `simmer` to build a supply chain model, you can explore the impacts of 
   - Set up trajectories (order receiving, picking, packing, and shipping).
   - Monitor performance metrics like average processing time or resource utilization, which are critical for optimizing operations.
 
-![](background.jpg)
+![](img/background.jpg)
