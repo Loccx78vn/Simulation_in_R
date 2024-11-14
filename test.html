@@ -4,94 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Me</title>
-
-    <!-- Importing Dancing Script and Comic Neue Fonts from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@v6.0.0/svgs/rstudio.svg">
-    
     <style>
-        /* Apply Dancing Script to headings */
-        h2 {
-            font-family: 'Dancing Script', cursive;
-        }
-
-        /* Apply Comic Neue (or another font) to other body text */
-        body {
-            font-family: 'Comic Neue', cursive;
-            background-color: #f9f9f9;
-        }
-
-        .container { 
-            max-width: 400px; 
-            margin: auto; 
-            padding: 20px; 
-            background: white; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-        }
-
-        label { 
-            display: block; 
-            margin: 10px 0 5px; 
-            font-family: 'Comic Neue', cursive; /* Optional: apply Comic Neue to labels specifically */
-        }
-
-        input[type="email"] { 
-            width: 100%; 
-            padding: 10px; 
-            margin-bottom: 15px; 
-            border: 1px solid #ccc; 
-            border-radius: 4px; 
-        }
-
-        .github-button, .rpubs-button { 
-            margin-top: 20px; 
-            text-align: center; 
-        }
-
-        .github-button a, .rpubs-button a { 
-            display: block; 
-            text-decoration: none; 
-        }
-
-        .github-button button, .rpubs-button button { 
-            background-color: #333; 
-            color: white; 
-            border: none; 
-            padding: 10px; 
-            cursor: pointer; 
-            border-radius: 4px; 
-            width: 100%; 
-            font-family: 'Comic Neue', cursive; /* Apply Comic Neue to button text */
-        }
-
-        .github-button button:hover, .rpubs-button button:hover { 
-            background-color: #555; 
-        }
-
-        .rpubs-button button { 
-            background-color: #75AADB; 
-        }
-
-        .rpubs-button button:hover { 
-            background-color: #5A9BC2; 
-        }
-
-        .rpubs-icon { 
-            margin-right: 5px; 
-            width: 20px; 
-            vertical-align: middle; 
-            filter: brightness(0) invert(1); 
-        }
-
-        .error-message { 
-            color: red; 
-            font-size: 0.9em; 
-            margin-top: 5px; 
-            font-family: 'Comic Neue', cursive; /* Apply Comic Neue to error messages */
-        }
+        body { font-family: Arial, sans-serif; background-color: $secondary-color; }
+        .container { max-width: 400px; margin: auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+        label { display: block; margin: 10px 0 5px; }
+        input[type="email"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; }
+        .github-button, .rpubs-button { margin-top: 20px; text-align: center; }
+        .github-button button, .rpubs-button button { background-color: #333; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; width: 100%; }
+        .github-button button:hover, .rpubs-button button:hover { background-color: #555; }
+        .rpubs-button button { background-color: #75AADB; }
+        .rpubs-button button:hover { background-color: #5A9BC2; }
+        .rpubs-icon { margin-right: 5px; width: 20px; vertical-align: middle; filter: brightness(0) invert(1); }
+        .error-message { color: red; font-size: 0.9em; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -104,18 +30,18 @@
             <button type="submit">Send Email</button>
         </form>
         <div class="github-button">
-            <a href="https://github.com/Loccx78vn/Material_Requirement_Planning" target="_blank">
-                <button>
+            <button>
+                <a href="https://github.com/Loccx78vn/Material_Requirement_Planning" target="_blank" style="color: white; text-decoration: none;">
                     <i class="fab fa-github"></i> View Code on GitHub
-                </button>
-            </a>
+                </a>
+            </button>
         </div>
         <div class="rpubs-button">
-            <a href="https://rpubs.com/loccx" target="_blank">
-                <button>
+            <button>
+                <a href="https://rpubs.com/loccx" target="_blank" style="color: white; text-decoration: none;">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v6.0.0/icons/rstudio.svg" alt="RStudio icon" class="rpubs-icon"> Visit my RPubs
-                </button>
-            </a>
+                </a>
+            </button>
         </div>
     </div>
 

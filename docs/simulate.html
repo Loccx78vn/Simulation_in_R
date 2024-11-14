@@ -492,7 +492,7 @@ window.Quarto = {
     Source: <a href="https://chatgpt.com/" target="_blank">Link to Image</a>
   </div>
 </div>
-<p>Như vậy, mục tiêu là: đảm bảo hàng chờ ở mức <strong>tối ưu nhất</strong> để cân bằng giữa cấp độ phục vụ (Vd: đảm bảo khách hàng hài lòng) và chi phí. Lý do vì sao mình nói rằng là <strong>tối ưu nhất</strong> chứ không phải là giảm tới mức hàng chờ = 0 là vì hàng chờ luôn luôn tồn tại cho dù bạn có tốn bao nhiêu tài nguyên vào <em>server</em>. Nó giống như nghịch lý quy hoạch đô thị rằng: “Xây thêm đường sẽ không giảm kẹt xe” Và nghịch lý vận tải: Đường càng rộng thì càng kẹt xe” của <a href="https://vivo.brown.edu/display/mturner1">Matthew A. Turner</a> và <a href="https://knowledge.wharton.upenn.edu/faculty/gilles-duranton/">Gilles Duranton</a>, nghĩa là bạn chỉ giảm khoảng cách của hàng kẹt xe chứ không hoàn toàn xóa bỏ tình trạng kẹt xe. Vì vậy, ví dụ nếu cửa hàng của bạn luôn tồn tại hàng chờ cỡ 5-6 người/hàng thì bạn chỉ cần thuê thêm 1 nhân viên đứng trực là hàng chờ giảm còn 2-3 người thay vì 5 nhân viên để hàng chờ giảm còn 0 bởi như vậy là tốn chi phí và không hiệu quả.</p>
+<p>Như vậy, mục tiêu là: đảm bảo hàng chờ ở mức <strong>tối ưu nhất</strong> để cân bằng giữa cấp độ phục vụ (Vd: đảm bảo khách hàng hài lòng) và chi phí. Lý do vì sao mình nói rằng là <strong>tối ưu nhất</strong> chứ không phải là giảm tới mức hàng chờ = 0 là vì hàng chờ luôn luôn tồn tại cho dù bạn có tốn bao nhiêu tài nguyên vào <em>server</em>. Nó giống như nghịch lý quy hoạch đô thị rằng: “Xây thêm đường sẽ không giảm kẹt xe” và nghịch lý vận tải: “Đường càng rộng thì càng kẹt xe” của <a href="https://vivo.brown.edu/display/mturner1">Matthew A. Turner</a> và <a href="https://knowledge.wharton.upenn.edu/faculty/gilles-duranton/">Gilles Duranton</a>, nghĩa là bạn chỉ giảm khoảng cách của hàng kẹt xe chứ không hoàn toàn xóa bỏ tình trạng kẹt xe. Vì vậy, ví dụ nếu cửa hàng của bạn luôn tồn tại hàng chờ cỡ 5-6 người/hàng thì bạn chỉ cần thuê thêm 1 nhân viên đứng trực là hàng chờ giảm còn 2-3 người thay vì 5 nhân viên để hàng chờ giảm còn 0 bởi như vậy là tốn chi phí và không hiệu quả.</p>
 <p>Vậy làm sao để xây dựng mô hình hàng chờ cho cửa hàng của bạn ? Đầu tiên ta cần xác định được lượng khách hàng trong một khoảng thời gian cụ thể (Vd: ngày, tuần, tháng,…) tuân theo phân bố gì, trong đó các phân bố như phân phối hàm mũ, phân phối Poisson được sử dụng phổ biến.</p>
 <div class="cell">
 <details class="code-fold">
@@ -1658,6 +1658,7 @@ window.Quarto = {
 </div>
 <p>Tiếp theo là xác định năng suất của <em>server</em> trong 1 đơn vị thời gian. Giả sử nhân viên của bạn có năng suất là như nhau và phục vụ trung bình được 1 đơn hàng/10 phút hay 6 đơn hàng/giờ thì ta có <span class="math inline">\(\mu\)</span> = 6</p>
 <p>Sau đó chúng ta sẽ bắt đầu quá trình giả lập và bạn có thể sử dụng 2 cách: (i) Phương pháp giải tích (giải phương trình toán học bằng tay) hoặc (ii) Phương pháp máy tính (giả lập bằng máy). Với <strong>R</strong> thì bạn hoàn toàn làm điều này dễ hơn.</p>
+<p>Như dưới đây là ví dụ về việc giả lập thời gian phục vụ của quán cà phê với 2 hoặc 3 hoặc 4 nhân viên trực quán.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">2 employee:</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">3 employee:</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">4 employee:</a></li></ul>
 <div class="tab-content">
@@ -1710,7 +1711,7 @@ window.Quarto = {
             justify-content: center;  /* Center content vertically */
             align-items: center;      /* Center content horizontally */
             margin: 0;
-            background-color: #f4f4f9;
+            background-color: $secondary-color;
             box-sizing: border-box;
             min-height: 80vh; /* Adjusted to 80vh to ensure it's not too high */
         }
@@ -2621,7 +2622,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/div&gt;</span></span>
 <span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
 <span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>Như vậy, mục tiêu là: đảm bảo hàng chờ ở mức **tối ưu nhất** để cân bằng giữa cấp độ phục vụ (Vd: đảm bảo khách hàng hài lòng) và chi phí. Lý do vì sao mình nói rằng là **tối ưu nhất** chứ không phải là giảm tới mức hàng chờ = 0 là vì hàng chờ luôn luôn tồn tại cho dù bạn có tốn bao nhiêu tài nguyên vào *server*. Nó giống như nghịch lý quy hoạch đô thị rằng: "Xây thêm đường sẽ không giảm kẹt xe" Và nghịch lý vận tải: Đường càng rộng thì càng kẹt xe" của <span class="co">[</span><span class="ot">Matthew A. Turner</span><span class="co">](https://vivo.brown.edu/display/mturner1)</span> và <span class="co">[</span><span class="ot">Gilles Duranton</span><span class="co">](https://knowledge.wharton.upenn.edu/faculty/gilles-duranton/)</span>, nghĩa là bạn chỉ giảm khoảng cách của hàng kẹt xe chứ không hoàn toàn xóa bỏ tình trạng kẹt xe. Vì vậy, ví dụ nếu cửa hàng của bạn luôn tồn tại hàng chờ cỡ 5-6 người/hàng thì bạn chỉ cần thuê thêm 1 nhân viên đứng trực là hàng chờ giảm còn 2-3 người thay vì 5 nhân viên để hàng chờ giảm còn 0 bởi như vậy là tốn chi phí và không hiệu quả.</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>Như vậy, mục tiêu là: đảm bảo hàng chờ ở mức **tối ưu nhất** để cân bằng giữa cấp độ phục vụ (Vd: đảm bảo khách hàng hài lòng) và chi phí. Lý do vì sao mình nói rằng là **tối ưu nhất** chứ không phải là giảm tới mức hàng chờ = 0 là vì hàng chờ luôn luôn tồn tại cho dù bạn có tốn bao nhiêu tài nguyên vào *server*. Nó giống như nghịch lý quy hoạch đô thị rằng: "Xây thêm đường sẽ không giảm kẹt xe" và nghịch lý vận tải: "Đường càng rộng thì càng kẹt xe" của <span class="co">[</span><span class="ot">Matthew A. Turner</span><span class="co">](https://vivo.brown.edu/display/mturner1)</span> và <span class="co">[</span><span class="ot">Gilles Duranton</span><span class="co">](https://knowledge.wharton.upenn.edu/faculty/gilles-duranton/)</span>, nghĩa là bạn chỉ giảm khoảng cách của hàng kẹt xe chứ không hoàn toàn xóa bỏ tình trạng kẹt xe. Vì vậy, ví dụ nếu cửa hàng của bạn luôn tồn tại hàng chờ cỡ 5-6 người/hàng thì bạn chỉ cần thuê thêm 1 nhân viên đứng trực là hàng chờ giảm còn 2-3 người thay vì 5 nhân viên để hàng chờ giảm còn 0 bởi như vậy là tốn chi phí và không hiệu quả.</span>
 <span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>Vậy làm sao để xây dựng mô hình hàng chờ cho cửa hàng của bạn ? Đầu tiên ta cần xác định được lượng khách hàng trong một khoảng thời gian cụ thể (Vd: ngày, tuần, tháng,...) tuân theo phân bố gì, trong đó các phân bố như phân phối hàm mũ, phân phối Poisson được sử dụng phổ biến.</span>
 <span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
@@ -2771,302 +2772,304 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-343"><a href="#cb4-343" aria-hidden="true" tabindex="-1"></a>Sau đó chúng ta sẽ bắt đầu quá trình giả lập và bạn có thể sử dụng 2 cách: (i) Phương pháp giải tích (giải phương trình toán học bằng tay) hoặc (ii) Phương pháp máy tính (giả lập bằng máy). Với **R** thì bạn hoàn toàn làm điều này dễ hơn.</span>
 <span id="cb4-344"><a href="#cb4-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-347"><a href="#cb4-347" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-348"><a href="#cb4-348" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb4-349"><a href="#cb4-349" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb4-350"><a href="#cb4-350" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb4-351"><a href="#cb4-351" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simmer)</span>
-<span id="cb4-352"><a href="#cb4-352" aria-hidden="true" tabindex="-1"></a>simulate_shop <span class="ot">&lt;-</span> <span class="cf">function</span>(employee) {</span>
-<span id="cb4-353"><a href="#cb4-353" aria-hidden="true" tabindex="-1"></a>  labor_capacity <span class="ot">&lt;-</span> <span class="dv">12</span> <span class="sc">/</span> <span class="dv">60</span>  <span class="co"># Service rate per minute</span></span>
-<span id="cb4-354"><a href="#cb4-354" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-355"><a href="#cb4-355" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialize the simulation</span></span>
-<span id="cb4-356"><a href="#cb4-356" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> <span class="fu">simmer</span>(<span class="st">"CoffeeShop"</span>)</span>
-<span id="cb4-357"><a href="#cb4-357" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-358"><a href="#cb4-358" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define the customer process</span></span>
-<span id="cb4-359"><a href="#cb4-359" aria-hidden="true" tabindex="-1"></a>  customer_process <span class="ot">&lt;-</span> <span class="fu">trajectory</span>(<span class="st">"customer"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-360"><a href="#cb4-360" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seize</span>(<span class="st">"barista"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-361"><a href="#cb4-361" aria-hidden="true" tabindex="-1"></a>    <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="at">rate =</span> labor_capacity)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-362"><a href="#cb4-362" aria-hidden="true" tabindex="-1"></a>    <span class="fu">release</span>(<span class="st">"barista"</span>, <span class="dv">1</span>)</span>
-<span id="cb4-363"><a href="#cb4-363" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-364"><a href="#cb4-364" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add barista resource to the simulation</span></span>
-<span id="cb4-365"><a href="#cb4-365" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> sim <span class="sc">%&gt;%</span></span>
-<span id="cb4-366"><a href="#cb4-366" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_resource</span>(<span class="st">"barista"</span>, <span class="at">capacity =</span> employee)</span>
-<span id="cb4-367"><a href="#cb4-367" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-368"><a href="#cb4-368" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Schedule customer arrivals</span></span>
-<span id="cb4-369"><a href="#cb4-369" aria-hidden="true" tabindex="-1"></a>  start_time <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(time_intervals[<span class="dv">1</span>])  <span class="co"># Convert start time to POSIX numeric</span></span>
-<span id="cb4-370"><a href="#cb4-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-371"><a href="#cb4-371" aria-hidden="true" tabindex="-1"></a>  customer_id <span class="ot">&lt;-</span> <span class="dv">1</span>  <span class="co"># Initialize a counter for unique customer naming</span></span>
+<span id="cb4-345"><a href="#cb4-345" aria-hidden="true" tabindex="-1"></a>Như dưới đây là ví dụ về việc giả lập thời gian phục vụ của quán cà phê với 2 hoặc 3 hoặc 4 nhân viên trực quán.</span>
+<span id="cb4-346"><a href="#cb4-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-349"><a href="#cb4-349" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-350"><a href="#cb4-350" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb4-351"><a href="#cb4-351" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb4-352"><a href="#cb4-352" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb4-353"><a href="#cb4-353" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simmer)</span>
+<span id="cb4-354"><a href="#cb4-354" aria-hidden="true" tabindex="-1"></a>simulate_shop <span class="ot">&lt;-</span> <span class="cf">function</span>(employee) {</span>
+<span id="cb4-355"><a href="#cb4-355" aria-hidden="true" tabindex="-1"></a>  labor_capacity <span class="ot">&lt;-</span> <span class="dv">12</span> <span class="sc">/</span> <span class="dv">60</span>  <span class="co"># Service rate per minute</span></span>
+<span id="cb4-356"><a href="#cb4-356" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-357"><a href="#cb4-357" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialize the simulation</span></span>
+<span id="cb4-358"><a href="#cb4-358" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> <span class="fu">simmer</span>(<span class="st">"CoffeeShop"</span>)</span>
+<span id="cb4-359"><a href="#cb4-359" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-360"><a href="#cb4-360" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define the customer process</span></span>
+<span id="cb4-361"><a href="#cb4-361" aria-hidden="true" tabindex="-1"></a>  customer_process <span class="ot">&lt;-</span> <span class="fu">trajectory</span>(<span class="st">"customer"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-362"><a href="#cb4-362" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seize</span>(<span class="st">"barista"</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-363"><a href="#cb4-363" aria-hidden="true" tabindex="-1"></a>    <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, <span class="at">rate =</span> labor_capacity)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-364"><a href="#cb4-364" aria-hidden="true" tabindex="-1"></a>    <span class="fu">release</span>(<span class="st">"barista"</span>, <span class="dv">1</span>)</span>
+<span id="cb4-365"><a href="#cb4-365" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-366"><a href="#cb4-366" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add barista resource to the simulation</span></span>
+<span id="cb4-367"><a href="#cb4-367" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> sim <span class="sc">%&gt;%</span></span>
+<span id="cb4-368"><a href="#cb4-368" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_resource</span>(<span class="st">"barista"</span>, <span class="at">capacity =</span> employee)</span>
+<span id="cb4-369"><a href="#cb4-369" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-370"><a href="#cb4-370" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Schedule customer arrivals</span></span>
+<span id="cb4-371"><a href="#cb4-371" aria-hidden="true" tabindex="-1"></a>  start_time <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(time_intervals[<span class="dv">1</span>])  <span class="co"># Convert start time to POSIX numeric</span></span>
 <span id="cb4-372"><a href="#cb4-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-373"><a href="#cb4-373" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(customer_data)) {</span>
-<span id="cb4-374"><a href="#cb4-374" aria-hidden="true" tabindex="-1"></a>    num_customers <span class="ot">&lt;-</span> customer_data[j]</span>
-<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a>    interval_start <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(time_intervals[j])  <span class="co"># Start of each 30-min interval in POSIX numeric</span></span>
-<span id="cb4-376"><a href="#cb4-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-377"><a href="#cb4-377" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_customers) {</span>
-<span id="cb4-378"><a href="#cb4-378" aria-hidden="true" tabindex="-1"></a>      arrival_offset <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1800</span>)  <span class="co"># Random arrival within 30 mins</span></span>
-<span id="cb4-379"><a href="#cb4-379" aria-hidden="true" tabindex="-1"></a>      arrival_time <span class="ot">&lt;-</span> interval_start <span class="sc">+</span> arrival_offset  <span class="co"># Actual arrival time in POSIX numeric</span></span>
-<span id="cb4-380"><a href="#cb4-380" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb4-381"><a href="#cb4-381" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Convert to relative time (in minutes) from start_time</span></span>
-<span id="cb4-382"><a href="#cb4-382" aria-hidden="true" tabindex="-1"></a>      relative_arrival <span class="ot">&lt;-</span> (arrival_time <span class="sc">-</span> start_time) <span class="sc">/</span> <span class="dv">60</span></span>
-<span id="cb4-383"><a href="#cb4-383" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb4-384"><a href="#cb4-384" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Generate a unique name for each customer</span></span>
-<span id="cb4-385"><a href="#cb4-385" aria-hidden="true" tabindex="-1"></a>      customer_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"customer_"</span>, customer_id)</span>
-<span id="cb4-386"><a href="#cb4-386" aria-hidden="true" tabindex="-1"></a>      customer_id <span class="ot">&lt;-</span> customer_id <span class="sc">+</span> <span class="dv">1</span>  <span class="co"># Increment the unique ID</span></span>
-<span id="cb4-387"><a href="#cb4-387" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb4-388"><a href="#cb4-388" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Add customer generator with a unique name</span></span>
-<span id="cb4-389"><a href="#cb4-389" aria-hidden="true" tabindex="-1"></a>      sim <span class="ot">&lt;-</span> sim <span class="sc">%&gt;%</span></span>
-<span id="cb4-390"><a href="#cb4-390" aria-hidden="true" tabindex="-1"></a>        <span class="fu">add_generator</span>(customer_name, </span>
-<span id="cb4-391"><a href="#cb4-391" aria-hidden="true" tabindex="-1"></a>                      customer_process, </span>
-<span id="cb4-392"><a href="#cb4-392" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">at</span>(relative_arrival))</span>
-<span id="cb4-393"><a href="#cb4-393" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb4-394"><a href="#cb4-394" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-395"><a href="#cb4-395" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-396"><a href="#cb4-396" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Run the simulation from 8:30 AM to 10:00 PM means 28 periods of 30 minutes</span></span>
-<span id="cb4-397"><a href="#cb4-397" aria-hidden="true" tabindex="-1"></a>  sim <span class="sc">%&gt;%</span> </span>
-<span id="cb4-398"><a href="#cb4-398" aria-hidden="true" tabindex="-1"></a>    <span class="fu">run</span>(<span class="at">until =</span> (<span class="dv">22</span> <span class="sc">-</span> <span class="dv">8</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">60</span>)</span>
-<span id="cb4-399"><a href="#cb4-399" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-400"><a href="#cb4-400" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sim)</span>
-<span id="cb4-401"><a href="#cb4-401" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-402"><a href="#cb4-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-403"><a href="#cb4-403" aria-hidden="true" tabindex="-1"></a>sim2<span class="ot">&lt;-</span><span class="fu">simulate_shop</span>(<span class="dv">2</span>)</span>
-<span id="cb4-404"><a href="#cb4-404" aria-hidden="true" tabindex="-1"></a>sim3<span class="ot">&lt;-</span><span class="fu">simulate_shop</span>(<span class="dv">3</span>)</span>
-<span id="cb4-405"><a href="#cb4-405" aria-hidden="true" tabindex="-1"></a>sim4<span class="ot">&lt;-</span><span class="fu">simulate_shop</span>(<span class="dv">4</span>)</span>
-<span id="cb4-406"><a href="#cb4-406" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-407"><a href="#cb4-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-408"><a href="#cb4-408" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb4-409"><a href="#cb4-409" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2 employee:</span></span>
-<span id="cb4-410"><a href="#cb4-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-413"><a href="#cb4-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-414"><a href="#cb4-414" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-415"><a href="#cb4-415" aria-hidden="true" tabindex="-1"></a>arrival_data <span class="ot">&lt;-</span> sim2  <span class="sc">%&gt;%</span></span>
-<span id="cb4-416"><a href="#cb4-416" aria-hidden="true" tabindex="-1"></a><span class="fu">get_mon_arrivals</span>() </span>
-<span id="cb4-417"><a href="#cb4-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-418"><a href="#cb4-418" aria-hidden="true" tabindex="-1"></a>arrival_data<span class="ot">&lt;-</span>arrival_data <span class="sc">|&gt;</span> </span>
-<span id="cb4-419"><a href="#cb4-419" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
-<span id="cb4-420"><a href="#cb4-420" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
-<span id="cb4-421"><a href="#cb4-421" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
-<span id="cb4-422"><a href="#cb4-422" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
-<span id="cb4-423"><a href="#cb4-423" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
-<span id="cb4-424"><a href="#cb4-424" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>)</span>
-<span id="cb4-425"><a href="#cb4-425" aria-hidden="true" tabindex="-1"></a>highcharter<span class="sc">::</span><span class="fu">hchart</span>(</span>
-<span id="cb4-426"><a href="#cb4-426" aria-hidden="true" tabindex="-1"></a>  arrival_data,</span>
-<span id="cb4-427"><a href="#cb4-427" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
-<span id="cb4-428"><a href="#cb4-428" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time, </span>
-<span id="cb4-429"><a href="#cb4-429" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> type)</span>
-<span id="cb4-430"><a href="#cb4-430" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-431"><a href="#cb4-431" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_tooltip</span>(</span>
-<span id="cb4-432"><a href="#cb4-432" aria-hidden="true" tabindex="-1"></a>    <span class="at">pointFormat =</span> <span class="st">'{point.x: %Y-%m-%d} '</span>,</span>
-<span id="cb4-433"><a href="#cb4-433" aria-hidden="true" tabindex="-1"></a>    <span class="at">headerFormat =</span> <span class="st">''</span>,</span>
-<span id="cb4-434"><a href="#cb4-434" aria-hidden="true" tabindex="-1"></a>    <span class="at">useHTML =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-435"><a href="#cb4-435" aria-hidden="true" tabindex="-1"></a>    <span class="at">formatter =</span> <span class="fu">JS</span>(</span>
-<span id="cb4-436"><a href="#cb4-436" aria-hidden="true" tabindex="-1"></a>      <span class="st">"function() {</span></span>
-<span id="cb4-437"><a href="#cb4-437" aria-hidden="true" tabindex="-1"></a><span class="st">         var baseTime = Date.parse('2024-11-11 08:30:00 UTC'); // Base time</span></span>
-<span id="cb4-438"><a href="#cb4-438" aria-hidden="true" tabindex="-1"></a><span class="st">         var timeOffset = this.y * 60000; // Convert minutes to milliseconds</span></span>
-<span id="cb4-439"><a href="#cb4-439" aria-hidden="true" tabindex="-1"></a><span class="st">         var calculatedTime = new Date(baseTime + timeOffset);</span></span>
-<span id="cb4-440"><a href="#cb4-440" aria-hidden="true" tabindex="-1"></a><span class="st">         return '&lt;b&gt;' + this.series.name + '&lt;/b&gt;&lt;br&gt;' +</span></span>
-<span id="cb4-441"><a href="#cb4-441" aria-hidden="true" tabindex="-1"></a><span class="st">                'Time: ' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S UTC', calculatedTime);</span></span>
-<span id="cb4-442"><a href="#cb4-442" aria-hidden="true" tabindex="-1"></a><span class="st">       }"</span></span>
-<span id="cb4-443"><a href="#cb4-443" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-444"><a href="#cb4-444" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-445"><a href="#cb4-445" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-446"><a href="#cb4-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-447"><a href="#cb4-447" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3 employee:</span></span>
+<span id="cb4-373"><a href="#cb4-373" aria-hidden="true" tabindex="-1"></a>  customer_id <span class="ot">&lt;-</span> <span class="dv">1</span>  <span class="co"># Initialize a counter for unique customer naming</span></span>
+<span id="cb4-374"><a href="#cb4-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(customer_data)) {</span>
+<span id="cb4-376"><a href="#cb4-376" aria-hidden="true" tabindex="-1"></a>    num_customers <span class="ot">&lt;-</span> customer_data[j]</span>
+<span id="cb4-377"><a href="#cb4-377" aria-hidden="true" tabindex="-1"></a>    interval_start <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(time_intervals[j])  <span class="co"># Start of each 30-min interval in POSIX numeric</span></span>
+<span id="cb4-378"><a href="#cb4-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-379"><a href="#cb4-379" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_customers) {</span>
+<span id="cb4-380"><a href="#cb4-380" aria-hidden="true" tabindex="-1"></a>      arrival_offset <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1800</span>)  <span class="co"># Random arrival within 30 mins</span></span>
+<span id="cb4-381"><a href="#cb4-381" aria-hidden="true" tabindex="-1"></a>      arrival_time <span class="ot">&lt;-</span> interval_start <span class="sc">+</span> arrival_offset  <span class="co"># Actual arrival time in POSIX numeric</span></span>
+<span id="cb4-382"><a href="#cb4-382" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb4-383"><a href="#cb4-383" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Convert to relative time (in minutes) from start_time</span></span>
+<span id="cb4-384"><a href="#cb4-384" aria-hidden="true" tabindex="-1"></a>      relative_arrival <span class="ot">&lt;-</span> (arrival_time <span class="sc">-</span> start_time) <span class="sc">/</span> <span class="dv">60</span></span>
+<span id="cb4-385"><a href="#cb4-385" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb4-386"><a href="#cb4-386" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Generate a unique name for each customer</span></span>
+<span id="cb4-387"><a href="#cb4-387" aria-hidden="true" tabindex="-1"></a>      customer_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"customer_"</span>, customer_id)</span>
+<span id="cb4-388"><a href="#cb4-388" aria-hidden="true" tabindex="-1"></a>      customer_id <span class="ot">&lt;-</span> customer_id <span class="sc">+</span> <span class="dv">1</span>  <span class="co"># Increment the unique ID</span></span>
+<span id="cb4-389"><a href="#cb4-389" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb4-390"><a href="#cb4-390" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Add customer generator with a unique name</span></span>
+<span id="cb4-391"><a href="#cb4-391" aria-hidden="true" tabindex="-1"></a>      sim <span class="ot">&lt;-</span> sim <span class="sc">%&gt;%</span></span>
+<span id="cb4-392"><a href="#cb4-392" aria-hidden="true" tabindex="-1"></a>        <span class="fu">add_generator</span>(customer_name, </span>
+<span id="cb4-393"><a href="#cb4-393" aria-hidden="true" tabindex="-1"></a>                      customer_process, </span>
+<span id="cb4-394"><a href="#cb4-394" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">at</span>(relative_arrival))</span>
+<span id="cb4-395"><a href="#cb4-395" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-396"><a href="#cb4-396" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-397"><a href="#cb4-397" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-398"><a href="#cb4-398" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Run the simulation from 8:30 AM to 10:00 PM means 28 periods of 30 minutes</span></span>
+<span id="cb4-399"><a href="#cb4-399" aria-hidden="true" tabindex="-1"></a>  sim <span class="sc">%&gt;%</span> </span>
+<span id="cb4-400"><a href="#cb4-400" aria-hidden="true" tabindex="-1"></a>    <span class="fu">run</span>(<span class="at">until =</span> (<span class="dv">22</span> <span class="sc">-</span> <span class="dv">8</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">60</span>)</span>
+<span id="cb4-401"><a href="#cb4-401" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-402"><a href="#cb4-402" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sim)</span>
+<span id="cb4-403"><a href="#cb4-403" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-404"><a href="#cb4-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-405"><a href="#cb4-405" aria-hidden="true" tabindex="-1"></a>sim2<span class="ot">&lt;-</span><span class="fu">simulate_shop</span>(<span class="dv">2</span>)</span>
+<span id="cb4-406"><a href="#cb4-406" aria-hidden="true" tabindex="-1"></a>sim3<span class="ot">&lt;-</span><span class="fu">simulate_shop</span>(<span class="dv">3</span>)</span>
+<span id="cb4-407"><a href="#cb4-407" aria-hidden="true" tabindex="-1"></a>sim4<span class="ot">&lt;-</span><span class="fu">simulate_shop</span>(<span class="dv">4</span>)</span>
+<span id="cb4-408"><a href="#cb4-408" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-409"><a href="#cb4-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-410"><a href="#cb4-410" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb4-411"><a href="#cb4-411" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2 employee:</span></span>
+<span id="cb4-412"><a href="#cb4-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-415"><a href="#cb4-415" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-416"><a href="#cb4-416" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb4-417"><a href="#cb4-417" aria-hidden="true" tabindex="-1"></a>arrival_data <span class="ot">&lt;-</span> sim2  <span class="sc">%&gt;%</span></span>
+<span id="cb4-418"><a href="#cb4-418" aria-hidden="true" tabindex="-1"></a><span class="fu">get_mon_arrivals</span>() </span>
+<span id="cb4-419"><a href="#cb4-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-420"><a href="#cb4-420" aria-hidden="true" tabindex="-1"></a>arrival_data<span class="ot">&lt;-</span>arrival_data <span class="sc">|&gt;</span> </span>
+<span id="cb4-421"><a href="#cb4-421" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
+<span id="cb4-422"><a href="#cb4-422" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
+<span id="cb4-423"><a href="#cb4-423" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-424"><a href="#cb4-424" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb4-425"><a href="#cb4-425" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
+<span id="cb4-426"><a href="#cb4-426" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>)</span>
+<span id="cb4-427"><a href="#cb4-427" aria-hidden="true" tabindex="-1"></a>highcharter<span class="sc">::</span><span class="fu">hchart</span>(</span>
+<span id="cb4-428"><a href="#cb4-428" aria-hidden="true" tabindex="-1"></a>  arrival_data,</span>
+<span id="cb4-429"><a href="#cb4-429" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
+<span id="cb4-430"><a href="#cb4-430" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time, </span>
+<span id="cb4-431"><a href="#cb4-431" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> type)</span>
+<span id="cb4-432"><a href="#cb4-432" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-433"><a href="#cb4-433" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_tooltip</span>(</span>
+<span id="cb4-434"><a href="#cb4-434" aria-hidden="true" tabindex="-1"></a>    <span class="at">pointFormat =</span> <span class="st">'{point.x: %Y-%m-%d} '</span>,</span>
+<span id="cb4-435"><a href="#cb4-435" aria-hidden="true" tabindex="-1"></a>    <span class="at">headerFormat =</span> <span class="st">''</span>,</span>
+<span id="cb4-436"><a href="#cb4-436" aria-hidden="true" tabindex="-1"></a>    <span class="at">useHTML =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-437"><a href="#cb4-437" aria-hidden="true" tabindex="-1"></a>    <span class="at">formatter =</span> <span class="fu">JS</span>(</span>
+<span id="cb4-438"><a href="#cb4-438" aria-hidden="true" tabindex="-1"></a>      <span class="st">"function() {</span></span>
+<span id="cb4-439"><a href="#cb4-439" aria-hidden="true" tabindex="-1"></a><span class="st">         var baseTime = Date.parse('2024-11-11 08:30:00 UTC'); // Base time</span></span>
+<span id="cb4-440"><a href="#cb4-440" aria-hidden="true" tabindex="-1"></a><span class="st">         var timeOffset = this.y * 60000; // Convert minutes to milliseconds</span></span>
+<span id="cb4-441"><a href="#cb4-441" aria-hidden="true" tabindex="-1"></a><span class="st">         var calculatedTime = new Date(baseTime + timeOffset);</span></span>
+<span id="cb4-442"><a href="#cb4-442" aria-hidden="true" tabindex="-1"></a><span class="st">         return '&lt;b&gt;' + this.series.name + '&lt;/b&gt;&lt;br&gt;' +</span></span>
+<span id="cb4-443"><a href="#cb4-443" aria-hidden="true" tabindex="-1"></a><span class="st">                'Time: ' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S UTC', calculatedTime);</span></span>
+<span id="cb4-444"><a href="#cb4-444" aria-hidden="true" tabindex="-1"></a><span class="st">       }"</span></span>
+<span id="cb4-445"><a href="#cb4-445" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-446"><a href="#cb4-446" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-447"><a href="#cb4-447" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb4-448"><a href="#cb4-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-451"><a href="#cb4-451" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-452"><a href="#cb4-452" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-453"><a href="#cb4-453" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
-<span id="cb4-454"><a href="#cb4-454" aria-hidden="true" tabindex="-1"></a>arrival_data <span class="ot">&lt;-</span> sim3 <span class="sc">%&gt;%</span></span>
-<span id="cb4-455"><a href="#cb4-455" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_mon_arrivals</span>() </span>
-<span id="cb4-456"><a href="#cb4-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-457"><a href="#cb4-457" aria-hidden="true" tabindex="-1"></a>arrival_data<span class="ot">&lt;-</span>arrival_data <span class="sc">|&gt;</span> </span>
-<span id="cb4-458"><a href="#cb4-458" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
-<span id="cb4-459"><a href="#cb4-459" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
-<span id="cb4-460"><a href="#cb4-460" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
-<span id="cb4-461"><a href="#cb4-461" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
-<span id="cb4-462"><a href="#cb4-462" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
-<span id="cb4-463"><a href="#cb4-463" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>)</span>
-<span id="cb4-464"><a href="#cb4-464" aria-hidden="true" tabindex="-1"></a><span class="fu">hchart</span>(</span>
-<span id="cb4-465"><a href="#cb4-465" aria-hidden="true" tabindex="-1"></a>  arrival_data,</span>
-<span id="cb4-466"><a href="#cb4-466" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
-<span id="cb4-467"><a href="#cb4-467" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time, <span class="at">group =</span> type)</span>
-<span id="cb4-468"><a href="#cb4-468" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-469"><a href="#cb4-469" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_tooltip</span>(</span>
-<span id="cb4-470"><a href="#cb4-470" aria-hidden="true" tabindex="-1"></a>    <span class="at">pointFormat =</span> <span class="st">'{point.x: %Y-%m-%d} '</span>,</span>
-<span id="cb4-471"><a href="#cb4-471" aria-hidden="true" tabindex="-1"></a>    <span class="at">headerFormat =</span> <span class="st">''</span>,</span>
-<span id="cb4-472"><a href="#cb4-472" aria-hidden="true" tabindex="-1"></a>    <span class="at">useHTML =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-473"><a href="#cb4-473" aria-hidden="true" tabindex="-1"></a>    <span class="at">formatter =</span> <span class="fu">JS</span>(</span>
-<span id="cb4-474"><a href="#cb4-474" aria-hidden="true" tabindex="-1"></a>      <span class="st">"function() {</span></span>
-<span id="cb4-475"><a href="#cb4-475" aria-hidden="true" tabindex="-1"></a><span class="st">         var baseTime = Date.parse('2024-11-11 08:30:00 UTC'); // Base time</span></span>
-<span id="cb4-476"><a href="#cb4-476" aria-hidden="true" tabindex="-1"></a><span class="st">         var timeOffset = this.y * 60000; // Convert minutes to milliseconds</span></span>
-<span id="cb4-477"><a href="#cb4-477" aria-hidden="true" tabindex="-1"></a><span class="st">         var calculatedTime = new Date(baseTime + timeOffset);</span></span>
-<span id="cb4-478"><a href="#cb4-478" aria-hidden="true" tabindex="-1"></a><span class="st">         return '&lt;b&gt;' + this.series.name + '&lt;/b&gt;&lt;br&gt;' +</span></span>
-<span id="cb4-479"><a href="#cb4-479" aria-hidden="true" tabindex="-1"></a><span class="st">                'Time: ' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S UTC', calculatedTime);</span></span>
-<span id="cb4-480"><a href="#cb4-480" aria-hidden="true" tabindex="-1"></a><span class="st">       }"</span></span>
-<span id="cb4-481"><a href="#cb4-481" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-482"><a href="#cb4-482" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-483"><a href="#cb4-483" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-484"><a href="#cb4-484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-485"><a href="#cb4-485" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4 employee:</span></span>
+<span id="cb4-449"><a href="#cb4-449" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3 employee:</span></span>
+<span id="cb4-450"><a href="#cb4-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-453"><a href="#cb4-453" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-454"><a href="#cb4-454" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb4-455"><a href="#cb4-455" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
+<span id="cb4-456"><a href="#cb4-456" aria-hidden="true" tabindex="-1"></a>arrival_data <span class="ot">&lt;-</span> sim3 <span class="sc">%&gt;%</span></span>
+<span id="cb4-457"><a href="#cb4-457" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_mon_arrivals</span>() </span>
+<span id="cb4-458"><a href="#cb4-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-459"><a href="#cb4-459" aria-hidden="true" tabindex="-1"></a>arrival_data<span class="ot">&lt;-</span>arrival_data <span class="sc">|&gt;</span> </span>
+<span id="cb4-460"><a href="#cb4-460" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
+<span id="cb4-461"><a href="#cb4-461" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
+<span id="cb4-462"><a href="#cb4-462" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-463"><a href="#cb4-463" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb4-464"><a href="#cb4-464" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
+<span id="cb4-465"><a href="#cb4-465" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>)</span>
+<span id="cb4-466"><a href="#cb4-466" aria-hidden="true" tabindex="-1"></a><span class="fu">hchart</span>(</span>
+<span id="cb4-467"><a href="#cb4-467" aria-hidden="true" tabindex="-1"></a>  arrival_data,</span>
+<span id="cb4-468"><a href="#cb4-468" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
+<span id="cb4-469"><a href="#cb4-469" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time, <span class="at">group =</span> type)</span>
+<span id="cb4-470"><a href="#cb4-470" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-471"><a href="#cb4-471" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_tooltip</span>(</span>
+<span id="cb4-472"><a href="#cb4-472" aria-hidden="true" tabindex="-1"></a>    <span class="at">pointFormat =</span> <span class="st">'{point.x: %Y-%m-%d} '</span>,</span>
+<span id="cb4-473"><a href="#cb4-473" aria-hidden="true" tabindex="-1"></a>    <span class="at">headerFormat =</span> <span class="st">''</span>,</span>
+<span id="cb4-474"><a href="#cb4-474" aria-hidden="true" tabindex="-1"></a>    <span class="at">useHTML =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-475"><a href="#cb4-475" aria-hidden="true" tabindex="-1"></a>    <span class="at">formatter =</span> <span class="fu">JS</span>(</span>
+<span id="cb4-476"><a href="#cb4-476" aria-hidden="true" tabindex="-1"></a>      <span class="st">"function() {</span></span>
+<span id="cb4-477"><a href="#cb4-477" aria-hidden="true" tabindex="-1"></a><span class="st">         var baseTime = Date.parse('2024-11-11 08:30:00 UTC'); // Base time</span></span>
+<span id="cb4-478"><a href="#cb4-478" aria-hidden="true" tabindex="-1"></a><span class="st">         var timeOffset = this.y * 60000; // Convert minutes to milliseconds</span></span>
+<span id="cb4-479"><a href="#cb4-479" aria-hidden="true" tabindex="-1"></a><span class="st">         var calculatedTime = new Date(baseTime + timeOffset);</span></span>
+<span id="cb4-480"><a href="#cb4-480" aria-hidden="true" tabindex="-1"></a><span class="st">         return '&lt;b&gt;' + this.series.name + '&lt;/b&gt;&lt;br&gt;' +</span></span>
+<span id="cb4-481"><a href="#cb4-481" aria-hidden="true" tabindex="-1"></a><span class="st">                'Time: ' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S UTC', calculatedTime);</span></span>
+<span id="cb4-482"><a href="#cb4-482" aria-hidden="true" tabindex="-1"></a><span class="st">       }"</span></span>
+<span id="cb4-483"><a href="#cb4-483" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-484"><a href="#cb4-484" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-485"><a href="#cb4-485" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb4-486"><a href="#cb4-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-489"><a href="#cb4-489" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-490"><a href="#cb4-490" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-491"><a href="#cb4-491" aria-hidden="true" tabindex="-1"></a>arrival_data <span class="ot">&lt;-</span> sim4  <span class="sc">%&gt;%</span></span>
-<span id="cb4-492"><a href="#cb4-492" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_mon_arrivals</span>()</span>
-<span id="cb4-493"><a href="#cb4-493" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-494"><a href="#cb4-494" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
-<span id="cb4-495"><a href="#cb4-495" aria-hidden="true" tabindex="-1"></a>arrival_data <span class="sc">|&gt;</span> </span>
-<span id="cb4-496"><a href="#cb4-496" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
-<span id="cb4-497"><a href="#cb4-497" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
-<span id="cb4-498"><a href="#cb4-498" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
-<span id="cb4-499"><a href="#cb4-499" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
-<span id="cb4-500"><a href="#cb4-500" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
-<span id="cb4-501"><a href="#cb4-501" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-502"><a href="#cb4-502" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hchart</span>(</span>
-<span id="cb4-503"><a href="#cb4-503" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
-<span id="cb4-504"><a href="#cb4-504" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time,</span>
-<span id="cb4-505"><a href="#cb4-505" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> type)</span>
-<span id="cb4-506"><a href="#cb4-506" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb4-507"><a href="#cb4-507" aria-hidden="true" tabindex="-1"></a>   <span class="fu">hc_tooltip</span>(</span>
-<span id="cb4-508"><a href="#cb4-508" aria-hidden="true" tabindex="-1"></a>    <span class="at">pointFormat =</span> <span class="st">'{point.x: %Y-%m-%d} '</span>,</span>
-<span id="cb4-509"><a href="#cb4-509" aria-hidden="true" tabindex="-1"></a>    <span class="at">headerFormat =</span> <span class="st">''</span>,</span>
-<span id="cb4-510"><a href="#cb4-510" aria-hidden="true" tabindex="-1"></a>    <span class="at">useHTML =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-511"><a href="#cb4-511" aria-hidden="true" tabindex="-1"></a>     <span class="at">formatter =</span> <span class="fu">JS</span>(</span>
-<span id="cb4-512"><a href="#cb4-512" aria-hidden="true" tabindex="-1"></a>      <span class="st">"function() {</span></span>
-<span id="cb4-513"><a href="#cb4-513" aria-hidden="true" tabindex="-1"></a><span class="st">         var baseTime = Date.parse('2024-11-11 08:30:00 UTC'); // Base time</span></span>
-<span id="cb4-514"><a href="#cb4-514" aria-hidden="true" tabindex="-1"></a><span class="st">         var timeOffset = this.y * 60000; // Convert minutes to milliseconds</span></span>
-<span id="cb4-515"><a href="#cb4-515" aria-hidden="true" tabindex="-1"></a><span class="st">         var calculatedTime = new Date(baseTime + timeOffset);</span></span>
-<span id="cb4-516"><a href="#cb4-516" aria-hidden="true" tabindex="-1"></a><span class="st">         return '&lt;b&gt;' + this.series.name + '&lt;/b&gt;&lt;br&gt;' +</span></span>
-<span id="cb4-517"><a href="#cb4-517" aria-hidden="true" tabindex="-1"></a><span class="st">                'Time: ' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S UTC', calculatedTime);</span></span>
-<span id="cb4-518"><a href="#cb4-518" aria-hidden="true" tabindex="-1"></a><span class="st">       }"</span></span>
-<span id="cb4-519"><a href="#cb4-519" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-520"><a href="#cb4-520" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-521"><a href="#cb4-521" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-522"><a href="#cb4-522" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-523"><a href="#cb4-523" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-524"><a href="#cb4-524" aria-hidden="true" tabindex="-1"></a>Kết quả cho thấy cửa hàng nên thuê 4 người để đảm bảo *server level* ở dạng cao. Nếu cửa hàng chỉ thuê 2 người thì thời gian đợi phục vụ trung bình của khách hàng là khoảng **7.5 tiếng** (Một con số hơi khủng, tưởng đang sử dụng dịch vụ của Vietjet cơ! 😄😄😄) trong khi nếu thuê thêm 2 người thì giảm xuống còn **41.5 phút** \~ giảm thời gian chờ đợi xuống **11 lần**.</span>
+<span id="cb4-487"><a href="#cb4-487" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4 employee:</span></span>
+<span id="cb4-488"><a href="#cb4-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-491"><a href="#cb4-491" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-492"><a href="#cb4-492" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb4-493"><a href="#cb4-493" aria-hidden="true" tabindex="-1"></a>arrival_data <span class="ot">&lt;-</span> sim4  <span class="sc">%&gt;%</span></span>
+<span id="cb4-494"><a href="#cb4-494" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_mon_arrivals</span>()</span>
+<span id="cb4-495"><a href="#cb4-495" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-496"><a href="#cb4-496" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
+<span id="cb4-497"><a href="#cb4-497" aria-hidden="true" tabindex="-1"></a>arrival_data <span class="sc">|&gt;</span> </span>
+<span id="cb4-498"><a href="#cb4-498" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(start_time,</span>
+<span id="cb4-499"><a href="#cb4-499" aria-hidden="true" tabindex="-1"></a>           end_time,</span>
+<span id="cb4-500"><a href="#cb4-500" aria-hidden="true" tabindex="-1"></a>           activity_time)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-501"><a href="#cb4-501" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb4-502"><a href="#cb4-502" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"time"</span>,</span>
+<span id="cb4-503"><a href="#cb4-503" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"type"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-504"><a href="#cb4-504" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hchart</span>(</span>
+<span id="cb4-505"><a href="#cb4-505" aria-hidden="true" tabindex="-1"></a>  <span class="st">'line'</span>, </span>
+<span id="cb4-506"><a href="#cb4-506" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hcaes</span>(<span class="at">y =</span> time,</span>
+<span id="cb4-507"><a href="#cb4-507" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> type)</span>
+<span id="cb4-508"><a href="#cb4-508" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-509"><a href="#cb4-509" aria-hidden="true" tabindex="-1"></a>   <span class="fu">hc_tooltip</span>(</span>
+<span id="cb4-510"><a href="#cb4-510" aria-hidden="true" tabindex="-1"></a>    <span class="at">pointFormat =</span> <span class="st">'{point.x: %Y-%m-%d} '</span>,</span>
+<span id="cb4-511"><a href="#cb4-511" aria-hidden="true" tabindex="-1"></a>    <span class="at">headerFormat =</span> <span class="st">''</span>,</span>
+<span id="cb4-512"><a href="#cb4-512" aria-hidden="true" tabindex="-1"></a>    <span class="at">useHTML =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-513"><a href="#cb4-513" aria-hidden="true" tabindex="-1"></a>     <span class="at">formatter =</span> <span class="fu">JS</span>(</span>
+<span id="cb4-514"><a href="#cb4-514" aria-hidden="true" tabindex="-1"></a>      <span class="st">"function() {</span></span>
+<span id="cb4-515"><a href="#cb4-515" aria-hidden="true" tabindex="-1"></a><span class="st">         var baseTime = Date.parse('2024-11-11 08:30:00 UTC'); // Base time</span></span>
+<span id="cb4-516"><a href="#cb4-516" aria-hidden="true" tabindex="-1"></a><span class="st">         var timeOffset = this.y * 60000; // Convert minutes to milliseconds</span></span>
+<span id="cb4-517"><a href="#cb4-517" aria-hidden="true" tabindex="-1"></a><span class="st">         var calculatedTime = new Date(baseTime + timeOffset);</span></span>
+<span id="cb4-518"><a href="#cb4-518" aria-hidden="true" tabindex="-1"></a><span class="st">         return '&lt;b&gt;' + this.series.name + '&lt;/b&gt;&lt;br&gt;' +</span></span>
+<span id="cb4-519"><a href="#cb4-519" aria-hidden="true" tabindex="-1"></a><span class="st">                'Time: ' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S UTC', calculatedTime);</span></span>
+<span id="cb4-520"><a href="#cb4-520" aria-hidden="true" tabindex="-1"></a><span class="st">       }"</span></span>
+<span id="cb4-521"><a href="#cb4-521" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-522"><a href="#cb4-522" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-523"><a href="#cb4-523" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-524"><a href="#cb4-524" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb4-525"><a href="#cb4-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-526"><a href="#cb4-526" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lý thuyết thống kê:</span></span>
+<span id="cb4-526"><a href="#cb4-526" aria-hidden="true" tabindex="-1"></a>Kết quả cho thấy cửa hàng nên thuê 4 người để đảm bảo *server level* ở dạng cao. Nếu cửa hàng chỉ thuê 2 người thì thời gian đợi phục vụ trung bình của khách hàng là khoảng **7.5 tiếng** (Một con số hơi khủng, tưởng đang sử dụng dịch vụ của Vietjet cơ! 😄😄😄) trong khi nếu thuê thêm 2 người thì giảm xuống còn **41.5 phút** \~ giảm thời gian chờ đợi xuống **11 lần**.</span>
 <span id="cb4-527"><a href="#cb4-527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-528"><a href="#cb4-528" aria-hidden="true" tabindex="-1"></a>Tiếp theo, bạn cần lý thuyết thống kê về chuyên ngành của vấn đề mà bạn đang mong muốn mô hình hóa. Việc xác định các đối tượng trong *server* và đối tượng mục tiêu cần giả lập cũng như các đặc tính cần có trong mô hình là quan trọng bởi chúng là sườn sống của mô hình giả lập. Ví dụ như quy trình hoạt động của quán cafe là như thế nào, sẽ hoạt động ra sao trong nhiều trường hợp,... càng rõ thì việc giả lập càng sát với thực tế.</span>
+<span id="cb4-528"><a href="#cb4-528" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lý thuyết thống kê:</span></span>
 <span id="cb4-529"><a href="#cb4-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-530"><a href="#cb4-530" aria-hidden="true" tabindex="-1"></a>Đặc biệt với các ngành về y sinh học, giả lập quần thể là công việc hằng ngày của các nghiên cứu sinh nên việc hiểu rõ bản chất của quần thể đó quan trọng hơn cách thức hay phương pháp giả lập.</span>
+<span id="cb4-530"><a href="#cb4-530" aria-hidden="true" tabindex="-1"></a>Tiếp theo, bạn cần lý thuyết thống kê về chuyên ngành của vấn đề mà bạn đang mong muốn mô hình hóa. Việc xác định các đối tượng trong *server* và đối tượng mục tiêu cần giả lập cũng như các đặc tính cần có trong mô hình là quan trọng bởi chúng là sườn sống của mô hình giả lập. Ví dụ như quy trình hoạt động của quán cafe là như thế nào, sẽ hoạt động ra sao trong nhiều trường hợp,... càng rõ thì việc giả lập càng sát với thực tế.</span>
 <span id="cb4-531"><a href="#cb4-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-532"><a href="#cb4-532" aria-hidden="true" tabindex="-1"></a>Về code, bạn cần lưu ý rằng *sample size - số lượng mẫu* ảnh hưởng lớn đến độ chính xác (*precision*) của đo lường ảnh hưởng của biến đó. Điều này cũng tương tự với độ lặp lại (*replication*) nghĩa là bạn lặp lại nhiều lần việc tính toán thì kết quả sẽ tốt hoặc chính xác hơn.</span>
+<span id="cb4-532"><a href="#cb4-532" aria-hidden="true" tabindex="-1"></a>Đặc biệt với các ngành về y sinh học, giả lập quần thể là công việc hằng ngày của các nghiên cứu sinh nên việc hiểu rõ bản chất của quần thể đó quan trọng hơn cách thức hay phương pháp giả lập.</span>
 <span id="cb4-533"><a href="#cb4-533" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-534"><a href="#cb4-534" aria-hidden="true" tabindex="-1"></a>Tiếp theo, ta sẽ thực hành trong R.</span>
+<span id="cb4-534"><a href="#cb4-534" aria-hidden="true" tabindex="-1"></a>Về code, bạn cần lưu ý rằng *sample size - số lượng mẫu* ảnh hưởng lớn đến độ chính xác (*precision*) của đo lường ảnh hưởng của biến đó. Điều này cũng tương tự với độ lặp lại (*replication*) nghĩa là bạn lặp lại nhiều lần việc tính toán thì kết quả sẽ tốt hoặc chính xác hơn.</span>
 <span id="cb4-535"><a href="#cb4-535" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-536"><a href="#cb4-536" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb4-537"><a href="#cb4-537" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;!DOCTYPE html&gt;</span></span>
-<span id="cb4-538"><a href="#cb4-538" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;html lang="en"&gt;</span></span>
-<span id="cb4-539"><a href="#cb4-539" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;head&gt;</span></span>
-<span id="cb4-540"><a href="#cb4-540" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;meta charset="UTF-8"&gt;</span></span>
-<span id="cb4-541"><a href="#cb4-541" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></span>
-<span id="cb4-542"><a href="#cb4-542" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;title&gt;Go to Next Page&lt;/title&gt;</span></span>
-<span id="cb4-543"><a href="#cb4-543" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;style&gt;</span></span>
-<span id="cb4-544"><a href="#cb4-544" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Global Styles */</span></span>
-<span id="cb4-545"><a href="#cb4-545" aria-hidden="true" tabindex="-1"></a><span class="in">        body {</span></span>
-<span id="cb4-546"><a href="#cb4-546" aria-hidden="true" tabindex="-1"></a><span class="in">            font-family: 'Tahoma', sans-serif;</span></span>
-<span id="cb4-547"><a href="#cb4-547" aria-hidden="true" tabindex="-1"></a><span class="in">            display: flex;</span></span>
-<span id="cb4-548"><a href="#cb4-548" aria-hidden="true" tabindex="-1"></a><span class="in">            flex-direction: column;  /* Stack content and footnote vertically */</span></span>
-<span id="cb4-549"><a href="#cb4-549" aria-hidden="true" tabindex="-1"></a><span class="in">            justify-content: center;  /* Center content vertically */</span></span>
-<span id="cb4-550"><a href="#cb4-550" aria-hidden="true" tabindex="-1"></a><span class="in">            align-items: center;      /* Center content horizontally */</span></span>
-<span id="cb4-551"><a href="#cb4-551" aria-hidden="true" tabindex="-1"></a><span class="in">            margin: 0;</span></span>
-<span id="cb4-552"><a href="#cb4-552" aria-hidden="true" tabindex="-1"></a><span class="in">            background-color: #f4f4f9;</span></span>
-<span id="cb4-553"><a href="#cb4-553" aria-hidden="true" tabindex="-1"></a><span class="in">            box-sizing: border-box;</span></span>
-<span id="cb4-554"><a href="#cb4-554" aria-hidden="true" tabindex="-1"></a><span class="in">            min-height: 80vh; /* Adjusted to 80vh to ensure it's not too high */</span></span>
-<span id="cb4-555"><a href="#cb4-555" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb4-556"><a href="#cb4-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-557"><a href="#cb4-557" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Container Styling (Main Content) */</span></span>
-<span id="cb4-558"><a href="#cb4-558" aria-hidden="true" tabindex="-1"></a><span class="in">        .container {</span></span>
-<span id="cb4-559"><a href="#cb4-559" aria-hidden="true" tabindex="-1"></a><span class="in">            text-align: center;</span></span>
-<span id="cb4-560"><a href="#cb4-560" aria-hidden="true" tabindex="-1"></a><span class="in">            padding: 20px 40px; /* Adjust padding for more compactness */</span></span>
-<span id="cb4-561"><a href="#cb4-561" aria-hidden="true" tabindex="-1"></a><span class="in">            background-color: white;</span></span>
-<span id="cb4-562"><a href="#cb4-562" aria-hidden="true" tabindex="-1"></a><span class="in">            border-radius: 12px;</span></span>
-<span id="cb4-563"><a href="#cb4-563" aria-hidden="true" tabindex="-1"></a><span class="in">            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);</span></span>
-<span id="cb4-564"><a href="#cb4-564" aria-hidden="true" tabindex="-1"></a><span class="in">            width: auto;  /* Auto width to fit content */</span></span>
-<span id="cb4-565"><a href="#cb4-565" aria-hidden="true" tabindex="-1"></a><span class="in">            max-width: 380px;  /* Adjusted max-width for a smaller container */</span></span>
-<span id="cb4-566"><a href="#cb4-566" aria-hidden="true" tabindex="-1"></a><span class="in">            box-sizing: border-box;</span></span>
-<span id="cb4-567"><a href="#cb4-567" aria-hidden="true" tabindex="-1"></a><span class="in">            display: flex;</span></span>
-<span id="cb4-568"><a href="#cb4-568" aria-hidden="true" tabindex="-1"></a><span class="in">            justify-content: center;</span></span>
-<span id="cb4-569"><a href="#cb4-569" aria-hidden="true" tabindex="-1"></a><span class="in">            align-items: center;</span></span>
-<span id="cb4-570"><a href="#cb4-570" aria-hidden="true" tabindex="-1"></a><span class="in">            flex-direction: column;</span></span>
-<span id="cb4-571"><a href="#cb4-571" aria-hidden="true" tabindex="-1"></a><span class="in">            margin-top: 20px;  /* Space from the top of the page */</span></span>
-<span id="cb4-572"><a href="#cb4-572" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb4-573"><a href="#cb4-573" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-574"><a href="#cb4-574" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Link Styling */</span></span>
-<span id="cb4-575"><a href="#cb4-575" aria-hidden="true" tabindex="-1"></a><span class="in">        .link {</span></span>
-<span id="cb4-576"><a href="#cb4-576" aria-hidden="true" tabindex="-1"></a><span class="in">            font-size: 20px;  /* Adjusted font size for readability */</span></span>
-<span id="cb4-577"><a href="#cb4-577" aria-hidden="true" tabindex="-1"></a><span class="in">            color: #007bff;</span></span>
-<span id="cb4-578"><a href="#cb4-578" aria-hidden="true" tabindex="-1"></a><span class="in">            text-decoration: none;</span></span>
-<span id="cb4-579"><a href="#cb4-579" aria-hidden="true" tabindex="-1"></a><span class="in">            font-weight: 700;</span></span>
-<span id="cb4-580"><a href="#cb4-580" aria-hidden="true" tabindex="-1"></a><span class="in">            display: inline-flex;</span></span>
-<span id="cb4-581"><a href="#cb4-581" aria-hidden="true" tabindex="-1"></a><span class="in">            align-items: center;</span></span>
-<span id="cb4-582"><a href="#cb4-582" aria-hidden="true" tabindex="-1"></a><span class="in">            cursor: pointer;</span></span>
-<span id="cb4-583"><a href="#cb4-583" aria-hidden="true" tabindex="-1"></a><span class="in">            padding: 12px 30px;</span></span>
-<span id="cb4-584"><a href="#cb4-584" aria-hidden="true" tabindex="-1"></a><span class="in">            border-radius: 6px;</span></span>
-<span id="cb4-585"><a href="#cb4-585" aria-hidden="true" tabindex="-1"></a><span class="in">            transition: all 0.3s ease;</span></span>
-<span id="cb4-586"><a href="#cb4-586" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb4-587"><a href="#cb4-587" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-588"><a href="#cb4-588" aria-hidden="true" tabindex="-1"></a><span class="in">        .link:hover {</span></span>
-<span id="cb4-589"><a href="#cb4-589" aria-hidden="true" tabindex="-1"></a><span class="in">            color: #0056b3;</span></span>
-<span id="cb4-590"><a href="#cb4-590" aria-hidden="true" tabindex="-1"></a><span class="in">            text-decoration: none;</span></span>
-<span id="cb4-591"><a href="#cb4-591" aria-hidden="true" tabindex="-1"></a><span class="in">            background-color: #e6f0ff;</span></span>
-<span id="cb4-592"><a href="#cb4-592" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb4-593"><a href="#cb4-593" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-594"><a href="#cb4-594" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Arrow Styling */</span></span>
-<span id="cb4-595"><a href="#cb4-595" aria-hidden="true" tabindex="-1"></a><span class="in">        .arrow {</span></span>
-<span id="cb4-596"><a href="#cb4-596" aria-hidden="true" tabindex="-1"></a><span class="in">            margin-left: 12px;</span></span>
-<span id="cb4-597"><a href="#cb4-597" aria-hidden="true" tabindex="-1"></a><span class="in">            font-size: 24px;</span></span>
-<span id="cb4-598"><a href="#cb4-598" aria-hidden="true" tabindex="-1"></a><span class="in">            transition: transform 0.3s ease, font-size 0.3s ease;</span></span>
-<span id="cb4-599"><a href="#cb4-599" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb4-600"><a href="#cb4-600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-601"><a href="#cb4-601" aria-hidden="true" tabindex="-1"></a><span class="in">        .link:hover .arrow {</span></span>
-<span id="cb4-602"><a href="#cb4-602" aria-hidden="true" tabindex="-1"></a><span class="in">            transform: translateX(8px);</span></span>
-<span id="cb4-603"><a href="#cb4-603" aria-hidden="true" tabindex="-1"></a><span class="in">            font-size: 26px;</span></span>
-<span id="cb4-604"><a href="#cb4-604" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb4-605"><a href="#cb4-605" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-606"><a href="#cb4-606" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Focus State for Accessibility */</span></span>
-<span id="cb4-607"><a href="#cb4-607" aria-hidden="true" tabindex="-1"></a><span class="in">        .link:focus {</span></span>
-<span id="cb4-608"><a href="#cb4-608" aria-hidden="true" tabindex="-1"></a><span class="in">            outline: 2px solid #0056b3;</span></span>
-<span id="cb4-609"><a href="#cb4-609" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb4-610"><a href="#cb4-610" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-611"><a href="#cb4-611" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Footer Styling (Footnote) */</span></span>
-<span id="cb4-612"><a href="#cb4-612" aria-hidden="true" tabindex="-1"></a><span class="in">        .footer {</span></span>
-<span id="cb4-613"><a href="#cb4-613" aria-hidden="true" tabindex="-1"></a><span class="in">            font-size: 14px;</span></span>
-<span id="cb4-614"><a href="#cb4-614" aria-hidden="true" tabindex="-1"></a><span class="in">            color: #777;</span></span>
-<span id="cb4-615"><a href="#cb4-615" aria-hidden="true" tabindex="-1"></a><span class="in">            margin-top: 20px;  /* Space between content and footnote */</span></span>
-<span id="cb4-616"><a href="#cb4-616" aria-hidden="true" tabindex="-1"></a><span class="in">            text-align: center;</span></span>
-<span id="cb4-617"><a href="#cb4-617" aria-hidden="true" tabindex="-1"></a><span class="in">            width: 100%;</span></span>
-<span id="cb4-618"><a href="#cb4-618" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb4-619"><a href="#cb4-619" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-620"><a href="#cb4-620" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Mobile-Friendly Adjustments */</span></span>
-<span id="cb4-621"><a href="#cb4-621" aria-hidden="true" tabindex="-1"></a><span class="in">        @media (max-width: 600px) {</span></span>
-<span id="cb4-622"><a href="#cb4-622" aria-hidden="true" tabindex="-1"></a><span class="in">            .link {</span></span>
-<span id="cb4-623"><a href="#cb4-623" aria-hidden="true" tabindex="-1"></a><span class="in">                font-size: 18px;</span></span>
-<span id="cb4-624"><a href="#cb4-624" aria-hidden="true" tabindex="-1"></a><span class="in">                padding: 8px 15px;  /* Smaller padding for mobile devices */</span></span>
-<span id="cb4-625"><a href="#cb4-625" aria-hidden="true" tabindex="-1"></a><span class="in">            }</span></span>
-<span id="cb4-626"><a href="#cb4-626" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-627"><a href="#cb4-627" aria-hidden="true" tabindex="-1"></a><span class="in">            .arrow {</span></span>
-<span id="cb4-628"><a href="#cb4-628" aria-hidden="true" tabindex="-1"></a><span class="in">                font-size: 18px;</span></span>
-<span id="cb4-629"><a href="#cb4-629" aria-hidden="true" tabindex="-1"></a><span class="in">                margin-left: 8px;</span></span>
-<span id="cb4-630"><a href="#cb4-630" aria-hidden="true" tabindex="-1"></a><span class="in">            }</span></span>
-<span id="cb4-631"><a href="#cb4-631" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-632"><a href="#cb4-632" aria-hidden="true" tabindex="-1"></a><span class="in">            .container {</span></span>
-<span id="cb4-633"><a href="#cb4-633" aria-hidden="true" tabindex="-1"></a><span class="in">                padding: 15px 30px;  /* Smaller padding on mobile */</span></span>
-<span id="cb4-634"><a href="#cb4-634" aria-hidden="true" tabindex="-1"></a><span class="in">                max-width: 90%;  /* Ensure container fits better on small screens */</span></span>
-<span id="cb4-635"><a href="#cb4-635" aria-hidden="true" tabindex="-1"></a><span class="in">            }</span></span>
-<span id="cb4-636"><a href="#cb4-636" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
-<span id="cb4-637"><a href="#cb4-637" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/style&gt;</span></span>
-<span id="cb4-638"><a href="#cb4-638" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/head&gt;</span></span>
-<span id="cb4-639"><a href="#cb4-639" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;body&gt;</span></span>
-<span id="cb4-640"><a href="#cb4-640" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="container"&gt;</span></span>
-<span id="cb4-641"><a href="#cb4-641" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;a href="https://loccx78vn.github.io/Simulation_in_R/practice.html" class="link" tabindex="0"&gt;</span></span>
-<span id="cb4-642"><a href="#cb4-642" aria-hidden="true" tabindex="-1"></a><span class="in">            Go to Next Page</span></span>
-<span id="cb4-643"><a href="#cb4-643" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;span class="arrow"&gt;➔&lt;/span&gt;</span></span>
-<span id="cb4-644"><a href="#cb4-644" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/a&gt;</span></span>
-<span id="cb4-645"><a href="#cb4-645" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/div&gt;</span></span>
-<span id="cb4-646"><a href="#cb4-646" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/body&gt;</span></span>
-<span id="cb4-647"><a href="#cb4-647" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/html&gt;</span></span>
-<span id="cb4-648"><a href="#cb4-648" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-536"><a href="#cb4-536" aria-hidden="true" tabindex="-1"></a>Tiếp theo, ta sẽ thực hành trong R.</span>
+<span id="cb4-537"><a href="#cb4-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-538"><a href="#cb4-538" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb4-539"><a href="#cb4-539" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;!DOCTYPE html&gt;</span></span>
+<span id="cb4-540"><a href="#cb4-540" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;html lang="en"&gt;</span></span>
+<span id="cb4-541"><a href="#cb4-541" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;head&gt;</span></span>
+<span id="cb4-542"><a href="#cb4-542" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;meta charset="UTF-8"&gt;</span></span>
+<span id="cb4-543"><a href="#cb4-543" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></span>
+<span id="cb4-544"><a href="#cb4-544" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;title&gt;Go to Next Page&lt;/title&gt;</span></span>
+<span id="cb4-545"><a href="#cb4-545" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;style&gt;</span></span>
+<span id="cb4-546"><a href="#cb4-546" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Global Styles */</span></span>
+<span id="cb4-547"><a href="#cb4-547" aria-hidden="true" tabindex="-1"></a><span class="in">        body {</span></span>
+<span id="cb4-548"><a href="#cb4-548" aria-hidden="true" tabindex="-1"></a><span class="in">            font-family: 'Tahoma', sans-serif;</span></span>
+<span id="cb4-549"><a href="#cb4-549" aria-hidden="true" tabindex="-1"></a><span class="in">            display: flex;</span></span>
+<span id="cb4-550"><a href="#cb4-550" aria-hidden="true" tabindex="-1"></a><span class="in">            flex-direction: column;  /* Stack content and footnote vertically */</span></span>
+<span id="cb4-551"><a href="#cb4-551" aria-hidden="true" tabindex="-1"></a><span class="in">            justify-content: center;  /* Center content vertically */</span></span>
+<span id="cb4-552"><a href="#cb4-552" aria-hidden="true" tabindex="-1"></a><span class="in">            align-items: center;      /* Center content horizontally */</span></span>
+<span id="cb4-553"><a href="#cb4-553" aria-hidden="true" tabindex="-1"></a><span class="in">            margin: 0;</span></span>
+<span id="cb4-554"><a href="#cb4-554" aria-hidden="true" tabindex="-1"></a><span class="in">            background-color: $secondary-color;</span></span>
+<span id="cb4-555"><a href="#cb4-555" aria-hidden="true" tabindex="-1"></a><span class="in">            box-sizing: border-box;</span></span>
+<span id="cb4-556"><a href="#cb4-556" aria-hidden="true" tabindex="-1"></a><span class="in">            min-height: 80vh; /* Adjusted to 80vh to ensure it's not too high */</span></span>
+<span id="cb4-557"><a href="#cb4-557" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
+<span id="cb4-558"><a href="#cb4-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-559"><a href="#cb4-559" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Container Styling (Main Content) */</span></span>
+<span id="cb4-560"><a href="#cb4-560" aria-hidden="true" tabindex="-1"></a><span class="in">        .container {</span></span>
+<span id="cb4-561"><a href="#cb4-561" aria-hidden="true" tabindex="-1"></a><span class="in">            text-align: center;</span></span>
+<span id="cb4-562"><a href="#cb4-562" aria-hidden="true" tabindex="-1"></a><span class="in">            padding: 20px 40px; /* Adjust padding for more compactness */</span></span>
+<span id="cb4-563"><a href="#cb4-563" aria-hidden="true" tabindex="-1"></a><span class="in">            background-color: white;</span></span>
+<span id="cb4-564"><a href="#cb4-564" aria-hidden="true" tabindex="-1"></a><span class="in">            border-radius: 12px;</span></span>
+<span id="cb4-565"><a href="#cb4-565" aria-hidden="true" tabindex="-1"></a><span class="in">            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);</span></span>
+<span id="cb4-566"><a href="#cb4-566" aria-hidden="true" tabindex="-1"></a><span class="in">            width: auto;  /* Auto width to fit content */</span></span>
+<span id="cb4-567"><a href="#cb4-567" aria-hidden="true" tabindex="-1"></a><span class="in">            max-width: 380px;  /* Adjusted max-width for a smaller container */</span></span>
+<span id="cb4-568"><a href="#cb4-568" aria-hidden="true" tabindex="-1"></a><span class="in">            box-sizing: border-box;</span></span>
+<span id="cb4-569"><a href="#cb4-569" aria-hidden="true" tabindex="-1"></a><span class="in">            display: flex;</span></span>
+<span id="cb4-570"><a href="#cb4-570" aria-hidden="true" tabindex="-1"></a><span class="in">            justify-content: center;</span></span>
+<span id="cb4-571"><a href="#cb4-571" aria-hidden="true" tabindex="-1"></a><span class="in">            align-items: center;</span></span>
+<span id="cb4-572"><a href="#cb4-572" aria-hidden="true" tabindex="-1"></a><span class="in">            flex-direction: column;</span></span>
+<span id="cb4-573"><a href="#cb4-573" aria-hidden="true" tabindex="-1"></a><span class="in">            margin-top: 20px;  /* Space from the top of the page */</span></span>
+<span id="cb4-574"><a href="#cb4-574" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
+<span id="cb4-575"><a href="#cb4-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-576"><a href="#cb4-576" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Link Styling */</span></span>
+<span id="cb4-577"><a href="#cb4-577" aria-hidden="true" tabindex="-1"></a><span class="in">        .link {</span></span>
+<span id="cb4-578"><a href="#cb4-578" aria-hidden="true" tabindex="-1"></a><span class="in">            font-size: 20px;  /* Adjusted font size for readability */</span></span>
+<span id="cb4-579"><a href="#cb4-579" aria-hidden="true" tabindex="-1"></a><span class="in">            color: #007bff;</span></span>
+<span id="cb4-580"><a href="#cb4-580" aria-hidden="true" tabindex="-1"></a><span class="in">            text-decoration: none;</span></span>
+<span id="cb4-581"><a href="#cb4-581" aria-hidden="true" tabindex="-1"></a><span class="in">            font-weight: 700;</span></span>
+<span id="cb4-582"><a href="#cb4-582" aria-hidden="true" tabindex="-1"></a><span class="in">            display: inline-flex;</span></span>
+<span id="cb4-583"><a href="#cb4-583" aria-hidden="true" tabindex="-1"></a><span class="in">            align-items: center;</span></span>
+<span id="cb4-584"><a href="#cb4-584" aria-hidden="true" tabindex="-1"></a><span class="in">            cursor: pointer;</span></span>
+<span id="cb4-585"><a href="#cb4-585" aria-hidden="true" tabindex="-1"></a><span class="in">            padding: 12px 30px;</span></span>
+<span id="cb4-586"><a href="#cb4-586" aria-hidden="true" tabindex="-1"></a><span class="in">            border-radius: 6px;</span></span>
+<span id="cb4-587"><a href="#cb4-587" aria-hidden="true" tabindex="-1"></a><span class="in">            transition: all 0.3s ease;</span></span>
+<span id="cb4-588"><a href="#cb4-588" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
+<span id="cb4-589"><a href="#cb4-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-590"><a href="#cb4-590" aria-hidden="true" tabindex="-1"></a><span class="in">        .link:hover {</span></span>
+<span id="cb4-591"><a href="#cb4-591" aria-hidden="true" tabindex="-1"></a><span class="in">            color: #0056b3;</span></span>
+<span id="cb4-592"><a href="#cb4-592" aria-hidden="true" tabindex="-1"></a><span class="in">            text-decoration: none;</span></span>
+<span id="cb4-593"><a href="#cb4-593" aria-hidden="true" tabindex="-1"></a><span class="in">            background-color: #e6f0ff;</span></span>
+<span id="cb4-594"><a href="#cb4-594" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
+<span id="cb4-595"><a href="#cb4-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-596"><a href="#cb4-596" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Arrow Styling */</span></span>
+<span id="cb4-597"><a href="#cb4-597" aria-hidden="true" tabindex="-1"></a><span class="in">        .arrow {</span></span>
+<span id="cb4-598"><a href="#cb4-598" aria-hidden="true" tabindex="-1"></a><span class="in">            margin-left: 12px;</span></span>
+<span id="cb4-599"><a href="#cb4-599" aria-hidden="true" tabindex="-1"></a><span class="in">            font-size: 24px;</span></span>
+<span id="cb4-600"><a href="#cb4-600" aria-hidden="true" tabindex="-1"></a><span class="in">            transition: transform 0.3s ease, font-size 0.3s ease;</span></span>
+<span id="cb4-601"><a href="#cb4-601" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
+<span id="cb4-602"><a href="#cb4-602" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-603"><a href="#cb4-603" aria-hidden="true" tabindex="-1"></a><span class="in">        .link:hover .arrow {</span></span>
+<span id="cb4-604"><a href="#cb4-604" aria-hidden="true" tabindex="-1"></a><span class="in">            transform: translateX(8px);</span></span>
+<span id="cb4-605"><a href="#cb4-605" aria-hidden="true" tabindex="-1"></a><span class="in">            font-size: 26px;</span></span>
+<span id="cb4-606"><a href="#cb4-606" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
+<span id="cb4-607"><a href="#cb4-607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-608"><a href="#cb4-608" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Focus State for Accessibility */</span></span>
+<span id="cb4-609"><a href="#cb4-609" aria-hidden="true" tabindex="-1"></a><span class="in">        .link:focus {</span></span>
+<span id="cb4-610"><a href="#cb4-610" aria-hidden="true" tabindex="-1"></a><span class="in">            outline: 2px solid #0056b3;</span></span>
+<span id="cb4-611"><a href="#cb4-611" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
+<span id="cb4-612"><a href="#cb4-612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-613"><a href="#cb4-613" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Footer Styling (Footnote) */</span></span>
+<span id="cb4-614"><a href="#cb4-614" aria-hidden="true" tabindex="-1"></a><span class="in">        .footer {</span></span>
+<span id="cb4-615"><a href="#cb4-615" aria-hidden="true" tabindex="-1"></a><span class="in">            font-size: 14px;</span></span>
+<span id="cb4-616"><a href="#cb4-616" aria-hidden="true" tabindex="-1"></a><span class="in">            color: #777;</span></span>
+<span id="cb4-617"><a href="#cb4-617" aria-hidden="true" tabindex="-1"></a><span class="in">            margin-top: 20px;  /* Space between content and footnote */</span></span>
+<span id="cb4-618"><a href="#cb4-618" aria-hidden="true" tabindex="-1"></a><span class="in">            text-align: center;</span></span>
+<span id="cb4-619"><a href="#cb4-619" aria-hidden="true" tabindex="-1"></a><span class="in">            width: 100%;</span></span>
+<span id="cb4-620"><a href="#cb4-620" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
+<span id="cb4-621"><a href="#cb4-621" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-622"><a href="#cb4-622" aria-hidden="true" tabindex="-1"></a><span class="in">        /* Mobile-Friendly Adjustments */</span></span>
+<span id="cb4-623"><a href="#cb4-623" aria-hidden="true" tabindex="-1"></a><span class="in">        @media (max-width: 600px) {</span></span>
+<span id="cb4-624"><a href="#cb4-624" aria-hidden="true" tabindex="-1"></a><span class="in">            .link {</span></span>
+<span id="cb4-625"><a href="#cb4-625" aria-hidden="true" tabindex="-1"></a><span class="in">                font-size: 18px;</span></span>
+<span id="cb4-626"><a href="#cb4-626" aria-hidden="true" tabindex="-1"></a><span class="in">                padding: 8px 15px;  /* Smaller padding for mobile devices */</span></span>
+<span id="cb4-627"><a href="#cb4-627" aria-hidden="true" tabindex="-1"></a><span class="in">            }</span></span>
+<span id="cb4-628"><a href="#cb4-628" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-629"><a href="#cb4-629" aria-hidden="true" tabindex="-1"></a><span class="in">            .arrow {</span></span>
+<span id="cb4-630"><a href="#cb4-630" aria-hidden="true" tabindex="-1"></a><span class="in">                font-size: 18px;</span></span>
+<span id="cb4-631"><a href="#cb4-631" aria-hidden="true" tabindex="-1"></a><span class="in">                margin-left: 8px;</span></span>
+<span id="cb4-632"><a href="#cb4-632" aria-hidden="true" tabindex="-1"></a><span class="in">            }</span></span>
+<span id="cb4-633"><a href="#cb4-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-634"><a href="#cb4-634" aria-hidden="true" tabindex="-1"></a><span class="in">            .container {</span></span>
+<span id="cb4-635"><a href="#cb4-635" aria-hidden="true" tabindex="-1"></a><span class="in">                padding: 15px 30px;  /* Smaller padding on mobile */</span></span>
+<span id="cb4-636"><a href="#cb4-636" aria-hidden="true" tabindex="-1"></a><span class="in">                max-width: 90%;  /* Ensure container fits better on small screens */</span></span>
+<span id="cb4-637"><a href="#cb4-637" aria-hidden="true" tabindex="-1"></a><span class="in">            }</span></span>
+<span id="cb4-638"><a href="#cb4-638" aria-hidden="true" tabindex="-1"></a><span class="in">        }</span></span>
+<span id="cb4-639"><a href="#cb4-639" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/style&gt;</span></span>
+<span id="cb4-640"><a href="#cb4-640" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/head&gt;</span></span>
+<span id="cb4-641"><a href="#cb4-641" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;body&gt;</span></span>
+<span id="cb4-642"><a href="#cb4-642" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="container"&gt;</span></span>
+<span id="cb4-643"><a href="#cb4-643" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;a href="https://loccx78vn.github.io/Simulation_in_R/practice.html" class="link" tabindex="0"&gt;</span></span>
+<span id="cb4-644"><a href="#cb4-644" aria-hidden="true" tabindex="-1"></a><span class="in">            Go to Next Page</span></span>
+<span id="cb4-645"><a href="#cb4-645" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;span class="arrow"&gt;➔&lt;/span&gt;</span></span>
+<span id="cb4-646"><a href="#cb4-646" aria-hidden="true" tabindex="-1"></a><span class="in">        &lt;/a&gt;</span></span>
+<span id="cb4-647"><a href="#cb4-647" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/div&gt;</span></span>
+<span id="cb4-648"><a href="#cb4-648" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/body&gt;</span></span>
+<span id="cb4-649"><a href="#cb4-649" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/html&gt;</span></span>
+<span id="cb4-650"><a href="#cb4-650" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

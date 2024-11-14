@@ -182,7 +182,7 @@ Vậy để việc *simulation* diễn ra tốt, mình sẽ cập nhập thêm c
   </div>
 </div>
 ```
-Như vậy, mục tiêu là: đảm bảo hàng chờ ở mức **tối ưu nhất** để cân bằng giữa cấp độ phục vụ (Vd: đảm bảo khách hàng hài lòng) và chi phí. Lý do vì sao mình nói rằng là **tối ưu nhất** chứ không phải là giảm tới mức hàng chờ = 0 là vì hàng chờ luôn luôn tồn tại cho dù bạn có tốn bao nhiêu tài nguyên vào *server*. Nó giống như nghịch lý quy hoạch đô thị rằng: "Xây thêm đường sẽ không giảm kẹt xe" Và nghịch lý vận tải: Đường càng rộng thì càng kẹt xe" của [Matthew A. Turner](https://vivo.brown.edu/display/mturner1) và [Gilles Duranton](https://knowledge.wharton.upenn.edu/faculty/gilles-duranton/), nghĩa là bạn chỉ giảm khoảng cách của hàng kẹt xe chứ không hoàn toàn xóa bỏ tình trạng kẹt xe. Vì vậy, ví dụ nếu cửa hàng của bạn luôn tồn tại hàng chờ cỡ 5-6 người/hàng thì bạn chỉ cần thuê thêm 1 nhân viên đứng trực là hàng chờ giảm còn 2-3 người thay vì 5 nhân viên để hàng chờ giảm còn 0 bởi như vậy là tốn chi phí và không hiệu quả.
+Như vậy, mục tiêu là: đảm bảo hàng chờ ở mức **tối ưu nhất** để cân bằng giữa cấp độ phục vụ (Vd: đảm bảo khách hàng hài lòng) và chi phí. Lý do vì sao mình nói rằng là **tối ưu nhất** chứ không phải là giảm tới mức hàng chờ = 0 là vì hàng chờ luôn luôn tồn tại cho dù bạn có tốn bao nhiêu tài nguyên vào *server*. Nó giống như nghịch lý quy hoạch đô thị rằng: "Xây thêm đường sẽ không giảm kẹt xe" và nghịch lý vận tải: "Đường càng rộng thì càng kẹt xe" của [Matthew A. Turner](https://vivo.brown.edu/display/mturner1) và [Gilles Duranton](https://knowledge.wharton.upenn.edu/faculty/gilles-duranton/), nghĩa là bạn chỉ giảm khoảng cách của hàng kẹt xe chứ không hoàn toàn xóa bỏ tình trạng kẹt xe. Vì vậy, ví dụ nếu cửa hàng của bạn luôn tồn tại hàng chờ cỡ 5-6 người/hàng thì bạn chỉ cần thuê thêm 1 nhân viên đứng trực là hàng chờ giảm còn 2-3 người thay vì 5 nhân viên để hàng chờ giảm còn 0 bởi như vậy là tốn chi phí và không hiệu quả.
 
 Vậy làm sao để xây dựng mô hình hàng chờ cho cửa hàng của bạn ? Đầu tiên ta cần xác định được lượng khách hàng trong một khoảng thời gian cụ thể (Vd: ngày, tuần, tháng,...) tuân theo phân bố gì, trong đó các phân bố như phân phối hàm mũ, phân phối Poisson được sử dụng phổ biến.
 
@@ -331,6 +331,8 @@ gt(result_df) %>%
 Tiếp theo là xác định năng suất của *server* trong 1 đơn vị thời gian. Giả sử nhân viên của bạn có năng suất là như nhau và phục vụ trung bình được 1 đơn hàng/10 phút hay 6 đơn hàng/giờ thì ta có $\mu$ = 6
 
 Sau đó chúng ta sẽ bắt đầu quá trình giả lập và bạn có thể sử dụng 2 cách: (i) Phương pháp giải tích (giải phương trình toán học bằng tay) hoặc (ii) Phương pháp máy tính (giả lập bằng máy). Với **R** thì bạn hoàn toàn làm điều này dễ hơn.
+
+Như dưới đây là ví dụ về việc giả lập thời gian phục vụ của quán cà phê với 2 hoặc 3 hoặc 4 nhân viên trực quán.
 
 ```{r}
 #| include: false
@@ -531,7 +533,7 @@ Tiếp theo, ta sẽ thực hành trong R.
             justify-content: center;  /* Center content vertically */
             align-items: center;      /* Center content horizontally */
             margin: 0;
-            background-color: #f4f4f9;
+            background-color: $secondary-color;
             box-sizing: border-box;
             min-height: 80vh; /* Adjusted to 80vh to ensure it's not too high */
         }
